@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joc de Matematică</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .score-item {
+            background: rgba(255,255,255,0.95);
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .score-label {
+            font-size: 0.85rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .score-value {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            color: #764ba2;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.3);
+            height: 12px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00f260, #0575e6);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .exercise-card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            margin-bottom: 20px;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .exercise-card.correct {
+            animation: celebrate 0.6s ease;
+        }
+
+        .exercise-card.wrong {
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+
+        .exercise-number {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .exercise-type {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .exercise-type.result {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .exercise-type.missing {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .exercise-type.comparison {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+        }
+
+        .exercise-text {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .comparison-symbol {
+            color: #764ba2;
+            font-size: 2.8rem;
+        }
+
+        .answer-input {
+            width: 100px;
+            height: 70px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            border: 4px solid #e0e0e0;
+            border-radius: 15px;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .answer-input:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 20px rgba(118, 75, 162, 0.3);
+        }
+
+        .answer-input.correct {
+            border-color: #00c853;
+            background: #e8f5e9;
+        }
+
+        .answer-input.wrong {
+            border-color: #ff5252;
+            background: #ffebee;
+        }
+
+        .inline-input {
+            width: 70px;
+            height: 55px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.2rem;
+            text-align: center;
+            border: 4px dashed #764ba2;
+            border-radius: 15px;
+            outline: none;
+            background: #f8f4ff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .inline-input:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 20px rgba(118, 75, 162, 0.3);
+            border-style: solid;
+        }
+
+        .inline-input.correct {
+            border-color: #00c853;
+            border-style: solid;
+            background: #e8f5e9;
+        }
+
+        .inline-input.wrong {
+            border-color: #ff5252;
+            border-style: solid;
+            background: #ffebee;
+        }
+
+        .btn {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #00c853, #00e676);
+            color: white;
+        }
+
+        .btn-restart {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-height: 30px;
+        }
+
+        .feedback.correct {
+            color: #00c853;
+        }
+
+        .feedback.wrong {
+            color: #ff5252;
+        }
+
+        .completion-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .completion-screen.active {
+            display: block;
+        }
+
+        .trophy {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .final-score {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .final-message {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+        }
+
+        .stars {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .game-container {
+            display: block;
+        }
+
+        .game-container.hidden {
+            display: none;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            top: -20px;
+            animation: confetti-fall 3s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .hint {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧮 Joc de Matematică</h1>
+        </header>
+
+        <div class="score-board">
+            <div class="score-item">
+                <div class="score-label">Corecte</div>
+                <div class="score-value" id="correct-count">0</div>
+            </div>
+            <div class="score-item">
+                <div class="score-label">Greșite</div>
+                <div class="score-value" id="wrong-count">0</div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <div class="game-container" id="game-container">
+            <div class="exercise-card" id="exercise-card">
+                <div class="exercise-number" id="exercise-number">Exercițiul 1 din 70</div>
+                <div class="exercise-type" id="exercise-type">Găsește rezultatul</div>
+                <div class="exercise-text" id="exercise-text"></div>
+                <button class="btn btn-primary" id="check-btn" onclick="checkAnswer()">Verifică</button>
+                <div class="feedback" id="feedback"></div>
+                <div class="hint" id="hint"></div>
+            </div>
+        </div>
+
+        <div class="completion-screen" id="completion-screen">
+            <div class="trophy">🏆</div>
+            <div class="final-score" id="final-score">0 / 70</div>
+            <div class="stars" id="stars"></div>
+            <div class="final-message" id="final-message">Felicitări!</div>
+            <button class="btn btn-restart" onclick="restartGame()">Joacă din nou</button>
+        </div>
+    </div>
+
+    <script>
+        const exercises = [
+            // Tipul 1: Găsește rezultatul (30 exerciții)
+            { type: "result", text: "8 + 1 - 5 =", answer: 4 },
+            { type: "result", text: "6 - 3 + 4 =", answer: 7 },
+            { type: "result", text: "9 - 6 + 2 =", answer: 5 },
+            { type: "result", text: "4 + 5 - 7 =", answer: 2 },
+            { type: "result", text: "7 - 4 + 3 =", answer: 6 },
+            { type: "result", text: "10 - 8 + 5 =", answer: 7 },
+            { type: "result", text: "3 + 6 - 4 =", answer: 5 },
+            { type: "result", text: "8 - 5 + 2 =", answer: 5 },
+            { type: "result", text: "5 + 4 - 6 =", answer: 3 },
+            { type: "result", text: "9 - 7 + 6 =", answer: 8 },
+            { type: "result", text: "7 + 2 - 4 =", answer: 5 },
+            { type: "result", text: "6 - 2 + 5 =", answer: 9 },
+            { type: "result", text: "10 - 5 + 3 =", answer: 8 },
+            { type: "result", text: "4 + 4 - 2 =", answer: 6 },
+            { type: "result", text: "8 - 6 + 7 =", answer: 9 },
+            { type: "result", text: "5 + 3 - 1 =", answer: 7 },
+            { type: "result", text: "9 - 4 + 2 =", answer: 7 },
+            { type: "result", text: "3 + 5 - 6 =", answer: 2 },
+            { type: "result", text: "7 - 3 + 4 =", answer: 8 },
+            { type: "result", text: "6 + 3 - 8 =", answer: 1 },
+            { type: "result", text: "5 + 4 - 3 =", answer: 6 },
+            { type: "result", text: "9 - 5 + 1 =", answer: 5 },
+            { type: "result", text: "7 + 2 - 6 =", answer: 3 },
+            { type: "result", text: "8 - 4 + 3 =", answer: 7 },
+            { type: "result", text: "6 + 1 - 4 =", answer: 3 },
+            { type: "result", text: "10 - 7 + 4 =", answer: 7 },
+            { type: "result", text: "4 + 3 - 5 =", answer: 2 },
+            { type: "result", text: "9 - 8 + 6 =", answer: 7 },
+            { type: "result", text: "5 + 5 - 8 =", answer: 2 },
+            { type: "result", text: "7 - 6 + 9 =", answer: 10 },
+            
+            // Tipul 2: Găsește numărul lipsă (20 exerciții)
+            { type: "missing", parts: ["", " + 3 = 7"], answer: 4, position: 0 },
+            { type: "missing", parts: ["5 + ", " = 9"], answer: 4, position: 1 },
+            { type: "missing", parts: ["", " - 2 = 6"], answer: 8, position: 0 },
+            { type: "missing", parts: ["10 - ", " = 4"], answer: 6, position: 1 },
+            { type: "missing", parts: ["", " + 5 = 8"], answer: 3, position: 0 },
+            { type: "missing", parts: ["7 - ", " = 3"], answer: 4, position: 1 },
+            { type: "missing", parts: ["", " + 6 = 10"], answer: 4, position: 0 },
+            { type: "missing", parts: ["9 - ", " = 5"], answer: 4, position: 1 },
+            { type: "missing", parts: ["", " + 2 = 5"], answer: 3, position: 0 },
+            { type: "missing", parts: ["8 - ", " = 2"], answer: 6, position: 1 },
+            { type: "missing", parts: ["", " + 7 = 9"], answer: 2, position: 0 },
+            { type: "missing", parts: ["6 + ", " = 10"], answer: 4, position: 1 },
+            { type: "missing", parts: ["", " - 4 = 5"], answer: 9, position: 0 },
+            { type: "missing", parts: ["10 - ", " = 7"], answer: 3, position: 1 },
+            { type: "missing", parts: ["", " + 1 = 6"], answer: 5, position: 0 },
+            { type: "missing", parts: ["4 + ", " = 7"], answer: 3, position: 1 },
+            { type: "missing", parts: ["", " - 3 = 4"], answer: 7, position: 0 },
+            { type: "missing", parts: ["9 - ", " = 2"], answer: 7, position: 1 },
+            { type: "missing", parts: ["", " + 4 = 10"], answer: 6, position: 0 },
+            { type: "missing", parts: ["8 - ", " = 5"], answer: 3, position: 1 },
+
+            // Tipul 3: Comparații cu două numere necunoscute (20 exerciții)
+            // Egalități
+            { type: "comparison", leftParts: ["", " + 2"], symbol: "=", rightParts: ["3 + ", ""], answers: [5, 4], leftAnswer: 5, rightAnswer: 4 },
+            { type: "comparison", leftParts: ["4 + ", ""], symbol: "=", rightParts: ["", " + 3"], answers: [3, 4], leftAnswer: 3, rightAnswer: 4 },
+            { type: "comparison", leftParts: ["", " + 1"], symbol: "=", rightParts: ["2 + ", ""], answers: [6, 5], leftAnswer: 6, rightAnswer: 5 },
+            { type: "comparison", leftParts: ["8 - ", ""], symbol: "=", rightParts: ["", " + 1"], answers: [5, 2], leftAnswer: 5, rightAnswer: 2 },
+            { type: "comparison", leftParts: ["", " + 4"], symbol: "=", rightParts: ["5 + ", ""], answers: [3, 2], leftAnswer: 3, rightAnswer: 2 },
+            { type: "comparison", leftParts: ["6 - ", ""], symbol: "=", rightParts: ["", " + 2"], answers: [4, 0], leftAnswer: 4, rightAnswer: 0 },
+            { type: "comparison", leftParts: ["", " + 3"], symbol: "=", rightParts: ["4 + ", ""], answers: [2, 1], leftAnswer: 2, rightAnswer: 1 },
+            
+            // Mai mare decât
+            { type: "comparison", leftParts: ["", " + 5"], symbol: ">", rightParts: ["2 + ", ""], answers: [4, 3], leftAnswer: 4, rightAnswer: 3 },
+            { type: "comparison", leftParts: ["7 + ", ""], symbol: ">", rightParts: ["", " + 2"], answers: [2, 5], leftAnswer: 2, rightAnswer: 5 },
+            { type: "comparison", leftParts: ["", " + 3"], symbol: ">", rightParts: ["1 + ", ""], answers: [6, 4], leftAnswer: 6, rightAnswer: 4 },
+            { type: "comparison", leftParts: ["9 - ", ""], symbol: ">", rightParts: ["", " + 1"], answers: [2, 3], leftAnswer: 2, rightAnswer: 3 },
+            { type: "comparison", leftParts: ["", " + 6"], symbol: ">", rightParts: ["3 + ", ""], answers: [3, 2], leftAnswer: 3, rightAnswer: 2 },
+            { type: "comparison", leftParts: ["8 + ", ""], symbol: ">", rightParts: ["", " + 4"], answers: [1, 3], leftAnswer: 1, rightAnswer: 3 },
+            
+            // Mai mic decât
+            { type: "comparison", leftParts: ["", " + 1"], symbol: "<", rightParts: ["5 + ", ""], answers: [2, 3], leftAnswer: 2, rightAnswer: 3 },
+            { type: "comparison", leftParts: ["3 + ", ""], symbol: "<", rightParts: ["", " + 2"], answers: [2, 6], leftAnswer: 2, rightAnswer: 6 },
+            { type: "comparison", leftParts: ["", " + 2"], symbol: "<", rightParts: ["4 + ", ""], answers: [1, 3], leftAnswer: 1, rightAnswer: 3 },
+            { type: "comparison", leftParts: ["5 - ", ""], symbol: "<", rightParts: ["", " + 3"], answers: [3, 4], leftAnswer: 3, rightAnswer: 4 },
+            { type: "comparison", leftParts: ["", " + 4"], symbol: "<", rightParts: ["6 + ", ""], answers: [1, 2], leftAnswer: 1, rightAnswer: 2 },
+            { type: "comparison", leftParts: ["2 + ", ""], symbol: "<", rightParts: ["", " + 1"], answers: [3, 8], leftAnswer: 3, rightAnswer: 8 },
+            { type: "comparison", leftParts: ["", " + 0"], symbol: "<", rightParts: ["3 + ", ""], answers: [4, 5], leftAnswer: 4, rightAnswer: 5 }
+        ];
+
+        let currentIndex = 0;
+        let correctCount = 0;
+        let wrongCount = 0;
+        let answered = false;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        shuffleArray(exercises);
+
+        function loadExercise() {
+            const exercise = exercises[currentIndex];
+            const exerciseTextEl = document.getElementById('exercise-text');
+            const exerciseTypeEl = document.getElementById('exercise-type');
+            
+            document.getElementById('exercise-number').textContent = `Exercițiul ${currentIndex + 1} din ${exercises.length}`;
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('exercise-card').className = 'exercise-card';
+            document.getElementById('check-btn').textContent = 'Verifică';
+            document.getElementById('progress').style.width = `${(currentIndex / exercises.length) * 100}%`;
+            document.getElementById('hint').textContent = '';
+            answered = false;
+
+            if (exercise.type === "result") {
+                exerciseTypeEl.textContent = "Găsește rezultatul";
+                exerciseTypeEl.className = "exercise-type result";
+                exerciseTextEl.innerHTML = `
+                    <span>${exercise.text}</span>
+                    <input type="number" min="0" class="answer-input" id="answer-input" autofocus>
+                `;
+            } else if (exercise.type === "missing") {
+                exerciseTypeEl.textContent = "Găsește numărul lipsă";
+                exerciseTypeEl.className = "exercise-type missing";
+                exerciseTextEl.innerHTML = `
+                    <span>${exercise.parts[0]}</span>
+                    <input type="number" min="0" class="inline-input" id="answer-input" autofocus>
+                    <span>${exercise.parts[1]}</span>
+                `;
+            } else if (exercise.type === "comparison") {
+                exerciseTypeEl.textContent = "Completează comparația";
+                exerciseTypeEl.className = "exercise-type comparison";
+                
+                const symbolDisplay = exercise.symbol === "=" ? "=" : (exercise.symbol === ">" ? ">" : "<");
+                
+                exerciseTextEl.innerHTML = `
+                    <span>${exercise.leftParts[0]}</span>
+                    <input type="number" min="0" class="inline-input" id="answer-left" autofocus>
+                    <span>${exercise.leftParts[1]}</span>
+                    <span class="comparison-symbol">${symbolDisplay}</span>
+                    <span>${exercise.rightParts[0]}</span>
+                    <input type="number" min="0" class="inline-input" id="answer-right">
+                    <span>${exercise.rightParts[1]}</span>
+                `;
+                
+                document.getElementById('hint').textContent = getComparisonHint(exercise.symbol);
+            }
+
+            // Add enter key listeners
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach((input, index) => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        if (exercise.type === "comparison" && index === 0) {
+                            document.getElementById('answer-right').focus();
+                        } else {
+                            checkAnswer();
+                        }
+                    }
+                });
+            });
+
+            if (inputs.length > 0) {
+                inputs[0].focus();
+            }
+        }
+
+        function getComparisonHint(symbol) {
+            if (symbol === "=") return "Găsește numerele astfel încât cele două părți să fie egale";
+            if (symbol === ">") return "Partea stângă trebuie să fie mai mare decât partea dreaptă";
+            if (symbol === "<") return "Partea stângă trebuie să fie mai mică decât partea dreaptă";
+            return "";
+        }
+
+        function checkAnswer() {
+            const exercise = exercises[currentIndex];
+            const feedback = document.getElementById('feedback');
+            const card = document.getElementById('exercise-card');
+            const btn = document.getElementById('check-btn');
+
+            if (answered) {
+                currentIndex++;
+                if (currentIndex < exercises.length) {
+                    loadExercise();
+                } else {
+                    showCompletion();
+                }
+                return;
+            }
+
+            if (exercise.type === "result" || exercise.type === "missing") {
+                const input = document.getElementById('answer-input');
+                const userAnswer = parseInt(input.value);
+
+                if (isNaN(userAnswer)) {
+                    feedback.textContent = 'Introdu un număr!';
+                    feedback.className = 'feedback wrong';
+                    return;
+                }
+
+                if (userAnswer < 0) {
+                    feedback.textContent = 'Numărul trebuie să fie cel puțin 0!';
+                    feedback.className = 'feedback wrong';
+                    return;
+                }
+
+                answered = true;
+
+                if (userAnswer === exercise.answer) {
+                    correctCount++;
+                    document.getElementById('correct-count').textContent = correctCount;
+                    input.className = exercise.type === "result" ? 'answer-input correct' : 'inline-input correct';
+                    card.className = 'exercise-card correct';
+                    feedback.textContent = '✓ Corect! Bravo!';
+                    feedback.className = 'feedback correct';
+                } else {
+                    wrongCount++;
+                    document.getElementById('wrong-count').textContent = wrongCount;
+                    input.className = exercise.type === "result" ? 'answer-input wrong' : 'inline-input wrong';
+                    card.className = 'exercise-card wrong';
+                    feedback.textContent = `✗ Răspunsul corect era ${exercise.answer}`;
+                    feedback.className = 'feedback wrong';
+                }
+
+                if (currentIndex < exercises.length - 1) {
+                    btn.textContent = 'Următorul →';
+                } else {
+                    btn.textContent = 'Vezi rezultatul';
+                }
+
+            } else if (exercise.type === "comparison") {
+                const leftInput = document.getElementById('answer-left');
+                const rightInput = document.getElementById('answer-right');
+                const leftAnswer = parseInt(leftInput.value);
+                const rightAnswer = parseInt(rightInput.value);
+
+                if (isNaN(leftAnswer) || isNaN(rightAnswer)) {
+                    feedback.textContent = 'Completează ambele câmpuri!';
+                    feedback.className = 'feedback wrong';
+                    return;
+                }
+
+                if (leftAnswer < 0 || rightAnswer < 0) {
+                    feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
+                    feedback.className = 'feedback wrong';
+                    return;
+                }
+
+                answered = true;
+
+                // Calculate left and right side values
+                const leftSide = evaluateExpression(exercise.leftParts, leftAnswer);
+                const rightSide = evaluateExpression(exercise.rightParts, rightAnswer);
+
+                let isCorrect = false;
+                if (exercise.symbol === "=" && leftSide === rightSide) isCorrect = true;
+                if (exercise.symbol === ">" && leftSide > rightSide) isCorrect = true;
+                if (exercise.symbol === "<" && leftSide < rightSide) isCorrect = true;
+
+                if (isCorrect) {
+                    correctCount++;
+                    document.getElementById('correct-count').textContent = correctCount;
+                    leftInput.className = 'inline-input correct';
+                    rightInput.className = 'inline-input correct';
+                    card.className = 'exercise-card correct';
+                    feedback.textContent = '✓ Corect! Bravo!';
+                    feedback.className = 'feedback correct';
+                } else {
+                    wrongCount++;
+                    document.getElementById('wrong-count').textContent = wrongCount;
+                    leftInput.className = 'inline-input wrong';
+                    rightInput.className = 'inline-input wrong';
+                    card.className = 'exercise-card wrong';
+                    feedback.textContent = `✗ O soluție corectă: ${exercise.leftAnswer} și ${exercise.rightAnswer}`;
+                    feedback.className = 'feedback wrong';
+                }
+
+                if (currentIndex < exercises.length - 1) {
+                    btn.textContent = 'Următorul →';
+                } else {
+                    btn.textContent = 'Vezi rezultatul';
+                }
+            }
+        }
+
+        function evaluateExpression(parts, answer) {
+            const fullExpr = parts[0] + answer + parts[1];
+            const match = fullExpr.match(/(\d+)\s*([+\-])\s*(\d+)/);
+            if (match) {
+                const a = parseInt(match[1]);
+                const op = match[2];
+                const b = parseInt(match[3]);
+                return op === '+' ? a + b : a - b;
+            }
+            return parseInt(fullExpr);
+        }
+
+        function showCompletion() {
+            document.getElementById('game-container').className = 'game-container hidden';
+            document.getElementById('completion-screen').className = 'completion-screen active';
+            document.getElementById('final-score').textContent = `${correctCount} / ${exercises.length}`;
+            document.getElementById('progress').style.width = '100%';
+
+            const percentage = (correctCount / exercises.length) * 100;
+            let stars = '';
+            let message = '';
+
+            if (percentage === 100) {
+                stars = '⭐⭐⭐';
+                message = 'Perfect! Ești un geniu al matematicii!';
+            } else if (percentage >= 80) {
+                stars = '⭐⭐';
+                message = 'Excelent! Foarte bine!';
+            } else if (percentage >= 60) {
+                stars = '⭐';
+                message = 'Bine! Mai exersează!';
+            } else {
+                stars = '';
+                message = 'Continuă să exersezi! Poți mai mult!';
+            }
+
+            document.getElementById('stars').textContent = stars;
+            document.getElementById('final-message').textContent = message;
+
+            if (percentage >= 80) {
+                createConfetti();
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#667eea', '#764ba2', '#f093fb', '#00c853', '#ffeb3b', '#ff5252'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 50);
+            }
+        }
+
+        function restartGame() {
+            currentIndex = 0;
+            correctCount = 0;
+            wrongCount = 0;
+            shuffleArray(exercises);
+            document.getElementById('correct-count').textContent = '0';
+            document.getElementById('wrong-count').textContent = '0';
+            document.getElementById('game-container').className = 'game-container';
+            document.getElementById('completion-screen').className = 'completion-screen';
+            loadExercise();
+        }
+
+        loadExercise();
+    </script>
+</body>
+</html>
