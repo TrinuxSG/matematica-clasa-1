@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joc de Matematică</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Joc de Matematica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -31,7 +31,7 @@
         }
 
         h1 {
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Baloo 2', cursive;
             font-size: 2.5rem;
             color: white;
             text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
@@ -61,7 +61,7 @@
         }
 
         .score-value {
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Baloo 2', cursive;
             font-size: 2rem;
             color: #764ba2;
         }
@@ -142,7 +142,7 @@
         }
 
         .exercise-text {
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Baloo 2', cursive;
             font-size: 2.5rem;
             color: #333;
             margin-bottom: 30px;
@@ -161,7 +161,7 @@
         .answer-input {
             width: 100px;
             height: 70px;
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Baloo 2', cursive;
             font-size: 2.5rem;
             text-align: center;
             border: 4px solid #e0e0e0;
@@ -188,7 +188,7 @@
         .inline-input {
             width: 70px;
             height: 55px;
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Baloo 2', cursive;
             font-size: 2.2rem;
             text-align: center;
             border: 4px dashed #764ba2;
@@ -268,6 +268,33 @@
             color: #ff5252;
         }
 
+        .hint-box {
+            margin-top: 15px;
+            padding: 15px 20px;
+            background: #fff3e0;
+            border-radius: 15px;
+            border-left: 4px solid #ff9800;
+            text-align: left;
+            display: none;
+        }
+
+        .hint-box.visible {
+            display: block;
+        }
+
+        .hint-box .hint-title {
+            font-weight: 700;
+            color: #e65100;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .hint-box .hint-text {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
         .completion-screen {
             display: none;
             text-align: center;
@@ -289,7 +316,7 @@
         }
 
         .final-score {
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Baloo 2', cursive;
             font-size: 3rem;
             color: white;
             margin-bottom: 10px;
@@ -330,7 +357,7 @@
             }
         }
 
-        .hint {
+        .task-hint {
             font-size: 0.85rem;
             color: #999;
             margin-top: 15px;
@@ -341,17 +368,13 @@
 <body>
     <div class="container">
         <header>
-            <h1>🧮 Joc de Matematică</h1>
+            <h1>🧮 Joc de Matematica</h1>
         </header>
 
         <div class="score-board">
             <div class="score-item">
-                <div class="score-label">Corecte</div>
+                <div class="score-label">Rezolvate</div>
                 <div class="score-value" id="correct-count">0</div>
-            </div>
-            <div class="score-item">
-                <div class="score-label">Greșite</div>
-                <div class="score-value" id="wrong-count">0</div>
             </div>
         </div>
 
@@ -361,12 +384,16 @@
 
         <div class="game-container" id="game-container">
             <div class="exercise-card" id="exercise-card">
-                <div class="exercise-number" id="exercise-number">Exercițiul 1 din 70</div>
-                <div class="exercise-type" id="exercise-type">Găsește rezultatul</div>
+                <div class="exercise-number" id="exercise-number">Exercitiul 1 din 70</div>
+                <div class="exercise-type" id="exercise-type">Gaseste rezultatul</div>
                 <div class="exercise-text" id="exercise-text"></div>
-                <button class="btn btn-primary" id="check-btn" onclick="checkAnswer()">Verifică</button>
+                <button class="btn btn-primary" id="check-btn" onclick="checkAnswer()">Verifica</button>
                 <div class="feedback" id="feedback"></div>
-                <div class="hint" id="hint"></div>
+                <div class="hint-box" id="hint-box">
+                    <div class="hint-title">💡 Indiciu:</div>
+                    <div class="hint-text" id="hint-text"></div>
+                </div>
+                <div class="task-hint" id="task-hint"></div>
             </div>
         </div>
 
@@ -374,14 +401,14 @@
             <div class="trophy">🏆</div>
             <div class="final-score" id="final-score">0 / 70</div>
             <div class="stars" id="stars"></div>
-            <div class="final-message" id="final-message">Felicitări!</div>
-            <button class="btn btn-restart" onclick="restartGame()">Joacă din nou</button>
+            <div class="final-message" id="final-message">Felicitari!</div>
+            <button class="btn btn-restart" onclick="restartGame()">Joaca din nou</button>
         </div>
     </div>
 
     <script>
         const exercises = [
-            // Tipul 1: Găsește rezultatul (30 exerciții)
+            // Tipul 1: Gaseste rezultatul (30 exercitii)
             { type: "result", text: "8 + 1 - 5 =", answer: 4 },
             { type: "result", text: "6 - 3 + 4 =", answer: 7 },
             { type: "result", text: "9 - 6 + 2 =", answer: 5 },
@@ -413,7 +440,7 @@
             { type: "result", text: "5 + 5 - 8 =", answer: 2 },
             { type: "result", text: "7 - 6 + 9 =", answer: 10 },
             
-            // Tipul 2: Găsește numărul lipsă (20 exerciții)
+            // Tipul 2: Gaseste numarul lipsa (20 exercitii)
             { type: "missing", parts: ["", " + 3 = 7"], answer: 4, position: 0 },
             { type: "missing", parts: ["5 + ", " = 9"], answer: 4, position: 1 },
             { type: "missing", parts: ["", " - 2 = 6"], answer: 8, position: 0 },
@@ -435,8 +462,8 @@
             { type: "missing", parts: ["", " + 4 = 10"], answer: 6, position: 0 },
             { type: "missing", parts: ["8 - ", " = 5"], answer: 3, position: 1 },
 
-            // Tipul 3: Comparații cu două numere necunoscute (20 exerciții)
-            // Egalități
+            // Tipul 3: Comparatii cu doua numere necunoscute (20 exercitii)
+            // Egalitati
             { type: "comparison", leftParts: ["", " + 2"], symbol: "=", rightParts: ["3 + ", ""], answers: [5, 4], leftAnswer: 5, rightAnswer: 4 },
             { type: "comparison", leftParts: ["4 + ", ""], symbol: "=", rightParts: ["", " + 3"], answers: [3, 4], leftAnswer: 3, rightAnswer: 4 },
             { type: "comparison", leftParts: ["", " + 1"], symbol: "=", rightParts: ["2 + ", ""], answers: [6, 5], leftAnswer: 6, rightAnswer: 5 },
@@ -445,7 +472,7 @@
             { type: "comparison", leftParts: ["6 - ", ""], symbol: "=", rightParts: ["", " + 2"], answers: [4, 0], leftAnswer: 4, rightAnswer: 0 },
             { type: "comparison", leftParts: ["", " + 3"], symbol: "=", rightParts: ["4 + ", ""], answers: [2, 1], leftAnswer: 2, rightAnswer: 1 },
             
-            // Mai mare decât
+            // Mai mare decat
             { type: "comparison", leftParts: ["", " + 5"], symbol: ">", rightParts: ["2 + ", ""], answers: [4, 3], leftAnswer: 4, rightAnswer: 3 },
             { type: "comparison", leftParts: ["7 + ", ""], symbol: ">", rightParts: ["", " + 2"], answers: [2, 5], leftAnswer: 2, rightAnswer: 5 },
             { type: "comparison", leftParts: ["", " + 3"], symbol: ">", rightParts: ["1 + ", ""], answers: [6, 4], leftAnswer: 6, rightAnswer: 4 },
@@ -453,7 +480,7 @@
             { type: "comparison", leftParts: ["", " + 6"], symbol: ">", rightParts: ["3 + ", ""], answers: [3, 2], leftAnswer: 3, rightAnswer: 2 },
             { type: "comparison", leftParts: ["8 + ", ""], symbol: ">", rightParts: ["", " + 4"], answers: [1, 3], leftAnswer: 1, rightAnswer: 3 },
             
-            // Mai mic decât
+            // Mai mic decat
             { type: "comparison", leftParts: ["", " + 1"], symbol: "<", rightParts: ["5 + ", ""], answers: [2, 3], leftAnswer: 2, rightAnswer: 3 },
             { type: "comparison", leftParts: ["3 + ", ""], symbol: "<", rightParts: ["", " + 2"], answers: [2, 6], leftAnswer: 2, rightAnswer: 6 },
             { type: "comparison", leftParts: ["", " + 2"], symbol: "<", rightParts: ["4 + ", ""], answers: [1, 3], leftAnswer: 1, rightAnswer: 3 },
@@ -465,7 +492,6 @@
 
         let currentIndex = 0;
         let correctCount = 0;
-        let wrongCount = 0;
         let answered = false;
 
         function shuffleArray(array) {
@@ -483,24 +509,26 @@
             const exerciseTextEl = document.getElementById('exercise-text');
             const exerciseTypeEl = document.getElementById('exercise-type');
             
-            document.getElementById('exercise-number').textContent = `Exercițiul ${currentIndex + 1} din ${exercises.length}`;
+            document.getElementById('exercise-number').textContent = `Exercitiul ${currentIndex + 1} din ${exercises.length}`;
             document.getElementById('feedback').textContent = '';
             document.getElementById('feedback').className = 'feedback';
             document.getElementById('exercise-card').className = 'exercise-card';
-            document.getElementById('check-btn').textContent = 'Verifică';
+            document.getElementById('check-btn').textContent = 'Verifica';
             document.getElementById('progress').style.width = `${(currentIndex / exercises.length) * 100}%`;
-            document.getElementById('hint').textContent = '';
+            document.getElementById('task-hint').textContent = '';
+            document.getElementById('hint-box').className = 'hint-box';
+            document.getElementById('hint-text').textContent = '';
             answered = false;
 
             if (exercise.type === "result") {
-                exerciseTypeEl.textContent = "Găsește rezultatul";
+                exerciseTypeEl.textContent = "Gaseste rezultatul";
                 exerciseTypeEl.className = "exercise-type result";
                 exerciseTextEl.innerHTML = `
                     <span>${exercise.text}</span>
                     <input type="number" min="0" class="answer-input" id="answer-input" autofocus>
                 `;
             } else if (exercise.type === "missing") {
-                exerciseTypeEl.textContent = "Găsește numărul lipsă";
+                exerciseTypeEl.textContent = "Gaseste numarul lipsa";
                 exerciseTypeEl.className = "exercise-type missing";
                 exerciseTextEl.innerHTML = `
                     <span>${exercise.parts[0]}</span>
@@ -508,7 +536,7 @@
                     <span>${exercise.parts[1]}</span>
                 `;
             } else if (exercise.type === "comparison") {
-                exerciseTypeEl.textContent = "Completează comparația";
+                exerciseTypeEl.textContent = "Completeaza comparatia";
                 exerciseTypeEl.className = "exercise-type comparison";
                 
                 const symbolDisplay = exercise.symbol === "=" ? "=" : (exercise.symbol === ">" ? ">" : "<");
@@ -523,7 +551,7 @@
                     <span>${exercise.rightParts[1]}</span>
                 `;
                 
-                document.getElementById('hint').textContent = getComparisonHint(exercise.symbol);
+                document.getElementById('task-hint').textContent = getComparisonHint(exercise.symbol);
             }
 
             // Add enter key listeners
@@ -546,10 +574,48 @@
         }
 
         function getComparisonHint(symbol) {
-            if (symbol === "=") return "Găsește numerele astfel încât cele două părți să fie egale";
-            if (symbol === ">") return "Partea stângă trebuie să fie mai mare decât partea dreaptă";
-            if (symbol === "<") return "Partea stângă trebuie să fie mai mică decât partea dreaptă";
+            if (symbol === "=") return "Gaseste numerele astfel incat cele doua parti sa fie egale";
+            if (symbol === ">") return "Partea stanga trebuie sa fie mai mare decat partea dreapta";
+            if (symbol === "<") return "Partea stanga trebuie sa fie mai mica decat partea dreapta";
             return "";
+        }
+
+        function generateHint(exercise, userAnswer, userLeftAnswer, userRightAnswer) {
+            if (exercise.type === "result") {
+                // Parse the expression to give a hint
+                const text = exercise.text.replace("=", "").trim();
+                const correctAnswer = exercise.answer;
+                
+                if (userAnswer > correctAnswer) {
+                    return `Raspunsul tau (${userAnswer}) este prea mare. Incearca un numar mai mic!`;
+                } else {
+                    return `Raspunsul tau (${userAnswer}) este prea mic. Incearca un numar mai mare!`;
+                }
+            } else if (exercise.type === "missing") {
+                const correctAnswer = exercise.answer;
+                
+                if (userAnswer > correctAnswer) {
+                    return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ce numar trebuie sa pui ca sa obtii rezultatul corect?`;
+                } else {
+                    return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ce numar trebuie sa pui ca sa obtii rezultatul corect?`;
+                }
+            } else if (exercise.type === "comparison") {
+                const leftSide = evaluateExpression(exercise.leftParts, userLeftAnswer);
+                const rightSide = evaluateExpression(exercise.rightParts, userRightAnswer);
+                
+                if (exercise.symbol === "=") {
+                    if (leftSide > rightSide) {
+                        return `Partea stanga (${leftSide}) este mai mare decat partea dreapta (${rightSide}). Trebuie sa fie egale!`;
+                    } else {
+                        return `Partea stanga (${leftSide}) este mai mica decat partea dreapta (${rightSide}). Trebuie sa fie egale!`;
+                    }
+                } else if (exercise.symbol === ">") {
+                    return `Partea stanga (${leftSide}) trebuie sa fie MAI MARE decat partea dreapta (${rightSide}). Acum nu este asa.`;
+                } else if (exercise.symbol === "<") {
+                    return `Partea stanga (${leftSide}) trebuie sa fie MAI MICA decat partea dreapta (${rightSide}). Acum nu este asa.`;
+                }
+            }
+            return "Mai incearca!";
         }
 
         function checkAnswer() {
@@ -557,6 +623,8 @@
             const feedback = document.getElementById('feedback');
             const card = document.getElementById('exercise-card');
             const btn = document.getElementById('check-btn');
+            const hintBox = document.getElementById('hint-box');
+            const hintText = document.getElementById('hint-text');
 
             if (answered) {
                 currentIndex++;
@@ -573,39 +641,48 @@
                 const userAnswer = parseInt(input.value);
 
                 if (isNaN(userAnswer)) {
-                    feedback.textContent = 'Introdu un număr!';
+                    feedback.textContent = 'Introdu un numar!';
                     feedback.className = 'feedback wrong';
                     return;
                 }
 
                 if (userAnswer < 0) {
-                    feedback.textContent = 'Numărul trebuie să fie cel puțin 0!';
+                    feedback.textContent = 'Numarul trebuie sa fie cel putin 0!';
                     feedback.className = 'feedback wrong';
                     return;
                 }
 
-                answered = true;
-
                 if (userAnswer === exercise.answer) {
+                    answered = true;
                     correctCount++;
                     document.getElementById('correct-count').textContent = correctCount;
                     input.className = exercise.type === "result" ? 'answer-input correct' : 'inline-input correct';
                     card.className = 'exercise-card correct';
                     feedback.textContent = '✓ Corect! Bravo!';
                     feedback.className = 'feedback correct';
+                    hintBox.className = 'hint-box';
+
+                    if (currentIndex < exercises.length - 1) {
+                        btn.textContent = 'Urmatorul →';
+                    } else {
+                        btn.textContent = 'Vezi rezultatul';
+                    }
                 } else {
-                    wrongCount++;
-                    document.getElementById('wrong-count').textContent = wrongCount;
                     input.className = exercise.type === "result" ? 'answer-input wrong' : 'inline-input wrong';
                     card.className = 'exercise-card wrong';
-                    feedback.textContent = `✗ Răspunsul corect era ${exercise.answer}`;
+                    feedback.textContent = '✗ Mai incearca!';
                     feedback.className = 'feedback wrong';
-                }
-
-                if (currentIndex < exercises.length - 1) {
-                    btn.textContent = 'Următorul →';
-                } else {
-                    btn.textContent = 'Vezi rezultatul';
+                    
+                    // Show hint
+                    hintText.textContent = generateHint(exercise, userAnswer);
+                    hintBox.className = 'hint-box visible';
+                    
+                    setTimeout(() => {
+                        input.className = exercise.type === "result" ? 'answer-input' : 'inline-input';
+                        card.className = 'exercise-card';
+                        input.value = '';
+                        input.focus();
+                    }, 1500);
                 }
 
             } else if (exercise.type === "comparison") {
@@ -615,18 +692,16 @@
                 const rightAnswer = parseInt(rightInput.value);
 
                 if (isNaN(leftAnswer) || isNaN(rightAnswer)) {
-                    feedback.textContent = 'Completează ambele câmpuri!';
+                    feedback.textContent = 'Completeaza ambele campuri!';
                     feedback.className = 'feedback wrong';
                     return;
                 }
 
                 if (leftAnswer < 0 || rightAnswer < 0) {
-                    feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
+                    feedback.textContent = 'Numerele trebuie sa fie cel putin 0!';
                     feedback.className = 'feedback wrong';
                     return;
                 }
-
-                answered = true;
 
                 // Calculate left and right side values
                 const leftSide = evaluateExpression(exercise.leftParts, leftAnswer);
@@ -638,6 +713,7 @@
                 if (exercise.symbol === "<" && leftSide < rightSide) isCorrect = true;
 
                 if (isCorrect) {
+                    answered = true;
                     correctCount++;
                     document.getElementById('correct-count').textContent = correctCount;
                     leftInput.className = 'inline-input correct';
@@ -645,20 +721,32 @@
                     card.className = 'exercise-card correct';
                     feedback.textContent = '✓ Corect! Bravo!';
                     feedback.className = 'feedback correct';
+                    hintBox.className = 'hint-box';
+
+                    if (currentIndex < exercises.length - 1) {
+                        btn.textContent = 'Urmatorul →';
+                    } else {
+                        btn.textContent = 'Vezi rezultatul';
+                    }
                 } else {
-                    wrongCount++;
-                    document.getElementById('wrong-count').textContent = wrongCount;
                     leftInput.className = 'inline-input wrong';
                     rightInput.className = 'inline-input wrong';
                     card.className = 'exercise-card wrong';
-                    feedback.textContent = `✗ O soluție corectă: ${exercise.leftAnswer} și ${exercise.rightAnswer}`;
+                    feedback.textContent = '✗ Mai incearca!';
                     feedback.className = 'feedback wrong';
-                }
-
-                if (currentIndex < exercises.length - 1) {
-                    btn.textContent = 'Următorul →';
-                } else {
-                    btn.textContent = 'Vezi rezultatul';
+                    
+                    // Show hint
+                    hintText.textContent = generateHint(exercise, null, leftAnswer, rightAnswer);
+                    hintBox.className = 'hint-box visible';
+                    
+                    setTimeout(() => {
+                        leftInput.className = 'inline-input';
+                        rightInput.className = 'inline-input';
+                        card.className = 'exercise-card';
+                        leftInput.value = '';
+                        rightInput.value = '';
+                        leftInput.focus();
+                    }, 1500);
                 }
             }
         }
@@ -687,16 +775,16 @@
 
             if (percentage === 100) {
                 stars = '⭐⭐⭐';
-                message = 'Perfect! Ești un geniu al matematicii!';
+                message = 'Perfect! Esti un geniu al matematicii!';
             } else if (percentage >= 80) {
                 stars = '⭐⭐';
                 message = 'Excelent! Foarte bine!';
             } else if (percentage >= 60) {
                 stars = '⭐';
-                message = 'Bine! Mai exersează!';
+                message = 'Bine! Mai exerseaza!';
             } else {
                 stars = '';
-                message = 'Continuă să exersezi! Poți mai mult!';
+                message = 'Continua sa exersezi! Poti mai mult!';
             }
 
             document.getElementById('stars').textContent = stars;
@@ -726,10 +814,8 @@
         function restartGame() {
             currentIndex = 0;
             correctCount = 0;
-            wrongCount = 0;
             shuffleArray(exercises);
             document.getElementById('correct-count').textContent = '0';
-            document.getElementById('wrong-count').textContent = '0';
             document.getElementById('game-container').className = 'game-container';
             document.getElementById('completion-screen').className = 'completion-screen';
             loadExercise();
