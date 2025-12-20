@@ -141,6 +141,14 @@
             background: linear-gradient(135deg, #00b894, #00cec9);
         }
 
+        .exercise-type.table-add {
+            background: linear-gradient(135deg, #fdcb6e, #e17055);
+        }
+
+        .exercise-type.table-sub {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+        }
+
         .exercise-text {
             font-family: 'Baloo 2', cursive;
             font-size: 2.5rem;
@@ -211,6 +219,87 @@
         }
 
         .inline-input.wrong {
+            border-color: #ff5252;
+            border-style: solid;
+            background: #ffebee;
+        }
+
+        /* Table styles */
+        .math-table {
+            margin: 20px auto 30px;
+            border-collapse: collapse;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.5rem;
+        }
+
+        .math-table th {
+            padding: 12px 20px;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .math-table.addition th {
+            background: linear-gradient(135deg, #fdcb6e, #e17055);
+        }
+
+        .math-table.subtraction th {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+        }
+
+        .math-table th:first-child {
+            border-radius: 15px 0 0 0;
+        }
+
+        .math-table th:last-child {
+            border-radius: 0 15px 0 0;
+        }
+
+        .math-table td {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .math-table tr:last-child td:first-child {
+            border-radius: 0 0 0 15px;
+        }
+
+        .math-table tr:last-child td:last-child {
+            border-radius: 0 0 15px 0;
+        }
+
+        .math-table .table-input {
+            width: 70px;
+            height: 55px;
+            font-family: 'Baloo 2', cursive;
+            font-size: 2rem;
+            text-align: center;
+            border: 4px dashed #764ba2;
+            border-radius: 12px;
+            outline: none;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .math-table .table-input:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 15px rgba(118, 75, 162, 0.3);
+            border-style: solid;
+        }
+
+        .math-table .table-input.correct {
+            border-color: #00c853;
+            border-style: solid;
+            background: #e8f5e9;
+        }
+
+        .math-table .table-input.wrong {
             border-color: #ff5252;
             border-style: solid;
             background: #ffebee;
@@ -384,9 +473,9 @@
 
         <div class="game-container" id="game-container">
             <div class="exercise-card" id="exercise-card">
-                <div class="exercise-number" id="exercise-number">Exercitiul 1 din 70</div>
+                <div class="exercise-number" id="exercise-number">Exercitiul 1 din 100</div>
                 <div class="exercise-type" id="exercise-type">Gaseste rezultatul</div>
-                <div class="exercise-text" id="exercise-text"></div>
+                <div class="exercise-content" id="exercise-content"></div>
                 <button class="btn btn-primary" id="check-btn" onclick="checkAnswer()">Verifica</button>
                 <div class="feedback" id="feedback"></div>
                 <div class="hint-box" id="hint-box">
@@ -399,7 +488,7 @@
 
         <div class="completion-screen" id="completion-screen">
             <div class="trophy">🏆</div>
-            <div class="final-score" id="final-score">0 / 70</div>
+            <div class="final-score" id="final-score">0 / 100</div>
             <div class="stars" id="stars"></div>
             <div class="final-message" id="final-message">Felicitari!</div>
             <button class="btn btn-restart" onclick="restartGame()">Joaca din nou</button>
@@ -462,8 +551,7 @@
             { type: "missing", parts: ["", " + 4 = 10"], answer: 6, position: 0 },
             { type: "missing", parts: ["8 - ", " = 5"], answer: 3, position: 1 },
 
-            // Tipul 3: Comparatii cu doua numere necunoscute (20 exercitii)
-            // Egalitati
+            // Tipul 3: Comparatii (20 exercitii)
             { type: "comparison", leftParts: ["", " + 2"], symbol: "=", rightParts: ["3 + ", ""], answers: [5, 4], leftAnswer: 5, rightAnswer: 4 },
             { type: "comparison", leftParts: ["4 + ", ""], symbol: "=", rightParts: ["", " + 3"], answers: [3, 4], leftAnswer: 3, rightAnswer: 4 },
             { type: "comparison", leftParts: ["", " + 1"], symbol: "=", rightParts: ["2 + ", ""], answers: [6, 5], leftAnswer: 6, rightAnswer: 5 },
@@ -471,23 +559,53 @@
             { type: "comparison", leftParts: ["", " + 4"], symbol: "=", rightParts: ["5 + ", ""], answers: [3, 2], leftAnswer: 3, rightAnswer: 2 },
             { type: "comparison", leftParts: ["6 - ", ""], symbol: "=", rightParts: ["", " + 2"], answers: [4, 0], leftAnswer: 4, rightAnswer: 0 },
             { type: "comparison", leftParts: ["", " + 3"], symbol: "=", rightParts: ["4 + ", ""], answers: [2, 1], leftAnswer: 2, rightAnswer: 1 },
-            
-            // Mai mare decat
             { type: "comparison", leftParts: ["", " + 5"], symbol: ">", rightParts: ["2 + ", ""], answers: [4, 3], leftAnswer: 4, rightAnswer: 3 },
             { type: "comparison", leftParts: ["7 + ", ""], symbol: ">", rightParts: ["", " + 2"], answers: [2, 5], leftAnswer: 2, rightAnswer: 5 },
             { type: "comparison", leftParts: ["", " + 3"], symbol: ">", rightParts: ["1 + ", ""], answers: [6, 4], leftAnswer: 6, rightAnswer: 4 },
             { type: "comparison", leftParts: ["9 - ", ""], symbol: ">", rightParts: ["", " + 1"], answers: [2, 3], leftAnswer: 2, rightAnswer: 3 },
             { type: "comparison", leftParts: ["", " + 6"], symbol: ">", rightParts: ["3 + ", ""], answers: [3, 2], leftAnswer: 3, rightAnswer: 2 },
             { type: "comparison", leftParts: ["8 + ", ""], symbol: ">", rightParts: ["", " + 4"], answers: [1, 3], leftAnswer: 1, rightAnswer: 3 },
-            
-            // Mai mic decat
             { type: "comparison", leftParts: ["", " + 1"], symbol: "<", rightParts: ["5 + ", ""], answers: [2, 3], leftAnswer: 2, rightAnswer: 3 },
             { type: "comparison", leftParts: ["3 + ", ""], symbol: "<", rightParts: ["", " + 2"], answers: [2, 6], leftAnswer: 2, rightAnswer: 6 },
             { type: "comparison", leftParts: ["", " + 2"], symbol: "<", rightParts: ["4 + ", ""], answers: [1, 3], leftAnswer: 1, rightAnswer: 3 },
             { type: "comparison", leftParts: ["5 - ", ""], symbol: "<", rightParts: ["", " + 3"], answers: [3, 4], leftAnswer: 3, rightAnswer: 4 },
             { type: "comparison", leftParts: ["", " + 4"], symbol: "<", rightParts: ["6 + ", ""], answers: [1, 2], leftAnswer: 1, rightAnswer: 2 },
             { type: "comparison", leftParts: ["2 + ", ""], symbol: "<", rightParts: ["", " + 1"], answers: [3, 8], leftAnswer: 3, rightAnswer: 8 },
-            { type: "comparison", leftParts: ["", " + 0"], symbol: "<", rightParts: ["3 + ", ""], answers: [4, 5], leftAnswer: 4, rightAnswer: 5 }
+            { type: "comparison", leftParts: ["", " + 0"], symbol: "<", rightParts: ["3 + ", ""], answers: [4, 5], leftAnswer: 4, rightAnswer: 5 },
+
+            // Tipul 4: Tabela adunare - Termen + Termen = Suma (15 exercitii)
+            { type: "table-add", termen1: 3, termen2: 4, suma: 7, unknown: "termen1" },
+            { type: "table-add", termen1: 5, termen2: 2, suma: 7, unknown: "termen2" },
+            { type: "table-add", termen1: 6, termen2: 3, suma: 9, unknown: "suma" },
+            { type: "table-add", termen1: 2, termen2: 5, suma: 7, unknown: "termen1" },
+            { type: "table-add", termen1: 4, termen2: 4, suma: 8, unknown: "termen2" },
+            { type: "table-add", termen1: 1, termen2: 8, suma: 9, unknown: "suma" },
+            { type: "table-add", termen1: 7, termen2: 2, suma: 9, unknown: "termen1" },
+            { type: "table-add", termen1: 3, termen2: 6, suma: 9, unknown: "termen2" },
+            { type: "table-add", termen1: 5, termen2: 5, suma: 10, unknown: "suma" },
+            { type: "table-add", termen1: 4, termen2: 3, suma: 7, unknown: "termen1" },
+            { type: "table-add", termen1: 2, termen2: 6, suma: 8, unknown: "termen2" },
+            { type: "table-add", termen1: 8, termen2: 1, suma: 9, unknown: "suma" },
+            { type: "table-add", termen1: 6, termen2: 4, suma: 10, unknown: "termen1" },
+            { type: "table-add", termen1: 3, termen2: 5, suma: 8, unknown: "termen2" },
+            { type: "table-add", termen1: 7, termen2: 3, suma: 10, unknown: "suma" },
+
+            // Tipul 5: Tabela scadere - Descazut - Scazator = Diferenta (15 exercitii)
+            { type: "table-sub", descazut: 9, scazator: 4, diferenta: 5, unknown: "descazut" },
+            { type: "table-sub", descazut: 8, scazator: 3, diferenta: 5, unknown: "scazator" },
+            { type: "table-sub", descazut: 10, scazator: 6, diferenta: 4, unknown: "diferenta" },
+            { type: "table-sub", descazut: 7, scazator: 2, diferenta: 5, unknown: "descazut" },
+            { type: "table-sub", descazut: 9, scazator: 5, diferenta: 4, unknown: "scazator" },
+            { type: "table-sub", descazut: 8, scazator: 2, diferenta: 6, unknown: "diferenta" },
+            { type: "table-sub", descazut: 10, scazator: 3, diferenta: 7, unknown: "descazut" },
+            { type: "table-sub", descazut: 6, scazator: 4, diferenta: 2, unknown: "scazator" },
+            { type: "table-sub", descazut: 9, scazator: 7, diferenta: 2, unknown: "diferenta" },
+            { type: "table-sub", descazut: 8, scazator: 5, diferenta: 3, unknown: "descazut" },
+            { type: "table-sub", descazut: 10, scazator: 4, diferenta: 6, unknown: "scazator" },
+            { type: "table-sub", descazut: 7, scazator: 3, diferenta: 4, unknown: "diferenta" },
+            { type: "table-sub", descazut: 9, scazator: 6, diferenta: 3, unknown: "descazut" },
+            { type: "table-sub", descazut: 10, scazator: 8, diferenta: 2, unknown: "scazator" },
+            { type: "table-sub", descazut: 8, scazator: 4, diferenta: 4, unknown: "diferenta" }
         ];
 
         let currentIndex = 0;
@@ -506,7 +624,7 @@
 
         function loadExercise() {
             const exercise = exercises[currentIndex];
-            const exerciseTextEl = document.getElementById('exercise-text');
+            const exerciseContentEl = document.getElementById('exercise-content');
             const exerciseTypeEl = document.getElementById('exercise-type');
             
             document.getElementById('exercise-number').textContent = `Exercitiul ${currentIndex + 1} din ${exercises.length}`;
@@ -523,17 +641,21 @@
             if (exercise.type === "result") {
                 exerciseTypeEl.textContent = "Gaseste rezultatul";
                 exerciseTypeEl.className = "exercise-type result";
-                exerciseTextEl.innerHTML = `
-                    <span>${exercise.text}</span>
-                    <input type="number" min="0" class="answer-input" id="answer-input" autofocus>
+                exerciseContentEl.innerHTML = `
+                    <div class="exercise-text">
+                        <span>${exercise.text}</span>
+                        <input type="number" min="0" class="answer-input" id="answer-input" autofocus>
+                    </div>
                 `;
             } else if (exercise.type === "missing") {
                 exerciseTypeEl.textContent = "Gaseste numarul lipsa";
                 exerciseTypeEl.className = "exercise-type missing";
-                exerciseTextEl.innerHTML = `
-                    <span>${exercise.parts[0]}</span>
-                    <input type="number" min="0" class="inline-input" id="answer-input" autofocus>
-                    <span>${exercise.parts[1]}</span>
+                exerciseContentEl.innerHTML = `
+                    <div class="exercise-text">
+                        <span>${exercise.parts[0]}</span>
+                        <input type="number" min="0" class="inline-input" id="answer-input" autofocus>
+                        <span>${exercise.parts[1]}</span>
+                    </div>
                 `;
             } else if (exercise.type === "comparison") {
                 exerciseTypeEl.textContent = "Completeaza comparatia";
@@ -541,17 +663,79 @@
                 
                 const symbolDisplay = exercise.symbol === "=" ? "=" : (exercise.symbol === ">" ? ">" : "<");
                 
-                exerciseTextEl.innerHTML = `
-                    <span>${exercise.leftParts[0]}</span>
-                    <input type="number" min="0" class="inline-input" id="answer-left" autofocus>
-                    <span>${exercise.leftParts[1]}</span>
-                    <span class="comparison-symbol">${symbolDisplay}</span>
-                    <span>${exercise.rightParts[0]}</span>
-                    <input type="number" min="0" class="inline-input" id="answer-right">
-                    <span>${exercise.rightParts[1]}</span>
+                exerciseContentEl.innerHTML = `
+                    <div class="exercise-text">
+                        <span>${exercise.leftParts[0]}</span>
+                        <input type="number" min="0" class="inline-input" id="answer-left" autofocus>
+                        <span>${exercise.leftParts[1]}</span>
+                        <span class="comparison-symbol">${symbolDisplay}</span>
+                        <span>${exercise.rightParts[0]}</span>
+                        <input type="number" min="0" class="inline-input" id="answer-right">
+                        <span>${exercise.rightParts[1]}</span>
+                    </div>
                 `;
                 
                 document.getElementById('task-hint').textContent = getComparisonHint(exercise.symbol);
+            } else if (exercise.type === "table-add") {
+                exerciseTypeEl.textContent = "Tabela adunarii";
+                exerciseTypeEl.className = "exercise-type table-add";
+                
+                let termen1Html = exercise.unknown === "termen1" ? 
+                    `<input type="number" min="0" class="table-input" id="answer-input" autofocus>` : 
+                    exercise.termen1;
+                let termen2Html = exercise.unknown === "termen2" ? 
+                    `<input type="number" min="0" class="table-input" id="answer-input" autofocus>` : 
+                    exercise.termen2;
+                let sumaHtml = exercise.unknown === "suma" ? 
+                    `<input type="number" min="0" class="table-input" id="answer-input" autofocus>` : 
+                    exercise.suma;
+                
+                exerciseContentEl.innerHTML = `
+                    <table class="math-table addition">
+                        <tr>
+                            <th>Termen</th>
+                            <th>Termen</th>
+                            <th>Suma</th>
+                        </tr>
+                        <tr>
+                            <td>${termen1Html}</td>
+                            <td>${termen2Html}</td>
+                            <td>${sumaHtml}</td>
+                        </tr>
+                    </table>
+                `;
+                
+                document.getElementById('task-hint').textContent = "Termen + Termen = Suma";
+            } else if (exercise.type === "table-sub") {
+                exerciseTypeEl.textContent = "Tabela scaderii";
+                exerciseTypeEl.className = "exercise-type table-sub";
+                
+                let descazutHtml = exercise.unknown === "descazut" ? 
+                    `<input type="number" min="0" class="table-input" id="answer-input" autofocus>` : 
+                    exercise.descazut;
+                let scazatorHtml = exercise.unknown === "scazator" ? 
+                    `<input type="number" min="0" class="table-input" id="answer-input" autofocus>` : 
+                    exercise.scazator;
+                let diferentaHtml = exercise.unknown === "diferenta" ? 
+                    `<input type="number" min="0" class="table-input" id="answer-input" autofocus>` : 
+                    exercise.diferenta;
+                
+                exerciseContentEl.innerHTML = `
+                    <table class="math-table subtraction">
+                        <tr>
+                            <th>Descazut</th>
+                            <th>Scazator</th>
+                            <th>Diferenta</th>
+                        </tr>
+                        <tr>
+                            <td>${descazutHtml}</td>
+                            <td>${scazatorHtml}</td>
+                            <td>${diferentaHtml}</td>
+                        </tr>
+                    </table>
+                `;
+                
+                document.getElementById('task-hint').textContent = "Descazut - Scazator = Diferenta";
             }
 
             // Add enter key listeners
@@ -582,10 +766,7 @@
 
         function generateHint(exercise, userAnswer, userLeftAnswer, userRightAnswer) {
             if (exercise.type === "result") {
-                // Parse the expression to give a hint
-                const text = exercise.text.replace("=", "").trim();
                 const correctAnswer = exercise.answer;
-                
                 if (userAnswer > correctAnswer) {
                     return `Raspunsul tau (${userAnswer}) este prea mare. Incearca un numar mai mic!`;
                 } else {
@@ -593,7 +774,6 @@
                 }
             } else if (exercise.type === "missing") {
                 const correctAnswer = exercise.answer;
-                
                 if (userAnswer > correctAnswer) {
                     return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ce numar trebuie sa pui ca sa obtii rezultatul corect?`;
                 } else {
@@ -614,8 +794,71 @@
                 } else if (exercise.symbol === "<") {
                     return `Partea stanga (${leftSide}) trebuie sa fie MAI MICA decat partea dreapta (${rightSide}). Acum nu este asa.`;
                 }
+            } else if (exercise.type === "table-add") {
+                let correctAnswer;
+                if (exercise.unknown === "termen1") {
+                    correctAnswer = exercise.termen1;
+                    if (userAnswer > correctAnswer) {
+                        return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ? + ${exercise.termen2} = ${exercise.suma}`;
+                    } else {
+                        return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ? + ${exercise.termen2} = ${exercise.suma}`;
+                    }
+                } else if (exercise.unknown === "termen2") {
+                    correctAnswer = exercise.termen2;
+                    if (userAnswer > correctAnswer) {
+                        return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ${exercise.termen1} + ? = ${exercise.suma}`;
+                    } else {
+                        return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ${exercise.termen1} + ? = ${exercise.suma}`;
+                    }
+                } else {
+                    correctAnswer = exercise.suma;
+                    if (userAnswer > correctAnswer) {
+                        return `Suma ta (${userAnswer}) este prea mare. Cat face ${exercise.termen1} + ${exercise.termen2}?`;
+                    } else {
+                        return `Suma ta (${userAnswer}) este prea mica. Cat face ${exercise.termen1} + ${exercise.termen2}?`;
+                    }
+                }
+            } else if (exercise.type === "table-sub") {
+                let correctAnswer;
+                if (exercise.unknown === "descazut") {
+                    correctAnswer = exercise.descazut;
+                    if (userAnswer > correctAnswer) {
+                        return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ? - ${exercise.scazator} = ${exercise.diferenta}`;
+                    } else {
+                        return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ? - ${exercise.scazator} = ${exercise.diferenta}`;
+                    }
+                } else if (exercise.unknown === "scazator") {
+                    correctAnswer = exercise.scazator;
+                    if (userAnswer > correctAnswer) {
+                        return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ${exercise.descazut} - ? = ${exercise.diferenta}`;
+                    } else {
+                        return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ${exercise.descazut} - ? = ${exercise.diferenta}`;
+                    }
+                } else {
+                    correctAnswer = exercise.diferenta;
+                    if (userAnswer > correctAnswer) {
+                        return `Diferenta ta (${userAnswer}) este prea mare. Cat face ${exercise.descazut} - ${exercise.scazator}?`;
+                    } else {
+                        return `Diferenta ta (${userAnswer}) este prea mica. Cat face ${exercise.descazut} - ${exercise.scazator}?`;
+                    }
+                }
             }
             return "Mai incearca!";
+        }
+
+        function getCorrectAnswer(exercise) {
+            if (exercise.type === "result" || exercise.type === "missing") {
+                return exercise.answer;
+            } else if (exercise.type === "table-add") {
+                if (exercise.unknown === "termen1") return exercise.termen1;
+                if (exercise.unknown === "termen2") return exercise.termen2;
+                return exercise.suma;
+            } else if (exercise.type === "table-sub") {
+                if (exercise.unknown === "descazut") return exercise.descazut;
+                if (exercise.unknown === "scazator") return exercise.scazator;
+                return exercise.diferenta;
+            }
+            return null;
         }
 
         function checkAnswer() {
@@ -636,9 +879,10 @@
                 return;
             }
 
-            if (exercise.type === "result" || exercise.type === "missing") {
+            if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "table-add" || exercise.type === "table-sub") {
                 const input = document.getElementById('answer-input');
                 const userAnswer = parseInt(input.value);
+                const correctAnswer = getCorrectAnswer(exercise);
 
                 if (isNaN(userAnswer)) {
                     feedback.textContent = 'Introdu un numar!';
@@ -652,11 +896,20 @@
                     return;
                 }
 
-                if (userAnswer === exercise.answer) {
+                if (userAnswer === correctAnswer) {
                     answered = true;
                     correctCount++;
                     document.getElementById('correct-count').textContent = correctCount;
-                    input.className = exercise.type === "result" ? 'answer-input correct' : 'inline-input correct';
+                    input.className = input.className.replace('inline-input', 'inline-input correct')
+                                                     .replace('answer-input', 'answer-input correct')
+                                                     .replace('table-input', 'table-input correct');
+                    if (input.classList.contains('table-input')) {
+                        input.classList.add('correct');
+                    } else if (input.classList.contains('inline-input')) {
+                        input.className = 'inline-input correct';
+                    } else {
+                        input.className = 'answer-input correct';
+                    }
                     card.className = 'exercise-card correct';
                     feedback.textContent = '✓ Corect! Bravo!';
                     feedback.className = 'feedback correct';
@@ -668,17 +921,28 @@
                         btn.textContent = 'Vezi rezultatul';
                     }
                 } else {
-                    input.className = exercise.type === "result" ? 'answer-input wrong' : 'inline-input wrong';
+                    if (input.classList.contains('table-input')) {
+                        input.classList.add('wrong');
+                    } else if (input.classList.contains('inline-input')) {
+                        input.className = 'inline-input wrong';
+                    } else {
+                        input.className = 'answer-input wrong';
+                    }
                     card.className = 'exercise-card wrong';
                     feedback.textContent = '✗ Mai incearca!';
                     feedback.className = 'feedback wrong';
                     
-                    // Show hint
                     hintText.textContent = generateHint(exercise, userAnswer);
                     hintBox.className = 'hint-box visible';
                     
                     setTimeout(() => {
-                        input.className = exercise.type === "result" ? 'answer-input' : 'inline-input';
+                        if (input.classList.contains('table-input')) {
+                            input.classList.remove('wrong');
+                        } else if (input.classList.contains('inline-input') || input.className.includes('inline-input')) {
+                            input.className = 'inline-input';
+                        } else {
+                            input.className = 'answer-input';
+                        }
                         card.className = 'exercise-card';
                         input.value = '';
                         input.focus();
@@ -703,7 +967,6 @@
                     return;
                 }
 
-                // Calculate left and right side values
                 const leftSide = evaluateExpression(exercise.leftParts, leftAnswer);
                 const rightSide = evaluateExpression(exercise.rightParts, rightAnswer);
 
@@ -735,7 +998,6 @@
                     feedback.textContent = '✗ Mai incearca!';
                     feedback.className = 'feedback wrong';
                     
-                    // Show hint
                     hintText.textContent = generateHint(exercise, null, leftAnswer, rightAnswer);
                     hintBox.className = 'hint-box visible';
                     
