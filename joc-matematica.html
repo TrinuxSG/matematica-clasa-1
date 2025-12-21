@@ -21,7 +21,7 @@
         }
 
         .container {
-            max-width: 650px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
@@ -149,6 +149,10 @@
             background: linear-gradient(135deg, #74b9ff, #0984e3);
         }
 
+        .exercise-type.chain {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+        }
+
         .exercise-text {
             font-family: 'Baloo 2', cursive;
             font-size: 2.5rem;
@@ -219,6 +223,76 @@
         }
 
         .inline-input.wrong {
+            border-color: #ff5252;
+            border-style: solid;
+            background: #ffebee;
+        }
+
+        /* Chain exercise styles */
+        .chain-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 30px;
+        }
+
+        .chain-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .chain-operator {
+            font-family: 'Baloo 2', cursive;
+            font-size: 2rem;
+            color: #e17055;
+            padding: 0 5px;
+            font-weight: bold;
+        }
+
+        .chain-equals {
+            font-family: 'Baloo 2', cursive;
+            font-size: 2.5rem;
+            color: #333;
+            padding: 0 10px;
+        }
+
+        .chain-input {
+            width: 70px;
+            height: 55px;
+            font-family: 'Baloo 2', cursive;
+            font-size: 2rem;
+            text-align: center;
+            border: 4px dashed #6c5ce7;
+            border-radius: 15px;
+            outline: none;
+            background: #f0efff;
+            transition: all 0.3s ease;
+        }
+
+        .chain-input:focus {
+            border-color: #6c5ce7;
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.4);
+            border-style: solid;
+        }
+
+        .chain-input.correct {
+            border-color: #00c853;
+            border-style: solid;
+            background: #e8f5e9;
+        }
+
+        .chain-input.wrong {
             border-color: #ff5252;
             border-style: solid;
             background: #ffebee;
@@ -452,6 +526,22 @@
             margin-top: 15px;
             font-style: italic;
         }
+
+        @media (max-width: 500px) {
+            .chain-circle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+            .chain-operator {
+                font-size: 1.5rem;
+            }
+            .chain-input {
+                width: 55px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -473,7 +563,7 @@
 
         <div class="game-container" id="game-container">
             <div class="exercise-card" id="exercise-card">
-                <div class="exercise-number" id="exercise-number">Exercitiul 1 din 100</div>
+                <div class="exercise-number" id="exercise-number">Exercitiul 1 din 125</div>
                 <div class="exercise-type" id="exercise-type">Gaseste rezultatul</div>
                 <div class="exercise-content" id="exercise-content"></div>
                 <button class="btn btn-primary" id="check-btn" onclick="checkAnswer()">Verifica</button>
@@ -488,7 +578,7 @@
 
         <div class="completion-screen" id="completion-screen">
             <div class="trophy">🏆</div>
-            <div class="final-score" id="final-score">0 / 100</div>
+            <div class="final-score" id="final-score">0 / 125</div>
             <div class="stars" id="stars"></div>
             <div class="final-message" id="final-message">Felicitari!</div>
             <button class="btn btn-restart" onclick="restartGame()">Joaca din nou</button>
@@ -551,29 +641,24 @@
             { type: "missing", parts: ["", " + 4 = 10"], answer: 6, position: 0 },
             { type: "missing", parts: ["8 - ", " = 5"], answer: 3, position: 1 },
 
-            // Tipul 3: Comparatii (20 exercitii)
+            // Tipul 3: Comparatii (15 exercitii)
             { type: "comparison", leftParts: ["", " + 2"], symbol: "=", rightParts: ["3 + ", ""], answers: [5, 4], leftAnswer: 5, rightAnswer: 4 },
             { type: "comparison", leftParts: ["4 + ", ""], symbol: "=", rightParts: ["", " + 3"], answers: [3, 4], leftAnswer: 3, rightAnswer: 4 },
             { type: "comparison", leftParts: ["", " + 1"], symbol: "=", rightParts: ["2 + ", ""], answers: [6, 5], leftAnswer: 6, rightAnswer: 5 },
             { type: "comparison", leftParts: ["8 - ", ""], symbol: "=", rightParts: ["", " + 1"], answers: [5, 2], leftAnswer: 5, rightAnswer: 2 },
             { type: "comparison", leftParts: ["", " + 4"], symbol: "=", rightParts: ["5 + ", ""], answers: [3, 2], leftAnswer: 3, rightAnswer: 2 },
-            { type: "comparison", leftParts: ["6 - ", ""], symbol: "=", rightParts: ["", " + 2"], answers: [4, 0], leftAnswer: 4, rightAnswer: 0 },
-            { type: "comparison", leftParts: ["", " + 3"], symbol: "=", rightParts: ["4 + ", ""], answers: [2, 1], leftAnswer: 2, rightAnswer: 1 },
             { type: "comparison", leftParts: ["", " + 5"], symbol: ">", rightParts: ["2 + ", ""], answers: [4, 3], leftAnswer: 4, rightAnswer: 3 },
             { type: "comparison", leftParts: ["7 + ", ""], symbol: ">", rightParts: ["", " + 2"], answers: [2, 5], leftAnswer: 2, rightAnswer: 5 },
             { type: "comparison", leftParts: ["", " + 3"], symbol: ">", rightParts: ["1 + ", ""], answers: [6, 4], leftAnswer: 6, rightAnswer: 4 },
             { type: "comparison", leftParts: ["9 - ", ""], symbol: ">", rightParts: ["", " + 1"], answers: [2, 3], leftAnswer: 2, rightAnswer: 3 },
             { type: "comparison", leftParts: ["", " + 6"], symbol: ">", rightParts: ["3 + ", ""], answers: [3, 2], leftAnswer: 3, rightAnswer: 2 },
-            { type: "comparison", leftParts: ["8 + ", ""], symbol: ">", rightParts: ["", " + 4"], answers: [1, 3], leftAnswer: 1, rightAnswer: 3 },
             { type: "comparison", leftParts: ["", " + 1"], symbol: "<", rightParts: ["5 + ", ""], answers: [2, 3], leftAnswer: 2, rightAnswer: 3 },
             { type: "comparison", leftParts: ["3 + ", ""], symbol: "<", rightParts: ["", " + 2"], answers: [2, 6], leftAnswer: 2, rightAnswer: 6 },
             { type: "comparison", leftParts: ["", " + 2"], symbol: "<", rightParts: ["4 + ", ""], answers: [1, 3], leftAnswer: 1, rightAnswer: 3 },
             { type: "comparison", leftParts: ["5 - ", ""], symbol: "<", rightParts: ["", " + 3"], answers: [3, 4], leftAnswer: 3, rightAnswer: 4 },
             { type: "comparison", leftParts: ["", " + 4"], symbol: "<", rightParts: ["6 + ", ""], answers: [1, 2], leftAnswer: 1, rightAnswer: 2 },
-            { type: "comparison", leftParts: ["2 + ", ""], symbol: "<", rightParts: ["", " + 1"], answers: [3, 8], leftAnswer: 3, rightAnswer: 8 },
-            { type: "comparison", leftParts: ["", " + 0"], symbol: "<", rightParts: ["3 + ", ""], answers: [4, 5], leftAnswer: 4, rightAnswer: 5 },
 
-            // Tipul 4: Tabela adunare - Termen + Termen = Suma (15 exercitii)
+            // Tipul 4: Tabela adunare (20 exercitii)
             { type: "table-add", termen1: 3, termen2: 4, suma: 7, unknown: "termen1" },
             { type: "table-add", termen1: 5, termen2: 2, suma: 7, unknown: "termen2" },
             { type: "table-add", termen1: 6, termen2: 3, suma: 9, unknown: "suma" },
@@ -589,8 +674,13 @@
             { type: "table-add", termen1: 6, termen2: 4, suma: 10, unknown: "termen1" },
             { type: "table-add", termen1: 3, termen2: 5, suma: 8, unknown: "termen2" },
             { type: "table-add", termen1: 7, termen2: 3, suma: 10, unknown: "suma" },
+            { type: "table-add", termen1: 1, termen2: 6, suma: 7, unknown: "termen1" },
+            { type: "table-add", termen1: 4, termen2: 2, suma: 6, unknown: "termen2" },
+            { type: "table-add", termen1: 2, termen2: 3, suma: 5, unknown: "suma" },
+            { type: "table-add", termen1: 5, termen2: 4, suma: 9, unknown: "termen1" },
+            { type: "table-add", termen1: 6, termen2: 2, suma: 8, unknown: "termen2" },
 
-            // Tipul 5: Tabela scadere - Descazut - Scazator = Diferenta (15 exercitii)
+            // Tipul 5: Tabela scadere (20 exercitii)
             { type: "table-sub", descazut: 9, scazator: 4, diferenta: 5, unknown: "descazut" },
             { type: "table-sub", descazut: 8, scazator: 3, diferenta: 5, unknown: "scazator" },
             { type: "table-sub", descazut: 10, scazator: 6, diferenta: 4, unknown: "diferenta" },
@@ -605,7 +695,34 @@
             { type: "table-sub", descazut: 7, scazator: 3, diferenta: 4, unknown: "diferenta" },
             { type: "table-sub", descazut: 9, scazator: 6, diferenta: 3, unknown: "descazut" },
             { type: "table-sub", descazut: 10, scazator: 8, diferenta: 2, unknown: "scazator" },
-            { type: "table-sub", descazut: 8, scazator: 4, diferenta: 4, unknown: "diferenta" }
+            { type: "table-sub", descazut: 8, scazator: 4, diferenta: 4, unknown: "diferenta" },
+            { type: "table-sub", descazut: 6, scazator: 1, diferenta: 5, unknown: "descazut" },
+            { type: "table-sub", descazut: 9, scazator: 3, diferenta: 6, unknown: "scazator" },
+            { type: "table-sub", descazut: 7, scazator: 5, diferenta: 2, unknown: "diferenta" },
+            { type: "table-sub", descazut: 10, scazator: 2, diferenta: 8, unknown: "descazut" },
+            { type: "table-sub", descazut: 8, scazator: 6, diferenta: 2, unknown: "scazator" },
+
+            // Tipul 6: Lant de operatii (20 exercitii)
+            { type: "chain", numbers: [2, 3, 1, 4, 2, 1], operators: ["+", "+", "-", "+", "-"], answer: 7 },
+            { type: "chain", numbers: [5, 2, 3, 1, 2, 4], operators: ["-", "+", "+", "-", "+"], answer: 7 },
+            { type: "chain", numbers: [1, 4, 2, 3, 1, 2], operators: ["+", "+", "-", "+", "-"], answer: 7 },
+            { type: "chain", numbers: [6, 3, 2, 1, 3, 2], operators: ["-", "+", "+", "-", "+"], answer: 5 },
+            { type: "chain", numbers: [3, 2, 4, 1, 2, 3], operators: ["+", "-", "+", "+", "-"], answer: 5 },
+            { type: "chain", numbers: [4, 1, 3, 2, 1, 2], operators: ["+", "+", "-", "+", "-"], answer: 7 },
+            { type: "chain", numbers: [7, 4, 2, 3, 1, 2], operators: ["-", "+", "-", "+", "+"], answer: 5 },
+            { type: "chain", numbers: [2, 5, 1, 2, 3, 1], operators: ["+", "+", "-", "+", "-"], answer: 8 },
+            { type: "chain", numbers: [8, 3, 2, 1, 4, 3], operators: ["-", "-", "+", "+", "-"], answer: 5 },
+            { type: "chain", numbers: [1, 2, 3, 4, 2, 1], operators: ["+", "+", "-", "+", "-"], answer: 7 },
+            { type: "chain", numbers: [5, 1, 2, 3, 2, 1], operators: ["+", "-", "+", "-", "+"], answer: 6 },
+            { type: "chain", numbers: [3, 4, 1, 2, 3, 2], operators: ["+", "-", "+", "-", "+"], answer: 5 },
+            { type: "chain", numbers: [6, 2, 1, 3, 2, 1], operators: ["-", "+", "+", "-", "+"], answer: 7 },
+            { type: "chain", numbers: [4, 3, 2, 1, 2, 4], operators: ["+", "-", "+", "+", "-"], answer: 6 },
+            { type: "chain", numbers: [2, 1, 4, 3, 2, 1], operators: ["+", "+", "-", "+", "-"], answer: 5 },
+            { type: "chain", numbers: [7, 2, 3, 1, 2, 3], operators: ["-", "+", "-", "+", "-"], answer: 4 },
+            { type: "chain", numbers: [1, 3, 2, 4, 1, 2], operators: ["+", "+", "-", "+", "-"], answer: 7 },
+            { type: "chain", numbers: [5, 3, 1, 2, 4, 2], operators: ["-", "+", "+", "-", "+"], answer: 3 },
+            { type: "chain", numbers: [4, 2, 3, 1, 2, 1], operators: ["+", "-", "+", "+", "-"], answer: 7 },
+            { type: "chain", numbers: [3, 3, 2, 1, 4, 2], operators: ["+", "-", "+", "-", "+"], answer: 7 }
         ];
 
         let currentIndex = 0;
@@ -736,6 +853,24 @@
                 `;
                 
                 document.getElementById('task-hint').textContent = "Descazut - Scazator = Diferenta";
+            } else if (exercise.type === "chain") {
+                exerciseTypeEl.textContent = "Lantul operatiilor";
+                exerciseTypeEl.className = "exercise-type chain";
+                
+                let chainHtml = '<div class="chain-container">';
+                for (let i = 0; i < exercise.numbers.length; i++) {
+                    chainHtml += `<div class="chain-circle">${exercise.numbers[i]}</div>`;
+                    if (i < exercise.operators.length) {
+                        chainHtml += `<span class="chain-operator">${exercise.operators[i]}</span>`;
+                    }
+                }
+                chainHtml += `<span class="chain-equals">=</span>`;
+                chainHtml += `<input type="number" min="0" class="chain-input" id="answer-input" autofocus>`;
+                chainHtml += '</div>';
+                
+                exerciseContentEl.innerHTML = chainHtml;
+                
+                document.getElementById('task-hint').textContent = "Calculeaza pas cu pas de la stanga la dreapta";
             }
 
             // Add enter key listeners
@@ -842,12 +977,24 @@
                         return `Diferenta ta (${userAnswer}) este prea mica. Cat face ${exercise.descazut} - ${exercise.scazator}?`;
                     }
                 }
+            } else if (exercise.type === "chain") {
+                const correctAnswer = exercise.answer;
+                // Build the expression string for hint
+                let expr = exercise.numbers[0].toString();
+                for (let i = 0; i < exercise.operators.length; i++) {
+                    expr += ` ${exercise.operators[i]} ${exercise.numbers[i + 1]}`;
+                }
+                if (userAnswer > correctAnswer) {
+                    return `Raspunsul tau (${userAnswer}) este prea mare. Calculeaza pas cu pas: ${expr}`;
+                } else {
+                    return `Raspunsul tau (${userAnswer}) este prea mic. Calculeaza pas cu pas: ${expr}`;
+                }
             }
             return "Mai incearca!";
         }
 
         function getCorrectAnswer(exercise) {
-            if (exercise.type === "result" || exercise.type === "missing") {
+            if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "chain") {
                 return exercise.answer;
             } else if (exercise.type === "table-add") {
                 if (exercise.unknown === "termen1") return exercise.termen1;
@@ -879,7 +1026,7 @@
                 return;
             }
 
-            if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "table-add" || exercise.type === "table-sub") {
+            if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "table-add" || exercise.type === "table-sub" || exercise.type === "chain") {
                 const input = document.getElementById('answer-input');
                 const userAnswer = parseInt(input.value);
                 const correctAnswer = getCorrectAnswer(exercise);
@@ -900,10 +1047,10 @@
                     answered = true;
                     correctCount++;
                     document.getElementById('correct-count').textContent = correctCount;
-                    input.className = input.className.replace('inline-input', 'inline-input correct')
-                                                     .replace('answer-input', 'answer-input correct')
-                                                     .replace('table-input', 'table-input correct');
+                    
                     if (input.classList.contains('table-input')) {
+                        input.classList.add('correct');
+                    } else if (input.classList.contains('chain-input')) {
                         input.classList.add('correct');
                     } else if (input.classList.contains('inline-input')) {
                         input.className = 'inline-input correct';
@@ -923,6 +1070,8 @@
                 } else {
                     if (input.classList.contains('table-input')) {
                         input.classList.add('wrong');
+                    } else if (input.classList.contains('chain-input')) {
+                        input.classList.add('wrong');
                     } else if (input.classList.contains('inline-input')) {
                         input.className = 'inline-input wrong';
                     } else {
@@ -937,6 +1086,8 @@
                     
                     setTimeout(() => {
                         if (input.classList.contains('table-input')) {
+                            input.classList.remove('wrong');
+                        } else if (input.classList.contains('chain-input')) {
                             input.classList.remove('wrong');
                         } else if (input.classList.contains('inline-input') || input.className.includes('inline-input')) {
                             input.className = 'inline-input';
