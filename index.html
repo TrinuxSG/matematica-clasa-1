@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Joc interactiv de matematică pentru copii - exersează adunarea, scăderea și operații matematice de bază într-un mod distractiv!">
+    <meta name="keywords" content="matematică, joc educativ, copii, adunare, scădere, exerciții matematice">
+    <meta name="author" content="Joc de Matematică">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Joc de Matematică - Învață matematica jucându-te!">
+    <meta property="og:description" content="Joc interactiv de matematică pentru copii - exersează adunarea, scăderea și operații matematice de bază într-un mod distractiv!">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Joc de Matematică - Învață matematica jucându-te!">
+    <meta property="twitter:description" content="Joc interactiv de matematică pentru copii - exersează adunarea, scăderea și operații matematice de bază într-un mod distractiv!">
+
+    <title>Joc de Matematică - Învață matematica jucându-te!</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧮 Joc de Matematica</h1>
+        </header>
+
+        <div class="score-board">
+            <div class="score-item">
+                <div class="score-label">Rezolvate</div>
+                <div class="score-value" id="correct-count">0</div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <div class="game-container" id="game-container">
+            <div class="exercise-card" id="exercise-card">
+                <div class="exercise-number" id="exercise-number">Exercitiul 1 din 125</div>
+                <div class="exercise-type" id="exercise-type">Gaseste rezultatul</div>
+                <div class="exercise-content" id="exercise-content"></div>
+                <button class="btn btn-primary" id="check-btn" onclick="checkAnswer()">Verifica</button>
+                <div class="feedback" id="feedback"></div>
+                <div class="hint-box" id="hint-box">
+                    <div class="hint-title">💡 Indiciu:</div>
+                    <div class="hint-text" id="hint-text"></div>
+                </div>
+                <div class="task-hint" id="task-hint"></div>
+            </div>
+        </div>
+
+        <div class="completion-screen" id="completion-screen">
+            <div class="trophy">🏆</div>
+            <div class="final-score" id="final-score">0 / 125</div>
+            <div class="stars" id="stars"></div>
+            <div class="final-message" id="final-message">Felicitari!</div>
+            <button class="btn btn-restart" onclick="restartGame()">Joaca din nou</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
