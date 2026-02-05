@@ -1,164 +1,324 @@
 const exercises = [
-    // Tipul 1: Gaseste rezultatul (30 exercitii)
-    { type: "result", text: "8 + 1 - 5 =", answer: 4 },
-    { type: "result", text: "6 - 3 + 4 =", answer: 7 },
-    { type: "result", text: "9 - 6 + 2 =", answer: 5 },
-    { type: "result", text: "4 + 5 - 7 =", answer: 2 },
-    { type: "result", text: "7 - 4 + 3 =", answer: 6 },
-    { type: "result", text: "10 - 8 + 5 =", answer: 7 },
-    { type: "result", text: "3 + 6 - 4 =", answer: 5 },
-    { type: "result", text: "8 - 5 + 2 =", answer: 5 },
-    { type: "result", text: "5 + 4 - 6 =", answer: 3 },
-    { type: "result", text: "9 - 7 + 6 =", answer: 8 },
-    { type: "result", text: "7 + 2 - 4 =", answer: 5 },
-    { type: "result", text: "6 - 2 + 5 =", answer: 9 },
-    { type: "result", text: "10 - 5 + 3 =", answer: 8 },
-    { type: "result", text: "4 + 4 - 2 =", answer: 6 },
-    { type: "result", text: "8 - 6 + 7 =", answer: 9 },
-    { type: "result", text: "5 + 3 - 1 =", answer: 7 },
-    { type: "result", text: "9 - 4 + 2 =", answer: 7 },
-    { type: "result", text: "3 + 5 - 6 =", answer: 2 },
-    { type: "result", text: "7 - 3 + 4 =", answer: 8 },
-    { type: "result", text: "6 + 3 - 8 =", answer: 1 },
-    { type: "result", text: "5 + 4 - 3 =", answer: 6 },
-    { type: "result", text: "9 - 5 + 1 =", answer: 5 },
-    { type: "result", text: "7 + 2 - 6 =", answer: 3 },
-    { type: "result", text: "8 - 4 + 3 =", answer: 7 },
-    { type: "result", text: "6 + 1 - 4 =", answer: 3 },
-    { type: "result", text: "10 - 7 + 4 =", answer: 7 },
-    { type: "result", text: "4 + 3 - 5 =", answer: 2 },
-    { type: "result", text: "9 - 8 + 6 =", answer: 7 },
-    { type: "result", text: "5 + 5 - 8 =", answer: 2 },
-    { type: "result", text: "7 - 6 + 9 =", answer: 10 },
+    // Tipul 1: Gaseste rezultatul cu numere pana la 20 (30 exercitii)
+    { type: "result", text: "12 + 5 =", answer: 17 },
+    { type: "result", text: "15 - 8 =", answer: 7 },
+    { type: "result", text: "11 + 9 =", answer: 20 },
+    { type: "result", text: "18 - 6 =", answer: 12 },
+    { type: "result", text: "13 + 4 =", answer: 17 },
+    { type: "result", text: "16 - 9 =", answer: 7 },
+    { type: "result", text: "14 + 6 =", answer: 20 },
+    { type: "result", text: "17 - 8 =", answer: 9 },
+    { type: "result", text: "12 + 7 =", answer: 19 },
+    { type: "result", text: "19 - 7 =", answer: 12 },
+    { type: "result", text: "11 + 8 =", answer: 19 },
+    { type: "result", text: "15 - 6 =", answer: 9 },
+    { type: "result", text: "13 + 7 =", answer: 20 },
+    { type: "result", text: "18 - 9 =", answer: 9 },
+    { type: "result", text: "12 + 6 =", answer: 18 },
+    { type: "result", text: "16 - 7 =", answer: 9 },
+    { type: "result", text: "14 + 5 =", answer: 19 },
+    { type: "result", text: "17 - 9 =", answer: 8 },
+    { type: "result", text: "11 + 7 =", answer: 18 },
+    { type: "result", text: "19 - 8 =", answer: 11 },
+    { type: "result", text: "15 + 5 =", answer: 20 },
+    { type: "result", text: "18 - 7 =", answer: 11 },
+    { type: "result", text: "12 + 8 =", answer: 20 },
+    { type: "result", text: "16 - 8 =", answer: 8 },
+    { type: "result", text: "13 + 6 =", answer: 19 },
+    { type: "result", text: "17 - 6 =", answer: 11 },
+    { type: "result", text: "14 + 4 =", answer: 18 },
+    { type: "result", text: "19 - 9 =", answer: 10 },
+    { type: "result", text: "11 + 6 =", answer: 17 },
+    { type: "result", text: "20 - 8 =", answer: 12 },
 
-    // Tipul 2: Gaseste numarul lipsa (20 exercitii)
-    { type: "missing", parts: ["", " + 3 = 7"], answer: 4, position: 0 },
-    { type: "missing", parts: ["5 + ", " = 9"], answer: 4, position: 1 },
-    { type: "missing", parts: ["", " - 2 = 6"], answer: 8, position: 0 },
-    { type: "missing", parts: ["10 - ", " = 4"], answer: 6, position: 1 },
-    { type: "missing", parts: ["", " + 5 = 8"], answer: 3, position: 0 },
-    { type: "missing", parts: ["7 - ", " = 3"], answer: 4, position: 1 },
-    { type: "missing", parts: ["", " + 6 = 10"], answer: 4, position: 0 },
-    { type: "missing", parts: ["9 - ", " = 5"], answer: 4, position: 1 },
-    { type: "missing", parts: ["", " + 2 = 5"], answer: 3, position: 0 },
-    { type: "missing", parts: ["8 - ", " = 2"], answer: 6, position: 1 },
-    { type: "missing", parts: ["", " + 7 = 9"], answer: 2, position: 0 },
-    { type: "missing", parts: ["6 + ", " = 10"], answer: 4, position: 1 },
-    { type: "missing", parts: ["", " - 4 = 5"], answer: 9, position: 0 },
-    { type: "missing", parts: ["10 - ", " = 7"], answer: 3, position: 1 },
-    { type: "missing", parts: ["", " + 1 = 6"], answer: 5, position: 0 },
-    { type: "missing", parts: ["4 + ", " = 7"], answer: 3, position: 1 },
-    { type: "missing", parts: ["", " - 3 = 4"], answer: 7, position: 0 },
-    { type: "missing", parts: ["9 - ", " = 2"], answer: 7, position: 1 },
-    { type: "missing", parts: ["", " + 4 = 10"], answer: 6, position: 0 },
-    { type: "missing", parts: ["8 - ", " = 5"], answer: 3, position: 1 },
+    // Tipul 2: Gaseste numarul lipsa cu numere pana la 20 (20 exercitii)
+    { type: "missing", parts: ["", " + 7 = 15"], answer: 8, position: 0 },
+    { type: "missing", parts: ["12 + ", " = 19"], answer: 7, position: 1 },
+    { type: "missing", parts: ["", " - 6 = 11"], answer: 17, position: 0 },
+    { type: "missing", parts: ["18 - ", " = 9"], answer: 9, position: 1 },
+    { type: "missing", parts: ["", " + 8 = 16"], answer: 8, position: 0 },
+    { type: "missing", parts: ["14 - ", " = 7"], answer: 7, position: 1 },
+    { type: "missing", parts: ["", " + 9 = 20"], answer: 11, position: 0 },
+    { type: "missing", parts: ["19 - ", " = 12"], answer: 7, position: 1 },
+    { type: "missing", parts: ["", " + 6 = 17"], answer: 11, position: 0 },
+    { type: "missing", parts: ["16 - ", " = 8"], answer: 8, position: 1 },
+    { type: "missing", parts: ["", " + 5 = 18"], answer: 13, position: 0 },
+    { type: "missing", parts: ["15 + ", " = 20"], answer: 5, position: 1 },
+    { type: "missing", parts: ["", " - 7 = 12"], answer: 19, position: 0 },
+    { type: "missing", parts: ["17 - ", " = 9"], answer: 8, position: 1 },
+    { type: "missing", parts: ["", " + 4 = 16"], answer: 12, position: 0 },
+    { type: "missing", parts: ["13 + ", " = 19"], answer: 6, position: 1 },
+    { type: "missing", parts: ["", " - 8 = 11"], answer: 19, position: 0 },
+    { type: "missing", parts: ["20 - ", " = 13"], answer: 7, position: 1 },
+    { type: "missing", parts: ["", " + 7 = 20"], answer: 13, position: 0 },
+    { type: "missing", parts: ["18 - ", " = 11"], answer: 7, position: 1 },
 
-    // Tipul 3: Comparatii (15 exercitii)
-    { type: "comparison", leftParts: ["", " + 2"], symbol: "=", rightParts: ["3 + ", ""], answers: [5, 4], leftAnswer: 5, rightAnswer: 4 },
-    { type: "comparison", leftParts: ["4 + ", ""], symbol: "=", rightParts: ["", " + 3"], answers: [3, 4], leftAnswer: 3, rightAnswer: 4 },
-    { type: "comparison", leftParts: ["", " + 1"], symbol: "=", rightParts: ["2 + ", ""], answers: [6, 5], leftAnswer: 6, rightAnswer: 5 },
-    { type: "comparison", leftParts: ["8 - ", ""], symbol: "=", rightParts: ["", " + 1"], answers: [5, 2], leftAnswer: 5, rightAnswer: 2 },
-    { type: "comparison", leftParts: ["", " + 4"], symbol: "=", rightParts: ["5 + ", ""], answers: [3, 2], leftAnswer: 3, rightAnswer: 2 },
-    { type: "comparison", leftParts: ["", " + 5"], symbol: ">", rightParts: ["2 + ", ""], answers: [4, 3], leftAnswer: 4, rightAnswer: 3 },
-    { type: "comparison", leftParts: ["7 + ", ""], symbol: ">", rightParts: ["", " + 2"], answers: [2, 5], leftAnswer: 2, rightAnswer: 5 },
-    { type: "comparison", leftParts: ["", " + 3"], symbol: ">", rightParts: ["1 + ", ""], answers: [6, 4], leftAnswer: 6, rightAnswer: 4 },
-    { type: "comparison", leftParts: ["9 - ", ""], symbol: ">", rightParts: ["", " + 1"], answers: [2, 3], leftAnswer: 2, rightAnswer: 3 },
-    { type: "comparison", leftParts: ["", " + 6"], symbol: ">", rightParts: ["3 + ", ""], answers: [3, 2], leftAnswer: 3, rightAnswer: 2 },
-    { type: "comparison", leftParts: ["", " + 1"], symbol: "<", rightParts: ["5 + ", ""], answers: [2, 3], leftAnswer: 2, rightAnswer: 3 },
-    { type: "comparison", leftParts: ["3 + ", ""], symbol: "<", rightParts: ["", " + 2"], answers: [2, 6], leftAnswer: 2, rightAnswer: 6 },
-    { type: "comparison", leftParts: ["", " + 2"], symbol: "<", rightParts: ["4 + ", ""], answers: [1, 3], leftAnswer: 1, rightAnswer: 3 },
-    { type: "comparison", leftParts: ["5 - ", ""], symbol: "<", rightParts: ["", " + 3"], answers: [3, 4], leftAnswer: 3, rightAnswer: 4 },
-    { type: "comparison", leftParts: ["", " + 4"], symbol: "<", rightParts: ["6 + ", ""], answers: [1, 2], leftAnswer: 1, rightAnswer: 2 },
+    // Tipul 3: Comparatii cu numere pana la 20 (15 exercitii)
+    { type: "comparison", leftParts: ["", " + 5"], symbol: "=", rightParts: ["12 + ", ""], answers: [11, 4], leftAnswer: 11, rightAnswer: 4 },
+    { type: "comparison", leftParts: ["14 + ", ""], symbol: "=", rightParts: ["", " + 7"], answers: [3, 10], leftAnswer: 3, rightAnswer: 10 },
+    { type: "comparison", leftParts: ["", " + 6"], symbol: "=", rightParts: ["11 + ", ""], answers: [12, 7], leftAnswer: 12, rightAnswer: 7 },
+    { type: "comparison", leftParts: ["18 - ", ""], symbol: "=", rightParts: ["", " + 4"], answers: [7, 7], leftAnswer: 7, rightAnswer: 7 },
+    { type: "comparison", leftParts: ["", " + 8"], symbol: "=", rightParts: ["15 + ", ""], answers: [9, 2], leftAnswer: 9, rightAnswer: 2 },
+    { type: "comparison", leftParts: ["", " + 7"], symbol: ">", rightParts: ["13 + ", ""], answers: [11, 4], leftAnswer: 11, rightAnswer: 4 },
+    { type: "comparison", leftParts: ["16 + ", ""], symbol: ">", rightParts: ["", " + 5"], answers: [3, 13], leftAnswer: 3, rightAnswer: 13 },
+    { type: "comparison", leftParts: ["", " + 6"], symbol: ">", rightParts: ["12 + ", ""], answers: [14, 5], leftAnswer: 14, rightAnswer: 5 },
+    { type: "comparison", leftParts: ["19 - ", ""], symbol: ">", rightParts: ["", " + 4"], answers: [5, 9], leftAnswer: 5, rightAnswer: 9 },
+    { type: "comparison", leftParts: ["", " + 9"], symbol: ">", rightParts: ["14 + ", ""], answers: [11, 3], leftAnswer: 11, rightAnswer: 3 },
+    { type: "comparison", leftParts: ["", " + 5"], symbol: "<", rightParts: ["15 + ", ""], answers: [11, 6], leftAnswer: 11, rightAnswer: 6 },
+    { type: "comparison", leftParts: ["13 + ", ""], symbol: "<", rightParts: ["", " + 7"], answers: [4, 13], leftAnswer: 4, rightAnswer: 13 },
+    { type: "comparison", leftParts: ["", " + 6"], symbol: "<", rightParts: ["16 + ", ""], answers: [12, 3], leftAnswer: 12, rightAnswer: 3 },
+    { type: "comparison", leftParts: ["17 - ", ""], symbol: "<", rightParts: ["", " + 8"], answers: [6, 9], leftAnswer: 6, rightAnswer: 9 },
+    { type: "comparison", leftParts: ["", " + 4"], symbol: "<", rightParts: ["18 + ", ""], answers: [14, 2], leftAnswer: 14, rightAnswer: 2 },
 
-    // Tipul 4: Tabela adunare (20 exercitii)
-    { type: "table-add", termen1: 3, termen2: 4, suma: 7, unknown: "termen1" },
-    { type: "table-add", termen1: 5, termen2: 2, suma: 7, unknown: "termen2" },
-    { type: "table-add", termen1: 6, termen2: 3, suma: 9, unknown: "suma" },
-    { type: "table-add", termen1: 2, termen2: 5, suma: 7, unknown: "termen1" },
-    { type: "table-add", termen1: 4, termen2: 4, suma: 8, unknown: "termen2" },
-    { type: "table-add", termen1: 1, termen2: 8, suma: 9, unknown: "suma" },
-    { type: "table-add", termen1: 7, termen2: 2, suma: 9, unknown: "termen1" },
-    { type: "table-add", termen1: 3, termen2: 6, suma: 9, unknown: "termen2" },
-    { type: "table-add", termen1: 5, termen2: 5, suma: 10, unknown: "suma" },
-    { type: "table-add", termen1: 4, termen2: 3, suma: 7, unknown: "termen1" },
-    { type: "table-add", termen1: 2, termen2: 6, suma: 8, unknown: "termen2" },
-    { type: "table-add", termen1: 8, termen2: 1, suma: 9, unknown: "suma" },
-    { type: "table-add", termen1: 6, termen2: 4, suma: 10, unknown: "termen1" },
-    { type: "table-add", termen1: 3, termen2: 5, suma: 8, unknown: "termen2" },
-    { type: "table-add", termen1: 7, termen2: 3, suma: 10, unknown: "suma" },
-    { type: "table-add", termen1: 1, termen2: 6, suma: 7, unknown: "termen1" },
-    { type: "table-add", termen1: 4, termen2: 2, suma: 6, unknown: "termen2" },
-    { type: "table-add", termen1: 2, termen2: 3, suma: 5, unknown: "suma" },
-    { type: "table-add", termen1: 5, termen2: 4, suma: 9, unknown: "termen1" },
-    { type: "table-add", termen1: 6, termen2: 2, suma: 8, unknown: "termen2" },
+    // Tipul 4: Tabela adunare cu numere pana la 20 (20 exercitii)
+    { type: "table-add", termen1: 12, termen2: 5, suma: 17, unknown: "termen1" },
+    { type: "table-add", termen1: 14, termen2: 6, suma: 20, unknown: "termen2" },
+    { type: "table-add", termen1: 13, termen2: 4, suma: 17, unknown: "suma" },
+    { type: "table-add", termen1: 11, termen2: 8, suma: 19, unknown: "termen1" },
+    { type: "table-add", termen1: 15, termen2: 5, suma: 20, unknown: "termen2" },
+    { type: "table-add", termen1: 12, termen2: 7, suma: 19, unknown: "suma" },
+    { type: "table-add", termen1: 16, termen2: 3, suma: 19, unknown: "termen1" },
+    { type: "table-add", termen1: 13, termen2: 6, suma: 19, unknown: "termen2" },
+    { type: "table-add", termen1: 14, termen2: 5, suma: 19, unknown: "suma" },
+    { type: "table-add", termen1: 11, termen2: 9, suma: 20, unknown: "termen1" },
+    { type: "table-add", termen1: 12, termen2: 8, suma: 20, unknown: "termen2" },
+    { type: "table-add", termen1: 17, termen2: 3, suma: 20, unknown: "suma" },
+    { type: "table-add", termen1: 15, termen2: 4, suma: 19, unknown: "termen1" },
+    { type: "table-add", termen1: 13, termen2: 5, suma: 18, unknown: "termen2" },
+    { type: "table-add", termen1: 16, termen2: 2, suma: 18, unknown: "suma" },
+    { type: "table-add", termen1: 12, termen2: 6, suma: 18, unknown: "termen1" },
+    { type: "table-add", termen1: 14, termen2: 4, suma: 18, unknown: "termen2" },
+    { type: "table-add", termen1: 11, termen2: 6, suma: 17, unknown: "suma" },
+    { type: "table-add", termen1: 15, termen2: 3, suma: 18, unknown: "termen1" },
+    { type: "table-add", termen1: 16, termen2: 4, suma: 20, unknown: "termen2" },
 
-    // Tipul 5: Tabela scadere (20 exercitii)
-    { type: "table-sub", descazut: 9, scazator: 4, diferenta: 5, unknown: "descazut" },
-    { type: "table-sub", descazut: 8, scazator: 3, diferenta: 5, unknown: "scazator" },
-    { type: "table-sub", descazut: 10, scazator: 6, diferenta: 4, unknown: "diferenta" },
-    { type: "table-sub", descazut: 7, scazator: 2, diferenta: 5, unknown: "descazut" },
-    { type: "table-sub", descazut: 9, scazator: 5, diferenta: 4, unknown: "scazator" },
-    { type: "table-sub", descazut: 8, scazator: 2, diferenta: 6, unknown: "diferenta" },
-    { type: "table-sub", descazut: 10, scazator: 3, diferenta: 7, unknown: "descazut" },
-    { type: "table-sub", descazut: 6, scazator: 4, diferenta: 2, unknown: "scazator" },
-    { type: "table-sub", descazut: 9, scazator: 7, diferenta: 2, unknown: "diferenta" },
-    { type: "table-sub", descazut: 8, scazator: 5, diferenta: 3, unknown: "descazut" },
-    { type: "table-sub", descazut: 10, scazator: 4, diferenta: 6, unknown: "scazator" },
-    { type: "table-sub", descazut: 7, scazator: 3, diferenta: 4, unknown: "diferenta" },
-    { type: "table-sub", descazut: 9, scazator: 6, diferenta: 3, unknown: "descazut" },
-    { type: "table-sub", descazut: 10, scazator: 8, diferenta: 2, unknown: "scazator" },
-    { type: "table-sub", descazut: 8, scazator: 4, diferenta: 4, unknown: "diferenta" },
-    { type: "table-sub", descazut: 6, scazator: 1, diferenta: 5, unknown: "descazut" },
-    { type: "table-sub", descazut: 9, scazator: 3, diferenta: 6, unknown: "scazator" },
-    { type: "table-sub", descazut: 7, scazator: 5, diferenta: 2, unknown: "diferenta" },
-    { type: "table-sub", descazut: 10, scazator: 2, diferenta: 8, unknown: "descazut" },
-    { type: "table-sub", descazut: 8, scazator: 6, diferenta: 2, unknown: "scazator" },
+    // Tipul 5: Tabela scadere cu numere pana la 20 (20 exercitii)
+    { type: "table-sub", descazut: 17, scazator: 8, diferenta: 9, unknown: "descazut" },
+    { type: "table-sub", descazut: 19, scazator: 7, diferenta: 12, unknown: "scazator" },
+    { type: "table-sub", descazut: 20, scazator: 9, diferenta: 11, unknown: "diferenta" },
+    { type: "table-sub", descazut: 18, scazator: 6, diferenta: 12, unknown: "descazut" },
+    { type: "table-sub", descazut: 16, scazator: 8, diferenta: 8, unknown: "scazator" },
+    { type: "table-sub", descazut: 17, scazator: 9, diferenta: 8, unknown: "diferenta" },
+    { type: "table-sub", descazut: 19, scazator: 8, diferenta: 11, unknown: "descazut" },
+    { type: "table-sub", descazut: 15, scazator: 7, diferenta: 8, unknown: "scazator" },
+    { type: "table-sub", descazut: 20, scazator: 8, diferenta: 12, unknown: "diferenta" },
+    { type: "table-sub", descazut: 18, scazator: 9, diferenta: 9, unknown: "descazut" },
+    { type: "table-sub", descazut: 17, scazator: 6, diferenta: 11, unknown: "scazator" },
+    { type: "table-sub", descazut: 16, scazator: 7, diferenta: 9, unknown: "diferenta" },
+    { type: "table-sub", descazut: 19, scazator: 9, diferenta: 10, unknown: "descazut" },
+    { type: "table-sub", descazut: 20, scazator: 7, diferenta: 13, unknown: "scazator" },
+    { type: "table-sub", descazut: 18, scazator: 7, diferenta: 11, unknown: "diferenta" },
+    { type: "table-sub", descazut: 15, scazator: 6, diferenta: 9, unknown: "descazut" },
+    { type: "table-sub", descazut: 17, scazator: 8, diferenta: 9, unknown: "scazator" },
+    { type: "table-sub", descazut: 16, scazator: 9, diferenta: 7, unknown: "diferenta" },
+    { type: "table-sub", descazut: 20, scazator: 6, diferenta: 14, unknown: "descazut" },
+    { type: "table-sub", descazut: 19, scazator: 8, diferenta: 11, unknown: "scazator" },
 
-    // Tipul 6: Lant de operatii (20 exercitii)
-    // 2+3+1-4+2-1 = 3
-    { type: "chain", numbers: [2, 3, 1, 4, 2, 1], operators: ["+", "+", "-", "+", "-"], answer: 3 },
-    // 5-2+3+1-2+4 = 9
-    { type: "chain", numbers: [5, 2, 3, 1, 2, 4], operators: ["-", "+", "+", "-", "+"], answer: 9 },
-    // 1+4+2-3+1-2 = 3
-    { type: "chain", numbers: [1, 4, 2, 3, 1, 2], operators: ["+", "+", "-", "+", "-"], answer: 3 },
-    // 6-3+2+1-3+2 = 5
-    { type: "chain", numbers: [6, 3, 2, 1, 3, 2], operators: ["-", "+", "+", "-", "+"], answer: 5 },
-    // 3+2-4+1+2-3 = 1
-    { type: "chain", numbers: [3, 2, 4, 1, 2, 3], operators: ["+", "-", "+", "+", "-"], answer: 1 },
-    // 4+1+3-2+1-2 = 5
-    { type: "chain", numbers: [4, 1, 3, 2, 1, 2], operators: ["+", "+", "-", "+", "-"], answer: 5 },
-    // 7-4+2-3+1+2 = 5
-    { type: "chain", numbers: [7, 4, 2, 3, 1, 2], operators: ["-", "+", "-", "+", "+"], answer: 5 },
-    // 2+5+1-2+3-1 = 8
-    { type: "chain", numbers: [2, 5, 1, 2, 3, 1], operators: ["+", "+", "-", "+", "-"], answer: 8 },
-    // 8-3-2+1+4-3 = 5
-    { type: "chain", numbers: [8, 3, 2, 1, 4, 3], operators: ["-", "-", "+", "+", "-"], answer: 5 },
-    // 1+2+3-4+2-1 = 3
-    { type: "chain", numbers: [1, 2, 3, 4, 2, 1], operators: ["+", "+", "-", "+", "-"], answer: 3 },
-    // 5+1-2+3-2+1 = 6
-    { type: "chain", numbers: [5, 1, 2, 3, 2, 1], operators: ["+", "-", "+", "-", "+"], answer: 6 },
-    // 3+4-1+2-3+2 = 7
-    { type: "chain", numbers: [3, 4, 1, 2, 3, 2], operators: ["+", "-", "+", "-", "+"], answer: 7 },
-    // 6-2+1+3-2+1 = 7
-    { type: "chain", numbers: [6, 2, 1, 3, 2, 1], operators: ["-", "+", "+", "-", "+"], answer: 7 },
-    // 4+3-2+1+2-4 = 4
-    { type: "chain", numbers: [4, 3, 2, 1, 2, 4], operators: ["+", "-", "+", "+", "-"], answer: 4 },
-    // 2+1+4-3+2-1 = 5
-    { type: "chain", numbers: [2, 1, 4, 3, 2, 1], operators: ["+", "+", "-", "+", "-"], answer: 5 },
-    // 7-2+3-1+2-3 = 6
-    { type: "chain", numbers: [7, 2, 3, 1, 2, 3], operators: ["-", "+", "-", "+", "-"], answer: 6 },
-    // 1+3+2-4+1-2 = 1
-    { type: "chain", numbers: [1, 3, 2, 4, 1, 2], operators: ["+", "+", "-", "+", "-"], answer: 1 },
-    // 5-3+1+2-4+2 = 3
-    { type: "chain", numbers: [5, 3, 1, 2, 4, 2], operators: ["-", "+", "+", "-", "+"], answer: 3 },
-    // 4+2-3+1+2-1 = 5
-    { type: "chain", numbers: [4, 2, 3, 1, 2, 1], operators: ["+", "-", "+", "+", "-"], answer: 5 },
-    // 3+3-2+1-4+2 = 3
-    { type: "chain", numbers: [3, 3, 2, 1, 4, 2], operators: ["+", "-", "+", "-", "+"], answer: 3 }
+    // Tipul 6: Lant de operatii cu numere pana la 20 (15 exercitii)
+    { type: "chain", numbers: [12, 5, 3], operators: ["+", "-"], answer: 14 },
+    { type: "chain", numbers: [15, 7, 4], operators: ["-", "+"], answer: 12 },
+    { type: "chain", numbers: [11, 6, 2], operators: ["+", "-"], answer: 15 },
+    { type: "chain", numbers: [18, 9, 5], operators: ["-", "+"], answer: 14 },
+    { type: "chain", numbers: [13, 4, 6], operators: ["+", "-"], answer: 11 },
+    { type: "chain", numbers: [16, 8, 7], operators: ["-", "+"], answer: 15 },
+    { type: "chain", numbers: [14, 5, 3], operators: ["+", "-"], answer: 16 },
+    { type: "chain", numbers: [17, 6, 4], operators: ["-", "+"], answer: 15 },
+    { type: "chain", numbers: [12, 7, 5], operators: ["+", "-"], answer: 14 },
+    { type: "chain", numbers: [19, 8, 6], operators: ["-", "+"], answer: 17 },
+    { type: "chain", numbers: [11, 8, 4], operators: ["+", "-"], answer: 15 },
+    { type: "chain", numbers: [20, 9, 7], operators: ["-", "+"], answer: 18 },
+    { type: "chain", numbers: [15, 4, 6], operators: ["+", "-"], answer: 13 },
+    { type: "chain", numbers: [18, 7, 5], operators: ["-", "+"], answer: 16 },
+    { type: "chain", numbers: [13, 6, 3], operators: ["+", "-"], answer: 16 },
+
+    // Tipul 7: Probleme text - Ion si Maria (25 exercitii)
+    {
+        type: "story",
+        text: "Ion și Maria aveau câte 15 lei. Ion a cheltuit 5 lei, iar Maria 10 lei. Câți lei i-a rămas lui Ion?",
+        answer: 10,
+        hint: "Ion avea 15 lei și a cheltuit 5 lei. 15 - 5 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion și Maria aveau câte 15 lei. Ion a cheltuit 5 lei, iar Maria 10 lei. Câți lei i-a rămas Mariei?",
+        answer: 5,
+        hint: "Maria avea 15 lei și a cheltuit 10 lei. 15 - 10 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion are 12 mere, iar Maria are 8 mere. Câte mere au împreună?",
+        answer: 20,
+        hint: "Adună merele: 12 + 8 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion avea 18 bomboane și i-a dat Mariei 7 bomboane. Câte bomboane i-au rămas lui Ion?",
+        answer: 11,
+        hint: "Ion avea 18 și a dat 7. 18 - 7 = ?"
+    },
+    {
+        type: "story",
+        text: "Maria are 14 creioane. Ion îi dă încă 6 creioane. Câte creioane are acum Maria?",
+        answer: 20,
+        hint: "Maria avea 14 și a primit 6. 14 + 6 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion și Maria au adunat împreună 20 de nuci. Ion a adunat 12 nuci. Câte nuci a adunat Maria?",
+        answer: 8,
+        hint: "În total sunt 20, Ion are 12. 20 - 12 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion avea 16 lei și a mai primit 4 lei de la bunici. Câți lei are acum?",
+        answer: 20,
+        hint: "Ion avea 16 și a primit 4. 16 + 4 = ?"
+    },
+    {
+        type: "story",
+        text: "Maria citește o carte de 19 pagini. A citit deja 8 pagini. Câte pagini îi mai rămân de citit?",
+        answer: 11,
+        hint: "Din 19 pagini a citit 8. 19 - 8 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion și Maria au plantat împreună flori. Ion a plantat 11 flori, iar Maria 7 flori. Câte flori au plantat în total?",
+        answer: 18,
+        hint: "Adună florile: 11 + 7 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion avea 20 de bile și a pierdut 6 bile. Câte bile îi mai rămân?",
+        answer: 14,
+        hint: "Din 20 bile a pierdut 6. 20 - 6 = ?"
+    },
+    {
+        type: "story",
+        text: "Maria are 13 autocolante. Ion îi dă încă 5 autocolante. Câte autocolante are Maria acum?",
+        answer: 18,
+        hint: "Maria avea 13 și a primit 5. 13 + 5 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion și Maria au cules căpșuni. Ion a cules 15 căpșuni, iar Maria 5 căpșuni. Cu câte căpșuni mai mult a cules Ion?",
+        answer: 10,
+        hint: "Compară căpșunile: 15 - 5 = ?"
+    },
+    {
+        type: "story",
+        text: "Maria avea 17 jucării și i-a dat surorii ei 9 jucării. Câte jucării îi mai rămân Mariei?",
+        answer: 8,
+        hint: "Din 17 jucării a dat 9. 17 - 9 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion are 12 ani, iar Maria are 7 ani. Cu câți ani este Ion mai mare decât Maria?",
+        answer: 5,
+        hint: "Scade vârstele: 12 - 7 = ?"
+    },
+    {
+        type: "story",
+        text: "Maria a rezolvat 14 exerciții dimineața și 6 exerciții după-amiaza. Câte exerciții a rezolvat în total?",
+        answer: 20,
+        hint: "Adună exercițiile: 14 + 6 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion avea 15 bani și a mai economisit încă 4 bani. Câți bani are Ion acum?",
+        answer: 19,
+        hint: "Ion avea 15 și a economisit 4. 15 + 4 = ?"
+    },
+    {
+        type: "story",
+        text: "Maria a cumpărat o carte de 18 lei și avea 20 de lei. Câți lei îi mai rămân?",
+        answer: 2,
+        hint: "Din 20 lei a cheltuit 18. 20 - 18 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion și Maria s-au jucat împreună 11 ore în weekend. Sâmbătă s-au jucat 6 ore. Câte ore s-au jucat duminică?",
+        answer: 5,
+        hint: "Din 11 ore, 6 au fost sâmbătă. 11 - 6 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion are 16 timbre în colecție. Maria are 4 timbre. Câte timbre au împreună?",
+        answer: 20,
+        hint: "Adună timbrele: 16 + 4 = ?"
+    },
+    {
+        type: "story",
+        text: "Maria a desenat 19 desene. Câte desene îi mai trebuie pentru a avea 20?",
+        answer: 1,
+        hint: "Câte lipsesc până la 20? 20 - 19 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion avea 13 bucăți de ciocolată și a mâncat 7 bucăți. Câte bucăți îi mai rămân?",
+        answer: 6,
+        hint: "Din 13 bucăți a mâncat 7. 13 - 7 = ?"
+    },
+    {
+        type: "story",
+        text: "Maria a citit 12 povești, iar Ion a citit 8 povești. Câte povești au citit împreună?",
+        answer: 20,
+        hint: "Adună poveștile: 12 + 8 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion a alergat 17 metri, iar Maria a alergat 11 metri. Cu câți metri a alergat Ion mai mult?",
+        answer: 6,
+        hint: "Compară distanțele: 17 - 11 = ?"
+    },
+    {
+        type: "story",
+        text: "Maria are 11 lei și vrea să cumpere o jucărie de 20 de lei. Câți lei îi mai trebuie?",
+        answer: 9,
+        hint: "Câți lei lipsesc? 20 - 11 = ?"
+    },
+    {
+        type: "story",
+        text: "Ion și Maria au împreună 20 de pixuri. Dacă Ion are 14 pixuri, câte pixuri are Maria?",
+        answer: 6,
+        hint: "Din 20 pixuri, 14 sunt ale lui Ion. 20 - 14 = ?"
+    },
+
+    // Tipul 8: Limba Română - Ordonează literele (30 exerciții)
+    { type: "word", scrambled: "racet", answer: "carte", hint: "Este un obiect pe care îl citești" },
+    { type: "word", scrambled: "sacă", answer: "casă", hint: "Este locul unde locuiești" },
+    { type: "word", scrambled: "șlacoă", answer: "școală", hint: "Este locul unde înveți" },
+    { type: "word", scrambled: "mama", answer: "mama", hint: "Este persoana care te-a născut" },
+    { type: "word", scrambled: "aatt", answer: "tata", hint: "Este părintele bărbat" },
+    { type: "word", scrambled: "roelaf", answer: "floare", hint: "Este o plantă frumoasă și colorată" },
+    { type: "word", scrambled: "eroabr", answer: "arbore", hint: "Este o plantă mare și înaltă" },
+    { type: "word", scrambled: "rosaе", answer: "soare", hint: "Strălucește pe cer ziua" },
+    { type: "word", scrambled: "nulă", answer: "lună", hint: "Apare pe cer noaptea" },
+    { type: "word", scrambled: "păa", answer: "apă", hint: "Este un lichid pe care îl bem" },
+    { type: "word", scrambled: "nipeâ", answer: "pâine", hint: "Este un aliment pe care îl mâncăm" },
+    { type: "word", scrambled: "taelp", answer: "lapte", hint: "Este o băutură albă" },
+    { type: "word", scrambled: "sămă", answer: "masă", hint: "Este un mobilier pe care mâncăm" },
+    { type: "word", scrambled: "nuacs", answer: "scaun", hint: "Este un mobilier pe care stăm" },
+    { type: "word", scrambled: "neiâc", answer: "câine", hint: "Este un animal de companie care latră" },
+    { type: "word", scrambled: "cispăi", answer: "pisică", hint: "Este un animal de companie care miaună" },
+    { type: "word", scrambled: "vlee", answer: "elev", hint: "Este o persoană care învață la școală" },
+    { type: "word", scrambled: "ropfsreo", answer: "profesor", hint: "Este persoana care predă la școală" },
+    { type: "word", scrambled: "rcpa", answer: "parc", hint: "Este locul unde ne jucăm afară" },
+    { type: "word", scrambled: "ngemi", answer: "minge", hint: "Este un obiect rotund cu care ne jucăm" },
+    { type: "word", scrambled: "lacăotrop", answer: "portocală", hint: "Este un fruct portocaliu" },
+    { type: "word", scrambled: "răm", answer: "măr", hint: "Este un fruct roșu sau verde" },
+    { type: "word", scrambled: "nănaba", answer: "banană", hint: "Este un fruct galben" },
+    { type: "word", scrambled: "țespe", answer: "pește", hint: "Este un animal care trăiește în apă" },
+    { type: "word", scrambled: "răsape", answer: "pasăre", hint: "Este un animal care zboară" },
+    { type: "word", scrambled: "niocer", answer: "creion", hint: "Este un instrument cu care scriem" },
+    { type: "word", scrambled: "teica", answer: "caiet", hint: "Este un obiect în care scriem" },
+    { type: "word", scrambled: "tarce", answer: "carte", hint: "Este un obiect cu multe pagini pe care le citești" },
+    { type: "word", scrambled: "neprtie", answer: "prieten", hint: "Este o persoană pe care o iubești" },
+    { type: "word", scrambled: "roocul", answer: "culoare", hint: "Poate fi roșu, albastru, galben, verde..." }
 ];
 
 let currentIndex = 0;
 let correctCount = 0;
+let wrongCount = 0;
 let answered = false;
 
 function shuffleArray(array) {
@@ -176,11 +336,11 @@ function loadExercise() {
     const exerciseContentEl = document.getElementById('exercise-content');
     const exerciseTypeEl = document.getElementById('exercise-type');
 
-    document.getElementById('exercise-number').textContent = `Exercitiul ${currentIndex + 1} din ${exercises.length}`;
+    document.getElementById('exercise-number').textContent = `Exercițiul ${currentIndex + 1} din ${exercises.length}`;
     document.getElementById('feedback').textContent = '';
     document.getElementById('feedback').className = 'feedback';
     document.getElementById('exercise-card').className = 'exercise-card';
-    document.getElementById('check-btn').textContent = 'Verifica';
+    document.getElementById('check-btn').textContent = 'Verifică';
     document.getElementById('progress').style.width = `${(currentIndex / exercises.length) * 100}%`;
     document.getElementById('task-hint').textContent = '';
     document.getElementById('hint-box').className = 'hint-box';
@@ -188,7 +348,7 @@ function loadExercise() {
     answered = false;
 
     if (exercise.type === "result") {
-        exerciseTypeEl.textContent = "Gaseste rezultatul";
+        exerciseTypeEl.textContent = "Găsește rezultatul";
         exerciseTypeEl.className = "exercise-type result";
         exerciseContentEl.innerHTML = `
             <div class="exercise-text">
@@ -197,7 +357,7 @@ function loadExercise() {
             </div>
         `;
     } else if (exercise.type === "missing") {
-        exerciseTypeEl.textContent = "Gaseste numarul lipsa";
+        exerciseTypeEl.textContent = "Găsește numărul lipsă";
         exerciseTypeEl.className = "exercise-type missing";
         exerciseContentEl.innerHTML = `
             <div class="exercise-text">
@@ -207,7 +367,7 @@ function loadExercise() {
             </div>
         `;
     } else if (exercise.type === "comparison") {
-        exerciseTypeEl.textContent = "Completeaza comparatia";
+        exerciseTypeEl.textContent = "Completează comparația";
         exerciseTypeEl.className = "exercise-type comparison";
 
         const symbolDisplay = exercise.symbol === "=" ? "=" : (exercise.symbol === ">" ? ">" : "<");
@@ -226,7 +386,7 @@ function loadExercise() {
 
         document.getElementById('task-hint').textContent = getComparisonHint(exercise.symbol);
     } else if (exercise.type === "table-add") {
-        exerciseTypeEl.textContent = "Tabela adunarii";
+        exerciseTypeEl.textContent = "Tabela adunării";
         exerciseTypeEl.className = "exercise-type table-add";
 
         let termen1Html = exercise.unknown === "termen1" ?
@@ -256,7 +416,7 @@ function loadExercise() {
 
         document.getElementById('task-hint').textContent = "Termen + Termen = Suma";
     } else if (exercise.type === "table-sub") {
-        exerciseTypeEl.textContent = "Tabela scaderii";
+        exerciseTypeEl.textContent = "Tabela scăderii";
         exerciseTypeEl.className = "exercise-type table-sub";
 
         let descazutHtml = exercise.unknown === "descazut" ?
@@ -272,9 +432,9 @@ function loadExercise() {
         exerciseContentEl.innerHTML = `
             <table class="math-table subtraction">
                 <tr>
-                    <th>Descazut</th>
-                    <th>Scazator</th>
-                    <th>Diferenta</th>
+                    <th>Descăzut</th>
+                    <th>Scăzător</th>
+                    <th>Diferență</th>
                 </tr>
                 <tr>
                     <td>${descazutHtml}</td>
@@ -284,9 +444,9 @@ function loadExercise() {
             </table>
         `;
 
-        document.getElementById('task-hint').textContent = "Descazut - Scazator = Diferenta";
+        document.getElementById('task-hint').textContent = "Descăzut - Scăzător = Diferență";
     } else if (exercise.type === "chain") {
-        exerciseTypeEl.textContent = "Lantul operatiilor";
+        exerciseTypeEl.textContent = "Lanțul operațiilor";
         exerciseTypeEl.className = "exercise-type chain";
 
         let chainHtml = '<div class="chain-container">';
@@ -302,11 +462,35 @@ function loadExercise() {
 
         exerciseContentEl.innerHTML = chainHtml;
 
-        document.getElementById('task-hint').textContent = "Calculeaza pas cu pas de la stanga la dreapta";
+        document.getElementById('task-hint').textContent = "Calculează pas cu pas de la stânga la dreapta";
+    } else if (exercise.type === "story") {
+        exerciseTypeEl.textContent = "Problemă";
+        exerciseTypeEl.className = "exercise-type comparison";
+
+        exerciseContentEl.innerHTML = `
+            <div class="story-text">${exercise.text}</div>
+            <div class="exercise-text" style="margin-top: 20px;">
+                <span>Răspuns:</span>
+                <input type="number" min="0" class="answer-input" id="answer-input" autofocus>
+            </div>
+        `;
+    } else if (exercise.type === "word") {
+        exerciseTypeEl.textContent = "Ordonează literele";
+        exerciseTypeEl.className = "exercise-type missing";
+
+        exerciseContentEl.innerHTML = `
+            <div class="word-scrambled">${exercise.scrambled}</div>
+            <div class="exercise-text" style="margin-top: 20px;">
+                <span>Cuvânt corect:</span>
+                <input type="text" class="answer-input word-input" id="answer-input" autofocus>
+            </div>
+        `;
+
+        document.getElementById('task-hint').textContent = exercise.hint;
     }
 
     // Add enter key listeners
-    const inputs = document.querySelectorAll('input[type="number"]');
+    const inputs = document.querySelectorAll('input[type="number"], input[type="text"]');
     inputs.forEach((input, index) => {
         input.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -325,9 +509,9 @@ function loadExercise() {
 }
 
 function getComparisonHint(symbol) {
-    if (symbol === "=") return "Gaseste numerele astfel incat cele doua parti sa fie egale";
-    if (symbol === ">") return "Partea stanga trebuie sa fie mai mare decat partea dreapta";
-    if (symbol === "<") return "Partea stanga trebuie sa fie mai mica decat partea dreapta";
+    if (symbol === "=") return "Găsește numerele astfel încât cele două părți să fie egale";
+    if (symbol === ">") return "Partea stângă trebuie să fie mai mare decât partea dreaptă";
+    if (symbol === "<") return "Partea stângă trebuie să fie mai mică decât partea dreaptă";
     return "";
 }
 
@@ -335,16 +519,16 @@ function generateHint(exercise, userAnswer, userLeftAnswer, userRightAnswer) {
     if (exercise.type === "result") {
         const correctAnswer = exercise.answer;
         if (userAnswer > correctAnswer) {
-            return `Raspunsul tau (${userAnswer}) este prea mare. Incearca un numar mai mic!`;
+            return `Răspunsul tău (${userAnswer}) este prea mare. Încearcă un număr mai mic!`;
         } else {
-            return `Raspunsul tau (${userAnswer}) este prea mic. Incearca un numar mai mare!`;
+            return `Răspunsul tău (${userAnswer}) este prea mic. Încearcă un număr mai mare!`;
         }
     } else if (exercise.type === "missing") {
         const correctAnswer = exercise.answer;
         if (userAnswer > correctAnswer) {
-            return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ce numar trebuie sa pui ca sa obtii rezultatul corect?`;
+            return `Numărul tău (${userAnswer}) este prea mare. Gândește-te: ce număr trebuie să pui ca să obții rezultatul corect?`;
         } else {
-            return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ce numar trebuie sa pui ca sa obtii rezultatul corect?`;
+            return `Numărul tău (${userAnswer}) este prea mic. Gândește-te: ce număr trebuie să pui ca să obții rezultatul corect?`;
         }
     } else if (exercise.type === "comparison") {
         const leftSide = evaluateExpression(exercise.leftParts, userLeftAnswer);
@@ -352,37 +536,37 @@ function generateHint(exercise, userAnswer, userLeftAnswer, userRightAnswer) {
 
         if (exercise.symbol === "=") {
             if (leftSide > rightSide) {
-                return `Partea stanga (${leftSide}) este mai mare decat partea dreapta (${rightSide}). Trebuie sa fie egale!`;
+                return `Partea stângă (${leftSide}) este mai mare decât partea dreaptă (${rightSide}). Trebuie să fie egale!`;
             } else {
-                return `Partea stanga (${leftSide}) este mai mica decat partea dreapta (${rightSide}). Trebuie sa fie egale!`;
+                return `Partea stângă (${leftSide}) este mai mică decât partea dreaptă (${rightSide}). Trebuie să fie egale!`;
             }
         } else if (exercise.symbol === ">") {
-            return `Partea stanga (${leftSide}) trebuie sa fie MAI MARE decat partea dreapta (${rightSide}). Acum nu este asa.`;
+            return `Partea stângă (${leftSide}) trebuie să fie MAI MARE decât partea dreaptă (${rightSide}). Acum nu este așa.`;
         } else if (exercise.symbol === "<") {
-            return `Partea stanga (${leftSide}) trebuie sa fie MAI MICA decat partea dreapta (${rightSide}). Acum nu este asa.`;
+            return `Partea stângă (${leftSide}) trebuie să fie MAI MICĂ decât partea dreaptă (${rightSide}). Acum nu este așa.`;
         }
     } else if (exercise.type === "table-add") {
         let correctAnswer;
         if (exercise.unknown === "termen1") {
             correctAnswer = exercise.termen1;
             if (userAnswer > correctAnswer) {
-                return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ? + ${exercise.termen2} = ${exercise.suma}`;
+                return `Numărul tău (${userAnswer}) este prea mare. Gândește-te: ? + ${exercise.termen2} = ${exercise.suma}`;
             } else {
-                return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ? + ${exercise.termen2} = ${exercise.suma}`;
+                return `Numărul tău (${userAnswer}) este prea mic. Gândește-te: ? + ${exercise.termen2} = ${exercise.suma}`;
             }
         } else if (exercise.unknown === "termen2") {
             correctAnswer = exercise.termen2;
             if (userAnswer > correctAnswer) {
-                return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ${exercise.termen1} + ? = ${exercise.suma}`;
+                return `Numărul tău (${userAnswer}) este prea mare. Gândește-te: ${exercise.termen1} + ? = ${exercise.suma}`;
             } else {
-                return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ${exercise.termen1} + ? = ${exercise.suma}`;
+                return `Numărul tău (${userAnswer}) este prea mic. Gândește-te: ${exercise.termen1} + ? = ${exercise.suma}`;
             }
         } else {
             correctAnswer = exercise.suma;
             if (userAnswer > correctAnswer) {
-                return `Suma ta (${userAnswer}) este prea mare. Cat face ${exercise.termen1} + ${exercise.termen2}?`;
+                return `Suma ta (${userAnswer}) este prea mare. Cât face ${exercise.termen1} + ${exercise.termen2}?`;
             } else {
-                return `Suma ta (${userAnswer}) este prea mica. Cat face ${exercise.termen1} + ${exercise.termen2}?`;
+                return `Suma ta (${userAnswer}) este prea mică. Cât face ${exercise.termen1} + ${exercise.termen2}?`;
             }
         }
     } else if (exercise.type === "table-sub") {
@@ -390,23 +574,23 @@ function generateHint(exercise, userAnswer, userLeftAnswer, userRightAnswer) {
         if (exercise.unknown === "descazut") {
             correctAnswer = exercise.descazut;
             if (userAnswer > correctAnswer) {
-                return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ? - ${exercise.scazator} = ${exercise.diferenta}`;
+                return `Numărul tău (${userAnswer}) este prea mare. Gândește-te: ? - ${exercise.scazator} = ${exercise.diferenta}`;
             } else {
-                return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ? - ${exercise.scazator} = ${exercise.diferenta}`;
+                return `Numărul tău (${userAnswer}) este prea mic. Gândește-te: ? - ${exercise.scazator} = ${exercise.diferenta}`;
             }
         } else if (exercise.unknown === "scazator") {
             correctAnswer = exercise.scazator;
             if (userAnswer > correctAnswer) {
-                return `Numarul tau (${userAnswer}) este prea mare. Gandeste-te: ${exercise.descazut} - ? = ${exercise.diferenta}`;
+                return `Numărul tău (${userAnswer}) este prea mare. Gândește-te: ${exercise.descazut} - ? = ${exercise.diferenta}`;
             } else {
-                return `Numarul tau (${userAnswer}) este prea mic. Gandeste-te: ${exercise.descazut} - ? = ${exercise.diferenta}`;
+                return `Numărul tău (${userAnswer}) este prea mic. Gândește-te: ${exercise.descazut} - ? = ${exercise.diferenta}`;
             }
         } else {
             correctAnswer = exercise.diferenta;
             if (userAnswer > correctAnswer) {
-                return `Diferenta ta (${userAnswer}) este prea mare. Cat face ${exercise.descazut} - ${exercise.scazator}?`;
+                return `Diferența ta (${userAnswer}) este prea mare. Cât face ${exercise.descazut} - ${exercise.scazator}?`;
             } else {
-                return `Diferenta ta (${userAnswer}) este prea mica. Cat face ${exercise.descazut} - ${exercise.scazator}?`;
+                return `Diferența ta (${userAnswer}) este prea mică. Cât face ${exercise.descazut} - ${exercise.scazator}?`;
             }
         }
     } else if (exercise.type === "chain") {
@@ -417,17 +601,24 @@ function generateHint(exercise, userAnswer, userLeftAnswer, userRightAnswer) {
             expr += ` ${exercise.operators[i]} ${exercise.numbers[i + 1]}`;
         }
         if (userAnswer > correctAnswer) {
-            return `Raspunsul tau (${userAnswer}) este prea mare. Calculeaza pas cu pas: ${expr}`;
+            return `Răspunsul tău (${userAnswer}) este prea mare. Calculează pas cu pas: ${expr}`;
         } else {
-            return `Raspunsul tau (${userAnswer}) este prea mic. Calculeaza pas cu pas: ${expr}`;
+            return `Răspunsul tău (${userAnswer}) este prea mic. Calculează pas cu pas: ${expr}`;
         }
+    } else if (exercise.type === "story") {
+        const correctAnswer = exercise.answer;
+        return exercise.hint || "Citește problema cu atenție și încearcă din nou!";
+    } else if (exercise.type === "word") {
+        return exercise.hint || "Gândește-te bine la ordinea corectă a literelor!";
     }
-    return "Mai incearca!";
+    return "Mai încearcă!";
 }
 
 function getCorrectAnswer(exercise) {
-    if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "chain") {
+    if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "chain" || exercise.type === "story") {
         return exercise.answer;
+    } else if (exercise.type === "word") {
+        return exercise.answer.toLowerCase();
     } else if (exercise.type === "table-add") {
         if (exercise.unknown === "termen1") return exercise.termen1;
         if (exercise.unknown === "termen2") return exercise.termen2;
@@ -458,19 +649,65 @@ function checkAnswer() {
         return;
     }
 
-    if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "table-add" || exercise.type === "table-sub" || exercise.type === "chain") {
+    if (exercise.type === "word") {
+        const input = document.getElementById('answer-input');
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = getCorrectAnswer(exercise);
+
+        if (userAnswer === '') {
+            feedback.textContent = 'Introdu un cuvânt!';
+            feedback.className = 'feedback wrong';
+            return;
+        }
+
+        if (userAnswer === correctAnswer) {
+            answered = true;
+            correctCount++;
+            document.getElementById('correct-count').textContent = correctCount;
+
+            input.className = 'answer-input word-input correct';
+            card.className = 'exercise-card correct';
+            feedback.textContent = '✓ Corect! Bravo!';
+            feedback.className = 'feedback correct';
+            hintBox.className = 'hint-box';
+
+            if (currentIndex < exercises.length - 1) {
+                btn.textContent = 'Următorul →';
+            } else {
+                btn.textContent = 'Vezi rezultatul';
+            }
+        } else {
+            wrongCount++;
+            document.getElementById('wrong-count').textContent = wrongCount;
+
+            input.className = 'answer-input word-input wrong';
+            card.className = 'exercise-card wrong';
+            feedback.textContent = '✗ Mai încearcă!';
+            feedback.className = 'feedback wrong';
+
+            hintText.textContent = generateHint(exercise, userAnswer);
+            hintBox.className = 'hint-box visible';
+
+            setTimeout(() => {
+                input.className = 'answer-input word-input';
+                card.className = 'exercise-card';
+                input.value = '';
+                input.focus();
+            }, 1500);
+        }
+    } else if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "table-add" || exercise.type === "table-sub" || exercise.type === "chain" || exercise.type === "story") {
         const input = document.getElementById('answer-input');
         const userAnswer = parseInt(input.value);
         const correctAnswer = getCorrectAnswer(exercise);
 
         if (isNaN(userAnswer)) {
-            feedback.textContent = 'Introdu un numar!';
+            feedback.textContent = 'Introdu un număr!';
             feedback.className = 'feedback wrong';
             return;
         }
 
         if (userAnswer < 0) {
-            feedback.textContent = 'Numarul trebuie sa fie cel putin 0!';
+            feedback.textContent = 'Numărul trebuie să fie cel puțin 0!';
             feedback.className = 'feedback wrong';
             return;
         }
@@ -495,11 +732,14 @@ function checkAnswer() {
             hintBox.className = 'hint-box';
 
             if (currentIndex < exercises.length - 1) {
-                btn.textContent = 'Urmatorul →';
+                btn.textContent = 'Următorul →';
             } else {
                 btn.textContent = 'Vezi rezultatul';
             }
         } else {
+            wrongCount++;
+            document.getElementById('wrong-count').textContent = wrongCount;
+
             if (input.classList.contains('table-input')) {
                 input.classList.add('wrong');
             } else if (input.classList.contains('chain-input')) {
@@ -510,7 +750,7 @@ function checkAnswer() {
                 input.className = 'answer-input wrong';
             }
             card.className = 'exercise-card wrong';
-            feedback.textContent = '✗ Mai incearca!';
+            feedback.textContent = '✗ Mai încearcă!';
             feedback.className = 'feedback wrong';
 
             hintText.textContent = generateHint(exercise, userAnswer);
@@ -539,13 +779,13 @@ function checkAnswer() {
         const rightAnswer = parseInt(rightInput.value);
 
         if (isNaN(leftAnswer) || isNaN(rightAnswer)) {
-            feedback.textContent = 'Completeaza ambele campuri!';
+            feedback.textContent = 'Completează ambele câmpuri!';
             feedback.className = 'feedback wrong';
             return;
         }
 
         if (leftAnswer < 0 || rightAnswer < 0) {
-            feedback.textContent = 'Numerele trebuie sa fie cel putin 0!';
+            feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
             feedback.className = 'feedback wrong';
             return;
         }
@@ -570,15 +810,18 @@ function checkAnswer() {
             hintBox.className = 'hint-box';
 
             if (currentIndex < exercises.length - 1) {
-                btn.textContent = 'Urmatorul →';
+                btn.textContent = 'Următorul →';
             } else {
                 btn.textContent = 'Vezi rezultatul';
             }
         } else {
+            wrongCount++;
+            document.getElementById('wrong-count').textContent = wrongCount;
+
             leftInput.className = 'inline-input wrong';
             rightInput.className = 'inline-input wrong';
             card.className = 'exercise-card wrong';
-            feedback.textContent = '✗ Mai incearca!';
+            feedback.textContent = '✗ Mai încearcă!';
             feedback.className = 'feedback wrong';
 
             hintText.textContent = generateHint(exercise, null, leftAnswer, rightAnswer);
@@ -620,16 +863,16 @@ function showCompletion() {
 
     if (percentage === 100) {
         stars = '⭐⭐⭐';
-        message = 'Perfect! Esti un geniu al matematicii!';
+        message = 'Perfect! Ești un geniu al matematicii!';
     } else if (percentage >= 80) {
         stars = '⭐⭐';
         message = 'Excelent! Foarte bine!';
     } else if (percentage >= 60) {
         stars = '⭐';
-        message = 'Bine! Mai exerseaza!';
+        message = 'Bine! Mai exersează!';
     } else {
         stars = '';
-        message = 'Continua sa exersezi! Poti mai mult!';
+        message = 'Continuă să exersezi! Poți mai mult!';
     }
 
     document.getElementById('stars').textContent = stars;
@@ -659,8 +902,10 @@ function createConfetti() {
 function restartGame() {
     currentIndex = 0;
     correctCount = 0;
+    wrongCount = 0;
     shuffleArray(exercises);
     document.getElementById('correct-count').textContent = '0';
+    document.getElementById('wrong-count').textContent = '0';
     document.getElementById('game-container').className = 'game-container';
     document.getElementById('completion-screen').className = 'completion-screen';
     loadExercise();

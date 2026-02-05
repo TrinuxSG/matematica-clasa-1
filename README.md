@@ -1,28 +1,35 @@
-# 🧮 Joc de Matematică
+# 📚 Jocuri pentru clasa 1
 
-Un joc interactiv de matematică pentru copii, creat pentru a face învățarea matematicii distractivă și captivantă!
+Jocuri educative interactive pentru copii din clasa întâi, create pentru a face învățarea matematicii și limbii române distractivă și captivantă!
 
 ## 📝 Descriere
 
-Acest joc educativ oferă 125 de exerciții matematice variate, organizate în 6 tipuri diferite de probleme:
+Această colecție de jocuri educative oferă 175 de exerciții variate de matematică și limba română, organizate în 8 tipuri diferite de activități:
 
-1. **Găsește rezultatul** - Rezolvă operații simple de adunare și scădere
-2. **Găsește numărul lipsă** - Completează numărul care lipsește din ecuație
-3. **Completează comparația** - Folosește simbolurile =, > sau < corect
-4. **Tabela adunării** - Înțelege relația dintre termeni și sumă
-5. **Tabela scăderii** - Lucrează cu descăzut, scăzător și diferență
-6. **Lanțul operațiilor** - Rezolvă operații matematice consecutive
+### 🧮 Matematică (cu numere până la 20):
+1. **Găsește rezultatul** - Rezolvă operații simple de adunare și scădere (30 exerciții)
+2. **Găsește numărul lipsă** - Completează numărul care lipsește din ecuație (20 exerciții)
+3. **Completează comparația** - Folosește simbolurile =, > sau < corect (15 exerciții)
+4. **Tabela adunării** - Înțelege relația dintre termeni și sumă (20 exerciții)
+5. **Tabela scăderii** - Lucrează cu descăzut, scăzător și diferență (20 exerciții)
+6. **Lanțul operațiilor** - Rezolvă operații matematice consecutive (15 exerciții)
+7. **Probleme text** - Probleme cu Ion și Maria (25 exerciții)
+
+### 📖 Limba Română:
+8. **Ordonează literele** - Ordonează literele amestecate pentru a forma cuvinte corecte (30 exerciții)
 
 ## ✨ Caracteristici
 
-- 🎯 125 de exerciții matematice
+- 🎯 175 de exerciții (145 matematică + 30 limba română)
 - 🎨 Design colorat și prietenos pentru copii
 - 💡 Indicii automate pentru răspunsuri greșite
+- 📊 Sistem de scor - contorizează răspunsurile corecte și greșite
 - ⭐ Sistem de recompensare cu stele
 - 🎊 Animații și efecte vizuale
 - 📱 Responsive design - funcționează pe toate dispozitivele
 - ⌨️ Suport pentru navigare cu tastatura (Enter)
 - 🔄 Exerciții amestecate aleatoriu la fiecare rundă
+- 📚 Exerciții variate: matematică și limba română
 
 ## 🚀 Demo Live
 
