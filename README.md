@@ -4,7 +4,7 @@ Jocuri educative interactive pentru copii din clasa întâi, create pentru a fac
 
 ## 📝 Descriere
 
-Această colecție de jocuri educative oferă 175 de exerciții variate de matematică și limba română, organizate în 8 tipuri diferite de activități:
+Această colecție de jocuri educative oferă 205 de exerciții variate de matematică și limba română, organizate în 9 tipuri diferite de activități:
 
 ### 🧮 Matematică (cu numere până la 20):
 1. **Găsește rezultatul** - Rezolvă operații simple de adunare și scădere (30 exerciții)
@@ -17,10 +17,11 @@ Această colecție de jocuri educative oferă 175 de exerciții variate de matem
 
 ### 📖 Limba Română:
 8. **Ordonează literele** - Ordonează literele amestecate pentru a forma cuvinte corecte (30 exerciții)
+9. **Desparte pe silabe** - Desparte cuvintele pe silabe folosind liniuță (30 exerciții)
 
 ## ✨ Caracteristici
 
-- 🎯 175 de exerciții (145 matematică + 30 limba română)
+- 🎯 205 de exerciții (145 matematică + 60 limba română)
 - 🎨 Design colorat și prietenos pentru copii
 - 💡 Indicii automate pentru răspunsuri greșite
 - 📊 Sistem de scor - contorizează răspunsurile corecte și greșite

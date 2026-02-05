@@ -313,7 +313,39 @@ const exercises = [
     { type: "word", scrambled: "teica", answer: "caiet", hint: "Este un obiect în care scriem" },
     { type: "word", scrambled: "tarce", answer: "carte", hint: "Este un obiect cu multe pagini pe care le citești" },
     { type: "word", scrambled: "neprtie", answer: "prieten", hint: "Este o persoană pe care o iubești" },
-    { type: "word", scrambled: "roocul", answer: "culoare", hint: "Poate fi roșu, albastru, galben, verde..." }
+    { type: "word", scrambled: "roocul", answer: "culoare", hint: "Poate fi roșu, albastru, galben, verde..." },
+
+    // Tipul 9: Desparte pe silabe (30 exerciții)
+    { type: "syllable", word: "carte", answer: "car-te", syllables: 2 },
+    { type: "syllable", word: "casă", answer: "ca-să", syllables: 2 },
+    { type: "syllable", word: "școală", answer: "școa-lă", syllables: 2 },
+    { type: "syllable", word: "scaun", answer: "sca-un", syllables: 2 },
+    { type: "syllable", word: "masă", answer: "ma-să", syllables: 2 },
+    { type: "syllable", word: "floare", answer: "floa-re", syllables: 2 },
+    { type: "syllable", word: "arbore", answer: "ar-bo-re", syllables: 3 },
+    { type: "syllable", word: "soare", answer: "soa-re", syllables: 2 },
+    { type: "syllable", word: "lună", answer: "lu-nă", syllables: 2 },
+    { type: "syllable", word: "apă", answer: "a-pă", syllables: 2 },
+    { type: "syllable", word: "pâine", answer: "pâi-ne", syllables: 2 },
+    { type: "syllable", word: "lapte", answer: "lap-te", syllables: 2 },
+    { type: "syllable", word: "câine", answer: "câi-ne", syllables: 2 },
+    { type: "syllable", word: "pisică", answer: "pi-si-că", syllables: 3 },
+    { type: "syllable", word: "profesor", answer: "pro-fe-sor", syllables: 3 },
+    { type: "syllable", word: "elev", answer: "e-lev", syllables: 2 },
+    { type: "syllable", word: "caiet", answer: "ca-iet", syllables: 2 },
+    { type: "syllable", word: "creion", answer: "cre-ion", syllables: 2 },
+    { type: "syllable", word: "minge", answer: "min-ge", syllables: 2 },
+    { type: "syllable", word: "portocală", answer: "por-to-ca-lă", syllables: 4 },
+    { type: "syllable", word: "banană", answer: "ba-na-nă", syllables: 3 },
+    { type: "syllable", word: "măr", answer: "măr", syllables: 1 },
+    { type: "syllable", word: "pește", answer: "peș-te", syllables: 2 },
+    { type: "syllable", word: "pasăre", answer: "pa-să-re", syllables: 3 },
+    { type: "syllable", word: "prieten", answer: "pri-e-ten", syllables: 3 },
+    { type: "syllable", word: "culoare", answer: "cu-loa-re", syllables: 3 },
+    { type: "syllable", word: "copil", answer: "co-pil", syllables: 2 },
+    { type: "syllable", word: "jucărie", answer: "ju-că-rie", syllables: 3 },
+    { type: "syllable", word: "poveste", answer: "po-ves-te", syllables: 3 },
+    { type: "syllable", word: "broască", answer: "broas-că", syllables: 2 }
 ];
 
 let currentIndex = 0;
@@ -487,6 +519,19 @@ function loadExercise() {
         `;
 
         document.getElementById('task-hint').textContent = exercise.hint;
+    } else if (exercise.type === "syllable") {
+        exerciseTypeEl.textContent = "Desparte pe silabe";
+        exerciseTypeEl.className = "exercise-type chain";
+
+        exerciseContentEl.innerHTML = `
+            <div class="syllable-word">${exercise.word}</div>
+            <div class="exercise-text" style="margin-top: 20px;">
+                <span>Silabele (desparte cu liniuță -):</span>
+                <input type="text" class="answer-input syllable-input" id="answer-input" autofocus placeholder="Ex: car-te">
+            </div>
+        `;
+
+        document.getElementById('task-hint').textContent = exercise.hint;
     }
 
     // Add enter key listeners
@@ -610,6 +655,8 @@ function generateHint(exercise, userAnswer, userLeftAnswer, userRightAnswer) {
         return exercise.hint || "Citește problema cu atenție și încearcă din nou!";
     } else if (exercise.type === "word") {
         return exercise.hint || "Gândește-te bine la ordinea corectă a literelor!";
+    } else if (exercise.type === "syllable") {
+        return exercise.hint || "Gândește-te cum se pronunță cuvântul și folosește liniuță (-) între silabe!";
     }
     return "Mai încearcă!";
 }
@@ -617,7 +664,7 @@ function generateHint(exercise, userAnswer, userLeftAnswer, userRightAnswer) {
 function getCorrectAnswer(exercise) {
     if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "chain" || exercise.type === "story") {
         return exercise.answer;
-    } else if (exercise.type === "word") {
+    } else if (exercise.type === "word" || exercise.type === "syllable") {
         return exercise.answer.toLowerCase();
     } else if (exercise.type === "table-add") {
         if (exercise.unknown === "termen1") return exercise.termen1;
@@ -649,13 +696,13 @@ function checkAnswer() {
         return;
     }
 
-    if (exercise.type === "word") {
+    if (exercise.type === "word" || exercise.type === "syllable") {
         const input = document.getElementById('answer-input');
         const userAnswer = input.value.trim().toLowerCase();
         const correctAnswer = getCorrectAnswer(exercise);
 
         if (userAnswer === '') {
-            feedback.textContent = 'Introdu un cuvânt!';
+            feedback.textContent = exercise.type === "word" ? 'Introdu un cuvânt!' : 'Introdu silabele!';
             feedback.className = 'feedback wrong';
             return;
         }
@@ -665,7 +712,8 @@ function checkAnswer() {
             correctCount++;
             document.getElementById('correct-count').textContent = correctCount;
 
-            input.className = 'answer-input word-input correct';
+            const inputClass = exercise.type === "word" ? 'answer-input word-input correct' : 'answer-input syllable-input correct';
+            input.className = inputClass;
             card.className = 'exercise-card correct';
             feedback.textContent = '✓ Corect! Bravo!';
             feedback.className = 'feedback correct';
@@ -680,7 +728,8 @@ function checkAnswer() {
             wrongCount++;
             document.getElementById('wrong-count').textContent = wrongCount;
 
-            input.className = 'answer-input word-input wrong';
+            const inputWrongClass = exercise.type === "word" ? 'answer-input word-input wrong' : 'answer-input syllable-input wrong';
+            input.className = inputWrongClass;
             card.className = 'exercise-card wrong';
             feedback.textContent = '✗ Mai încearcă!';
             feedback.className = 'feedback wrong';
@@ -689,7 +738,8 @@ function checkAnswer() {
             hintBox.className = 'hint-box visible';
 
             setTimeout(() => {
-                input.className = 'answer-input word-input';
+                const inputNormalClass = exercise.type === "word" ? 'answer-input word-input' : 'answer-input syllable-input';
+                input.className = inputNormalClass;
                 card.className = 'exercise-card';
                 input.value = '';
                 input.focus();

@@ -573,6 +573,27 @@ h1 {
     letter-spacing: 2px;
 }
 
+/* Syllable exercise styles */
+.syllable-word {
+    font-family: 'Baloo 2', cursive;
+    font-size: 4rem;
+    color: #6c5ce7;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding: 25px;
+    background: linear-gradient(135deg, #e8f5ff, #f8f4ff);
+    border-radius: 20px;
+    border: 4px solid #6c5ce7;
+    text-transform: lowercase;
+}
+
+.syllable-input {
+    font-size: 2rem !important;
+    width: 250px;
+    letter-spacing: 3px;
+    font-family: 'Baloo 2', cursive;
+}
+
 @media (max-width: 500px) {
     .chain-circle {
         width: 45px;
@@ -599,5 +620,14 @@ h1 {
     .word-input {
         width: 150px;
         font-size: 1.5rem !important;
+    }
+    .syllable-word {
+        font-size: 2.8rem;
+        padding: 15px;
+    }
+    .syllable-input {
+        width: 180px;
+        font-size: 1.5rem !important;
+        letter-spacing: 2px;
     }
 }
