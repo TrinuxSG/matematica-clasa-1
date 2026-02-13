@@ -4,7 +4,7 @@ Jocuri educative interactive pentru copii din clasa întâi, create pentru a fac
 
 ## 📝 Descriere
 
-Această colecție de jocuri educative oferă 205 de exerciții variate de matematică și limba română, organizate în 9 tipuri diferite de activități:
+Această colecție de jocuri educative oferă **285 de exerciții** variate de matematică și limba română, organizate în **12 tipuri** diferite de activități:
 
 ### 🧮 Matematică (cu numere până la 20):
 1. **Găsește rezultatul** - Rezolvă operații simple de adunare și scădere (30 exerciții)
@@ -14,14 +14,18 @@ Această colecție de jocuri educative oferă 205 de exerciții variate de matem
 5. **Tabela scăderii** - Lucrează cu descăzut, scăzător și diferență (20 exerciții)
 6. **Lanțul operațiilor** - Rezolvă operații matematice consecutive (15 exerciții)
 7. **Probleme text** - Probleme cu Ion și Maria (25 exerciții)
+8. **Predecesor-Număr-Succesor** - Găsește numerele care lipsesc din șir (30 exerciții)
+9. **Adunare în coloniță** - Adunare pe coloane, cu și fără trecere peste 10 (25 exerciții)
+10. **Scădere în coloniță** - Scădere pe coloane, cu și fără împrumut (25 exerciții)
 
 ### 📖 Limba Română:
-8. **Ordonează literele** - Ordonează literele amestecate pentru a forma cuvinte corecte (30 exerciții)
-9. **Desparte pe silabe** - Desparte cuvintele pe silabe folosind liniuță (30 exerciții)
+11. **Ordonează literele** - Ordonează literele amestecate pentru a forma cuvinte corecte (30 exerciții)
+12. **Desparte pe silabe** - Desparte cuvintele pe silabe folosind liniuță (30 exerciții)
 
 ## ✨ Caracteristici
 
-- 🎯 205 de exerciții (145 matematică + 60 limba română)
+- 🎯 **285 de exerciții** (225 matematică + 60 limba română)
+- 🎮 **Meniu interactiv** - Alege tipul de exerciții pe care vrei să le exersezi
 - 🎨 Design colorat și prietenos pentru copii
 - 💡 Indicii automate pentru răspunsuri greșite
 - 📊 Sistem de scor - contorizează răspunsurile corecte și greșite
@@ -31,6 +35,7 @@ Această colecție de jocuri educative oferă 205 de exerciții variate de matem
 - ⌨️ Suport pentru navigare cu tastatura (Enter)
 - 🔄 Exerciții amestecate aleatoriu la fiecare rundă
 - 📚 Exerciții variate: matematică și limba română
+- 🧮 **Exerciții în coloniță** - Adunare și scădere cu trecere peste 10 și împrumut
 
 ## 🚀 Demo Live
 

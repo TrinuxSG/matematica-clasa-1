@@ -377,7 +377,67 @@ const exercises = [
     { type: "sequence", known: "successor", number: 10, predecessor: 9, successor: 11 },
     { type: "sequence", known: "middle", number: 15, predecessor: 14, successor: 16 },
     { type: "sequence", known: "predecessor", number: 18, predecessor: 17, successor: 19 },
-    { type: "sequence", known: "successor", number: 5, predecessor: 4, successor: 6 }
+    { type: "sequence", known: "successor", number: 5, predecessor: 4, successor: 6 },
+
+    // Tipul 11: Adunare în coloniță (25 exerciții)
+    // Fără trecere peste 10
+    { type: "column-add", tens1: 1, units1: 2, tens2: 0, units2: 5, answer: 17, hasCarry: false },
+    { type: "column-add", tens1: 1, units1: 3, tens2: 0, units2: 4, answer: 17, hasCarry: false },
+    { type: "column-add", tens1: 1, units1: 1, tens2: 0, units2: 6, answer: 17, hasCarry: false },
+    { type: "column-add", tens1: 1, units1: 4, tens2: 0, units2: 3, answer: 17, hasCarry: false },
+    { type: "column-add", tens1: 1, units1: 5, tens2: 0, units2: 2, answer: 17, hasCarry: false },
+    // Cu trecere peste 10
+    { type: "column-add", tens1: 0, units1: 7, tens2: 0, units2: 5, answer: 12, hasCarry: true },
+    { type: "column-add", tens1: 0, units1: 8, tens2: 0, units2: 6, answer: 14, hasCarry: true },
+    { type: "column-add", tens1: 0, units1: 9, tens2: 0, units2: 4, answer: 13, hasCarry: true },
+    { type: "column-add", tens1: 0, units1: 6, tens2: 0, units2: 8, answer: 14, hasCarry: true },
+    { type: "column-add", tens1: 0, units1: 7, tens2: 0, units2: 9, answer: 16, hasCarry: true },
+    { type: "column-add", tens1: 0, units1: 8, tens2: 0, units2: 7, answer: 15, hasCarry: true },
+    { type: "column-add", tens1: 0, units1: 9, tens2: 0, units2: 8, answer: 17, hasCarry: true },
+    { type: "column-add", tens1: 0, units1: 5, tens2: 0, units2: 6, answer: 11, hasCarry: true },
+    { type: "column-add", tens1: 0, units1: 6, tens2: 0, units2: 7, answer: 13, hasCarry: true },
+    { type: "column-add", tens1: 0, units1: 9, tens2: 0, units2: 9, answer: 18, hasCarry: true },
+    // Cu zeci și trecere
+    { type: "column-add", tens1: 1, units1: 7, tens2: 0, units2: 5, answer: 22, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 8, tens2: 0, units2: 4, answer: 22, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 6, tens2: 0, units2: 9, answer: 25, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 9, tens2: 0, units2: 7, answer: 26, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 5, tens2: 0, units2: 8, answer: 23, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 4, tens2: 0, units2: 9, answer: 23, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 3, tens2: 0, units2: 8, answer: 21, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 7, tens2: 0, units2: 8, answer: 25, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 2, tens2: 0, units2: 9, answer: 21, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 6, tens2: 0, units2: 6, answer: 22, hasCarry: true },
+
+    // Tipul 12: Scădere în coloniță (25 exerciții)
+    // Fără împrumut
+    { type: "column-sub", tens1: 1, units1: 7, tens2: 0, units2: 5, answer: 12, hasBorrow: false },
+    { type: "column-sub", tens1: 1, units1: 9, tens2: 0, units2: 6, answer: 13, hasBorrow: false },
+    { type: "column-sub", tens1: 1, units1: 8, tens2: 0, units2: 4, answer: 14, hasBorrow: false },
+    { type: "column-sub", tens1: 1, units1: 6, tens2: 0, units2: 3, answer: 13, hasBorrow: false },
+    { type: "column-sub", tens1: 1, units1: 5, tens2: 0, units2: 2, answer: 13, hasBorrow: false },
+    // Cu împrumut
+    { type: "column-sub", tens1: 1, units1: 2, tens2: 0, units2: 5, answer: 7, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 3, tens2: 0, units2: 7, answer: 6, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 1, tens2: 0, units2: 4, answer: 7, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 4, tens2: 0, units2: 8, answer: 6, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 0, tens2: 0, units2: 3, answer: 7, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 5, tens2: 0, units2: 9, answer: 6, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 6, tens2: 0, units2: 8, answer: 8, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 2, tens2: 0, units2: 6, answer: 6, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 3, tens2: 0, units2: 9, answer: 4, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 1, tens2: 0, units2: 5, answer: 6, hasBorrow: true },
+    // Cu zeci mai mari
+    { type: "column-sub", tens1: 2, units1: 0, tens2: 0, units2: 5, answer: 15, hasBorrow: true },
+    { type: "column-sub", tens1: 2, units1: 3, tens2: 0, units2: 7, answer: 16, hasBorrow: true },
+    { type: "column-sub", tens1: 2, units1: 5, tens2: 0, units2: 8, answer: 17, hasBorrow: true },
+    { type: "column-sub", tens1: 2, units1: 1, tens2: 0, units2: 9, answer: 12, hasBorrow: true },
+    { type: "column-sub", tens1: 2, units1: 4, tens2: 0, units2: 6, answer: 18, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 7, tens2: 0, units2: 9, answer: 8, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 8, tens2: 0, units2: 9, answer: 9, hasBorrow: true },
+    { type: "column-sub", tens1: 2, units1: 2, tens2: 0, units2: 7, answer: 15, hasBorrow: true },
+    { type: "column-sub", tens1: 2, units1: 6, tens2: 0, units2: 9, answer: 17, hasBorrow: true },
+    { type: "column-sub", tens1: 1, units1: 9, tens2: 0, units2: 9, answer: 10, hasBorrow: true }
 ];
 
 let currentIndex = 0;
@@ -401,7 +461,7 @@ function startGame(category) {
         currentExercises = [...allExercises];
     } else if (category === 'all-math') {
         currentExercises = allExercises.filter(ex =>
-            ['result', 'missing', 'comparison', 'table-add', 'table-sub', 'chain', 'story', 'sequence'].includes(ex.type)
+            ['result', 'missing', 'comparison', 'table-add', 'table-sub', 'chain', 'story', 'sequence', 'column-add', 'column-sub'].includes(ex.type)
         );
     } else if (category === 'all-romanian') {
         currentExercises = allExercises.filter(ex =>
@@ -412,6 +472,7 @@ function startGame(category) {
             ex.type === 'result' && ex.text.includes('+') ||
             ex.type === 'missing' && ex.parts[1].includes('+') ||
             ex.type === 'table-add' ||
+            ex.type === 'column-add' ||
             ex.type === 'comparison' && (ex.leftParts[1].includes('+') || ex.rightParts[1].includes('+'))
         );
     } else if (category === 'subtraction') {
@@ -419,7 +480,12 @@ function startGame(category) {
             ex.type === 'result' && ex.text.includes('-') ||
             ex.type === 'missing' && ex.parts[1].includes('-') ||
             ex.type === 'table-sub' ||
+            ex.type === 'column-sub' ||
             ex.type === 'comparison' && (ex.leftParts[1].includes('-') || ex.rightParts[1].includes('-'))
+        );
+    } else if (category === 'column') {
+        currentExercises = allExercises.filter(ex =>
+            ex.type === 'column-add' || ex.type === 'column-sub'
         );
     } else {
         currentExercises = allExercises.filter(ex => ex.type === category);
@@ -646,6 +712,76 @@ function loadExercise() {
         exerciseContentEl.innerHTML = html;
 
         document.getElementById('task-hint').textContent = "Găsește numerele care lipsesc în șir";
+    } else if (exercise.type === "column-add") {
+        exerciseTypeEl.textContent = "Adunare în coloniță";
+        exerciseTypeEl.className = "exercise-type result";
+
+        const num1 = exercise.tens1 * 10 + exercise.units1;
+        const num2 = exercise.tens2 * 10 + exercise.units2;
+
+        let html = '<div class="column-operation">';
+        html += '<div class="column-number">';
+        if (exercise.tens1 > 0) {
+            html += `<span class="column-digit tens">${exercise.tens1}</span>`;
+        }
+        html += `<span class="column-digit units">${exercise.units1}</span>`;
+        html += '</div>';
+
+        html += '<div class="column-operator">+</div>';
+
+        html += '<div class="column-number">';
+        if (exercise.tens2 > 0) {
+            html += `<span class="column-digit tens">${exercise.tens2}</span>`;
+        }
+        html += `<span class="column-digit units">${exercise.units2}</span>`;
+        html += '</div>';
+
+        html += '<div class="column-line"></div>';
+        html += '<input type="number" min="0" class="column-answer" id="answer-input" autofocus>';
+        html += '</div>';
+
+        exerciseContentEl.innerHTML = html;
+
+        if (exercise.hasCarry) {
+            document.getElementById('task-hint').textContent = "Atenție: Unitățile adunate depășesc 10! Ține minte să treci la zeci.";
+        } else {
+            document.getElementById('task-hint').textContent = "Adună pe coloane: unitățile cu unitățile, zecile cu zecile";
+        }
+    } else if (exercise.type === "column-sub") {
+        exerciseTypeEl.textContent = "Scădere în coloniță";
+        exerciseTypeEl.className = "exercise-type comparison";
+
+        const num1 = exercise.tens1 * 10 + exercise.units1;
+        const num2 = exercise.tens2 * 10 + exercise.units2;
+
+        let html = '<div class="column-operation">';
+        html += '<div class="column-number">';
+        if (exercise.tens1 > 0) {
+            html += `<span class="column-digit tens">${exercise.tens1}</span>`;
+        }
+        html += `<span class="column-digit units">${exercise.units1}</span>`;
+        html += '</div>';
+
+        html += '<div class="column-operator">-</div>';
+
+        html += '<div class="column-number">';
+        if (exercise.tens2 > 0) {
+            html += `<span class="column-digit tens">${exercise.tens2}</span>`;
+        }
+        html += `<span class="column-digit units">${exercise.units2}</span>`;
+        html += '</div>';
+
+        html += '<div class="column-line"></div>';
+        html += '<input type="number" min="0" class="column-answer" id="answer-input" autofocus>';
+        html += '</div>';
+
+        exerciseContentEl.innerHTML = html;
+
+        if (exercise.hasBorrow) {
+            document.getElementById('task-hint').textContent = "Atenție: Trebuie să împrumuți de la zeci pentru a scădea unitățile!";
+        } else {
+            document.getElementById('task-hint').textContent = "Scade pe coloane: unitățile din unitățile, zecile din zeci";
+        }
     }
 
     // Add enter key listeners
@@ -771,12 +907,30 @@ function generateHint(exercise, userAnswer, userLeftAnswer, userRightAnswer) {
         return exercise.hint || "Gândește-te bine la ordinea corectă a literelor!";
     } else if (exercise.type === "syllable") {
         return exercise.hint || "Gândește-te cum se pronunță cuvântul și folosește liniuță (-) între silabe!";
+    } else if (exercise.type === "column-add") {
+        const correctAnswer = exercise.answer;
+        const num1 = exercise.tens1 * 10 + exercise.units1;
+        const num2 = exercise.tens2 * 10 + exercise.units2;
+        if (exercise.hasCarry) {
+            return `Adună unitățile: ${exercise.units1} + ${exercise.units2} = ${exercise.units1 + exercise.units2}. Când trecem peste 10, punem ${(exercise.units1 + exercise.units2) % 10} la unități și ținem ${Math.floor((exercise.units1 + exercise.units2) / 10)} minte pentru zeci.`;
+        } else {
+            return `Adună pe coloane: ${num1} + ${num2} = ?`;
+        }
+    } else if (exercise.type === "column-sub") {
+        const correctAnswer = exercise.answer;
+        const num1 = exercise.tens1 * 10 + exercise.units1;
+        const num2 = exercise.tens2 * 10 + exercise.units2;
+        if (exercise.hasBorrow) {
+            return `Nu poți scădea ${exercise.units2} din ${exercise.units1}? Împrumută 1 zece! ${exercise.units1} devine ${exercise.units1 + 10}, apoi scade ${exercise.units2}.`;
+        } else {
+            return `Scade pe coloane: ${num1} - ${num2} = ?`;
+        }
     }
     return "Mai încearcă!";
 }
 
 function getCorrectAnswer(exercise) {
-    if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "chain" || exercise.type === "story") {
+    if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "chain" || exercise.type === "story" || exercise.type === "column-add" || exercise.type === "column-sub") {
         return exercise.answer;
     } else if (exercise.type === "word" || exercise.type === "syllable") {
         return exercise.answer.toLowerCase();
@@ -859,7 +1013,7 @@ function checkAnswer() {
                 input.focus();
             }, 1500);
         }
-    } else if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "table-add" || exercise.type === "table-sub" || exercise.type === "chain" || exercise.type === "story") {
+    } else if (exercise.type === "result" || exercise.type === "missing" || exercise.type === "table-add" || exercise.type === "table-sub" || exercise.type === "chain" || exercise.type === "story" || exercise.type === "column-add" || exercise.type === "column-sub") {
         const input = document.getElementById('answer-input');
         const userAnswer = parseInt(input.value);
         const correctAnswer = getCorrectAnswer(exercise);
@@ -885,6 +1039,8 @@ function checkAnswer() {
                 input.classList.add('correct');
             } else if (input.classList.contains('chain-input')) {
                 input.classList.add('correct');
+            } else if (input.classList.contains('column-answer')) {
+                input.classList.add('correct');
             } else if (input.classList.contains('inline-input')) {
                 input.className = 'inline-input correct';
             } else {
@@ -908,6 +1064,8 @@ function checkAnswer() {
                 input.classList.add('wrong');
             } else if (input.classList.contains('chain-input')) {
                 input.classList.add('wrong');
+            } else if (input.classList.contains('column-answer')) {
+                input.classList.add('wrong');
             } else if (input.classList.contains('inline-input')) {
                 input.className = 'inline-input wrong';
             } else {
@@ -924,6 +1082,8 @@ function checkAnswer() {
                 if (input.classList.contains('table-input')) {
                     input.classList.remove('wrong');
                 } else if (input.classList.contains('chain-input')) {
+                    input.classList.remove('wrong');
+                } else if (input.classList.contains('column-answer')) {
                     input.classList.remove('wrong');
                 } else if (input.classList.contains('inline-input') || input.className.includes('inline-input')) {
                     input.className = 'inline-input';
