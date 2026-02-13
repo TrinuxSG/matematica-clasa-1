@@ -46,7 +46,61 @@
             <div class="progress-fill" id="progress"></div>
         </div>
 
-        <div class="game-container" id="game-container">
+        <!-- Menu Screen -->
+        <div class="menu-screen" id="menu-screen">
+            <div class="menu-card">
+                <h2 class="menu-title">Alege tipul de exerciții</h2>
+                <div class="menu-grid">
+                    <button class="menu-btn math-btn" onclick="startGame('all-math')">
+                        <div class="menu-icon">🔢</div>
+                        <div class="menu-label">Toate Matematica</div>
+                        <div class="menu-count">175 exerciții</div>
+                    </button>
+                    <button class="menu-btn romanian-btn" onclick="startGame('all-romanian')">
+                        <div class="menu-icon">📖</div>
+                        <div class="menu-label">Toate Română</div>
+                        <div class="menu-count">60 exerciții</div>
+                    </button>
+                    <button class="menu-btn sequence-btn" onclick="startGame('sequence')">
+                        <div class="menu-icon">🔢</div>
+                        <div class="menu-label">Predecesor-Succesor</div>
+                        <div class="menu-count">30 exerciții</div>
+                    </button>
+                    <button class="menu-btn addition-btn" onclick="startGame('addition')">
+                        <div class="menu-icon">➕</div>
+                        <div class="menu-label">Adunare</div>
+                        <div class="menu-count">65 exerciții</div>
+                    </button>
+                    <button class="menu-btn subtraction-btn" onclick="startGame('subtraction')">
+                        <div class="menu-icon">➖</div>
+                        <div class="menu-label">Scădere</div>
+                        <div class="menu-count">60 exerciții</div>
+                    </button>
+                    <button class="menu-btn story-btn" onclick="startGame('story')">
+                        <div class="menu-icon">📚</div>
+                        <div class="menu-label">Probleme Text</div>
+                        <div class="menu-count">25 exerciții</div>
+                    </button>
+                    <button class="menu-btn syllable-btn" onclick="startGame('syllable')">
+                        <div class="menu-icon">✂️</div>
+                        <div class="menu-label">Desparte pe Silabe</div>
+                        <div class="menu-count">30 exerciții</div>
+                    </button>
+                    <button class="menu-btn word-btn" onclick="startGame('word')">
+                        <div class="menu-icon">🔤</div>
+                        <div class="menu-label">Ordonează Literele</div>
+                        <div class="menu-count">30 exerciții</div>
+                    </button>
+                    <button class="menu-btn all-btn" onclick="startGame('all')">
+                        <div class="menu-icon">🎯</div>
+                        <div class="menu-label">Toate Exercițiile</div>
+                        <div class="menu-count">235 exerciții</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-container hidden" id="game-container">
             <div class="exercise-card" id="exercise-card">
                 <div class="exercise-number" id="exercise-number">Exercitiul 1 din 125</div>
                 <div class="exercise-type" id="exercise-type">Gaseste rezultatul</div>
@@ -59,6 +113,7 @@
                 </div>
                 <div class="task-hint" id="task-hint"></div>
             </div>
+            <button class="btn btn-back" onclick="backToMenu()">← Înapoi la meniu</button>
         </div>
 
         <div class="completion-screen" id="completion-screen">

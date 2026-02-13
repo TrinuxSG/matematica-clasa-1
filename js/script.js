@@ -345,13 +345,47 @@ const exercises = [
     { type: "syllable", word: "copil", answer: "co-pil", syllables: 2 },
     { type: "syllable", word: "jucărie", answer: "ju-că-rie", syllables: 3 },
     { type: "syllable", word: "poveste", answer: "po-ves-te", syllables: 3 },
-    { type: "syllable", word: "broască", answer: "broas-că", syllables: 2 }
+    { type: "syllable", word: "broască", answer: "broas-că", syllables: 2 },
+
+    // Tipul 10: Predecesor-Număr-Succesor (30 exerciții)
+    { type: "sequence", known: "middle", number: 5, predecessor: 4, successor: 6 },
+    { type: "sequence", known: "predecessor", number: 8, predecessor: 7, successor: 9 },
+    { type: "sequence", known: "successor", number: 12, predecessor: 11, successor: 13 },
+    { type: "sequence", known: "middle", number: 10, predecessor: 9, successor: 11 },
+    { type: "sequence", known: "predecessor", number: 15, predecessor: 14, successor: 16 },
+    { type: "sequence", known: "successor", number: 7, predecessor: 6, successor: 8 },
+    { type: "sequence", known: "middle", number: 3, predecessor: 2, successor: 4 },
+    { type: "sequence", known: "predecessor", number: 11, predecessor: 10, successor: 12 },
+    { type: "sequence", known: "successor", number: 18, predecessor: 17, successor: 19 },
+    { type: "sequence", known: "middle", number: 14, predecessor: 13, successor: 15 },
+    { type: "sequence", known: "predecessor", number: 6, predecessor: 5, successor: 7 },
+    { type: "sequence", known: "successor", number: 9, predecessor: 8, successor: 10 },
+    { type: "sequence", known: "middle", number: 17, predecessor: 16, successor: 18 },
+    { type: "sequence", known: "predecessor", number: 13, predecessor: 12, successor: 14 },
+    { type: "sequence", known: "successor", number: 4, predecessor: 3, successor: 5 },
+    { type: "sequence", known: "middle", number: 19, predecessor: 18, successor: 20 },
+    { type: "sequence", known: "predecessor", number: 16, predecessor: 15, successor: 17 },
+    { type: "sequence", known: "successor", number: 11, predecessor: 10, successor: 12 },
+    { type: "sequence", known: "middle", number: 8, predecessor: 7, successor: 9 },
+    { type: "sequence", known: "predecessor", number: 20, predecessor: 19, successor: 21 },
+    { type: "sequence", known: "successor", number: 14, predecessor: 13, successor: 15 },
+    { type: "sequence", known: "middle", number: 6, predecessor: 5, successor: 7 },
+    { type: "sequence", known: "predecessor", number: 9, predecessor: 8, successor: 10 },
+    { type: "sequence", known: "successor", number: 16, predecessor: 15, successor: 17 },
+    { type: "sequence", known: "middle", number: 13, predecessor: 12, successor: 14 },
+    { type: "sequence", known: "predecessor", number: 7, predecessor: 6, successor: 8 },
+    { type: "sequence", known: "successor", number: 10, predecessor: 9, successor: 11 },
+    { type: "sequence", known: "middle", number: 15, predecessor: 14, successor: 16 },
+    { type: "sequence", known: "predecessor", number: 18, predecessor: 17, successor: 19 },
+    { type: "sequence", known: "successor", number: 5, predecessor: 4, successor: 6 }
 ];
 
 let currentIndex = 0;
 let correctCount = 0;
 let wrongCount = 0;
 let answered = false;
+let currentExercises = [];
+let allExercises = [...exercises];
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -361,19 +395,69 @@ function shuffleArray(array) {
     return array;
 }
 
-shuffleArray(exercises);
+function startGame(category) {
+    // Filter exercises based on category
+    if (category === 'all') {
+        currentExercises = [...allExercises];
+    } else if (category === 'all-math') {
+        currentExercises = allExercises.filter(ex =>
+            ['result', 'missing', 'comparison', 'table-add', 'table-sub', 'chain', 'story', 'sequence'].includes(ex.type)
+        );
+    } else if (category === 'all-romanian') {
+        currentExercises = allExercises.filter(ex =>
+            ['word', 'syllable'].includes(ex.type)
+        );
+    } else if (category === 'addition') {
+        currentExercises = allExercises.filter(ex =>
+            ex.type === 'result' && ex.text.includes('+') ||
+            ex.type === 'missing' && ex.parts[1].includes('+') ||
+            ex.type === 'table-add' ||
+            ex.type === 'comparison' && (ex.leftParts[1].includes('+') || ex.rightParts[1].includes('+'))
+        );
+    } else if (category === 'subtraction') {
+        currentExercises = allExercises.filter(ex =>
+            ex.type === 'result' && ex.text.includes('-') ||
+            ex.type === 'missing' && ex.parts[1].includes('-') ||
+            ex.type === 'table-sub' ||
+            ex.type === 'comparison' && (ex.leftParts[1].includes('-') || ex.rightParts[1].includes('-'))
+        );
+    } else {
+        currentExercises = allExercises.filter(ex => ex.type === category);
+    }
+
+    shuffleArray(currentExercises);
+
+    // Reset game state
+    currentIndex = 0;
+    correctCount = 0;
+    wrongCount = 0;
+    answered = false;
+
+    document.getElementById('correct-count').textContent = '0';
+    document.getElementById('wrong-count').textContent = '0';
+    document.getElementById('menu-screen').style.display = 'none';
+    document.getElementById('game-container').classList.remove('hidden');
+
+    loadExercise();
+}
+
+function backToMenu() {
+    document.getElementById('menu-screen').style.display = 'block';
+    document.getElementById('game-container').classList.add('hidden');
+    document.getElementById('completion-screen').classList.remove('active');
+}
 
 function loadExercise() {
-    const exercise = exercises[currentIndex];
+    const exercise = currentExercises[currentIndex];
     const exerciseContentEl = document.getElementById('exercise-content');
     const exerciseTypeEl = document.getElementById('exercise-type');
 
-    document.getElementById('exercise-number').textContent = `Exercițiul ${currentIndex + 1} din ${exercises.length}`;
+    document.getElementById('exercise-number').textContent = `Exercițiul ${currentIndex + 1} din ${currentExercises.length}`;
     document.getElementById('feedback').textContent = '';
     document.getElementById('feedback').className = 'feedback';
     document.getElementById('exercise-card').className = 'exercise-card';
     document.getElementById('check-btn').textContent = 'Verifică';
-    document.getElementById('progress').style.width = `${(currentIndex / exercises.length) * 100}%`;
+    document.getElementById('progress').style.width = `${(currentIndex / currentExercises.length) * 100}%`;
     document.getElementById('task-hint').textContent = '';
     document.getElementById('hint-box').className = 'hint-box';
     document.getElementById('hint-text').textContent = '';
@@ -532,6 +616,36 @@ function loadExercise() {
         `;
 
         document.getElementById('task-hint').textContent = exercise.hint;
+    } else if (exercise.type === "sequence") {
+        exerciseTypeEl.textContent = "Predecesor - Număr - Succesor";
+        exerciseTypeEl.className = "exercise-type result";
+
+        let html = '<div class="sequence-container">';
+
+        if (exercise.known === "middle") {
+            html += `
+                <input type="number" min="0" class="sequence-input" id="answer-predecessor" autofocus>
+                <div class="sequence-number known">${exercise.number}</div>
+                <input type="number" min="0" class="sequence-input" id="answer-successor">
+            `;
+        } else if (exercise.known === "predecessor") {
+            html += `
+                <div class="sequence-number known">${exercise.predecessor}</div>
+                <input type="number" min="0" class="sequence-input" id="answer-middle" autofocus>
+                <input type="number" min="0" class="sequence-input" id="answer-successor">
+            `;
+        } else if (exercise.known === "successor") {
+            html += `
+                <input type="number" min="0" class="sequence-input" id="answer-predecessor" autofocus>
+                <input type="number" min="0" class="sequence-input" id="answer-middle">
+                <div class="sequence-number known">${exercise.successor}</div>
+            `;
+        }
+
+        html += '</div>';
+        exerciseContentEl.innerHTML = html;
+
+        document.getElementById('task-hint').textContent = "Găsește numerele care lipsesc în șir";
     }
 
     // Add enter key listeners
@@ -679,7 +793,7 @@ function getCorrectAnswer(exercise) {
 }
 
 function checkAnswer() {
-    const exercise = exercises[currentIndex];
+    const exercise = currentExercises[currentIndex];
     const feedback = document.getElementById('feedback');
     const card = document.getElementById('exercise-card');
     const btn = document.getElementById('check-btn');
@@ -688,7 +802,7 @@ function checkAnswer() {
 
     if (answered) {
         currentIndex++;
-        if (currentIndex < exercises.length) {
+        if (currentIndex < currentExercises.length) {
             loadExercise();
         } else {
             showCompletion();
@@ -719,7 +833,7 @@ function checkAnswer() {
             feedback.className = 'feedback correct';
             hintBox.className = 'hint-box';
 
-            if (currentIndex < exercises.length - 1) {
+            if (currentIndex < currentExercises.length - 1) {
                 btn.textContent = 'Următorul →';
             } else {
                 btn.textContent = 'Vezi rezultatul';
@@ -781,7 +895,7 @@ function checkAnswer() {
             feedback.className = 'feedback correct';
             hintBox.className = 'hint-box';
 
-            if (currentIndex < exercises.length - 1) {
+            if (currentIndex < currentExercises.length - 1) {
                 btn.textContent = 'Următorul →';
             } else {
                 btn.textContent = 'Vezi rezultatul';
@@ -859,7 +973,7 @@ function checkAnswer() {
             feedback.className = 'feedback correct';
             hintBox.className = 'hint-box';
 
-            if (currentIndex < exercises.length - 1) {
+            if (currentIndex < currentExercises.length - 1) {
                 btn.textContent = 'Următorul →';
             } else {
                 btn.textContent = 'Vezi rezultatul';
@@ -886,6 +1000,112 @@ function checkAnswer() {
                 leftInput.focus();
             }, 1500);
         }
+    } else if (exercise.type === "sequence") {
+        let isCorrect = false;
+        let allInputs = [];
+
+        if (exercise.known === "middle") {
+            const predInput = document.getElementById('answer-predecessor');
+            const succInput = document.getElementById('answer-successor');
+            const predAnswer = parseInt(predInput.value);
+            const succAnswer = parseInt(succInput.value);
+
+            allInputs = [predInput, succInput];
+
+            if (isNaN(predAnswer) || isNaN(succAnswer)) {
+                feedback.textContent = 'Completează ambele câmpuri!';
+                feedback.className = 'feedback wrong';
+                return;
+            }
+
+            if (predAnswer < 0 || succAnswer < 0) {
+                feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
+                feedback.className = 'feedback wrong';
+                return;
+            }
+
+            isCorrect = (predAnswer === exercise.predecessor && succAnswer === exercise.successor);
+        } else if (exercise.known === "predecessor") {
+            const midInput = document.getElementById('answer-middle');
+            const succInput = document.getElementById('answer-successor');
+            const midAnswer = parseInt(midInput.value);
+            const succAnswer = parseInt(succInput.value);
+
+            allInputs = [midInput, succInput];
+
+            if (isNaN(midAnswer) || isNaN(succAnswer)) {
+                feedback.textContent = 'Completează ambele câmpuri!';
+                feedback.className = 'feedback wrong';
+                return;
+            }
+
+            if (midAnswer < 0 || succAnswer < 0) {
+                feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
+                feedback.className = 'feedback wrong';
+                return;
+            }
+
+            isCorrect = (midAnswer === exercise.number && succAnswer === exercise.successor);
+        } else if (exercise.known === "successor") {
+            const predInput = document.getElementById('answer-predecessor');
+            const midInput = document.getElementById('answer-middle');
+            const predAnswer = parseInt(predInput.value);
+            const midAnswer = parseInt(midInput.value);
+
+            allInputs = [predInput, midInput];
+
+            if (isNaN(predAnswer) || isNaN(midAnswer)) {
+                feedback.textContent = 'Completează ambele câmpuri!';
+                feedback.className = 'feedback wrong';
+                return;
+            }
+
+            if (predAnswer < 0 || midAnswer < 0) {
+                feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
+                feedback.className = 'feedback wrong';
+                return;
+            }
+
+            isCorrect = (predAnswer === exercise.predecessor && midAnswer === exercise.number);
+        }
+
+        if (isCorrect) {
+            answered = true;
+            correctCount++;
+            document.getElementById('correct-count').textContent = correctCount;
+
+            allInputs.forEach(input => input.className = 'sequence-input correct');
+            card.className = 'exercise-card correct';
+            feedback.textContent = '✓ Corect! Bravo!';
+            feedback.className = 'feedback correct';
+            hintBox.className = 'hint-box';
+
+            if (currentIndex < currentExercises.length - 1) {
+                btn.textContent = 'Următorul →';
+            } else {
+                btn.textContent = 'Vezi rezultatul';
+            }
+        } else {
+            wrongCount++;
+            document.getElementById('wrong-count').textContent = wrongCount;
+
+            allInputs.forEach(input => input.className = 'sequence-input wrong');
+            card.className = 'exercise-card wrong';
+            feedback.textContent = '✗ Mai încearcă!';
+            feedback.className = 'feedback wrong';
+
+            hintText.textContent = 'Gândește-te: ce număr vine înainte și ce număr vine după?';
+            hintBox.className = 'hint-box visible';
+
+            setTimeout(() => {
+                allInputs.forEach(input => {
+                    input.className = 'sequence-input';
+                    input.value = '';
+                });
+                card.className = 'exercise-card';
+                if (allInputs.length > 0) allInputs[0].focus();
+            }, 1500);
+        }
     }
 }
 
@@ -902,12 +1122,12 @@ function evaluateExpression(parts, answer) {
 }
 
 function showCompletion() {
-    document.getElementById('game-container').className = 'game-container hidden';
+    document.getElementById('game-container').classList.add('hidden');
     document.getElementById('completion-screen').className = 'completion-screen active';
-    document.getElementById('final-score').textContent = `${correctCount} / ${exercises.length}`;
+    document.getElementById('final-score').textContent = `${correctCount} / ${currentExercises.length}`;
     document.getElementById('progress').style.width = '100%';
 
-    const percentage = (correctCount / exercises.length) * 100;
+    const percentage = (correctCount / currentExercises.length) * 100;
     let stars = '';
     let message = '';
 
@@ -950,15 +1170,9 @@ function createConfetti() {
 }
 
 function restartGame() {
-    currentIndex = 0;
-    correctCount = 0;
-    wrongCount = 0;
-    shuffleArray(exercises);
+    document.getElementById('menu-screen').style.display = 'block';
+    document.getElementById('game-container').classList.add('hidden');
+    document.getElementById('completion-screen').classList.remove('active');
     document.getElementById('correct-count').textContent = '0';
     document.getElementById('wrong-count').textContent = '0';
-    document.getElementById('game-container').className = 'game-container';
-    document.getElementById('completion-screen').className = 'completion-screen';
-    loadExercise();
 }
-
-loadExercise();
