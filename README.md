@@ -39,12 +39,14 @@ Această colecție de jocuri educative oferă **285 de exerciții** variate de m
 
 ## 🚀 Demo Live
 
-Vizitează jocul la: `[URL-ul tău GitHub Pages va fi aici]`
+Dacă ai publicat proiectul pe GitHub Pages sau pe un alt hosting static, adaugă aici linkul:
+
+`[URL-ul tău GitHub Pages va fi aici]`
 
 ## 📁 Structura Proiectului
 
 ```
-clasa-1/
+matematica-clasa-1/
 ├── index.html          # Fișierul HTML principal
 ├── css/
 │   └── style.css      # Toate stilurile CSS
@@ -59,10 +61,15 @@ clasa-1/
 
 1. Clonează repository-ul:
 ```bash
-git clone https://github.com/[username]/clasa-1.git
+git clone https://github.com/[username]/matematica-clasa-1.git
 ```
 
-2. Deschide fișierul `index.html` în browser
+2. Intră în directorul proiectului:
+```bash
+cd matematica-clasa-1
+```
+
+3. Deschide fișierul `index.html` în browser (dublu‑click sau „Open with browser”)
 
 ### Metoda 2: GitHub Pages
 
