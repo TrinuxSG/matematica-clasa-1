@@ -503,6 +503,7 @@ function startGame(category) {
     document.getElementById('wrong-count').textContent = '0';
     document.getElementById('menu-screen').style.display = 'none';
     document.getElementById('game-container').classList.remove('hidden');
+    document.getElementById('progress-wrapper').style.display = 'block';
 
     loadExercise();
 }
@@ -511,6 +512,7 @@ function backToMenu() {
     document.getElementById('menu-screen').style.display = 'block';
     document.getElementById('game-container').classList.add('hidden');
     document.getElementById('completion-screen').classList.remove('active');
+    document.getElementById('progress-wrapper').style.display = 'none';
 }
 
 function loadExercise() {
@@ -524,6 +526,7 @@ function loadExercise() {
     document.getElementById('exercise-card').className = 'exercise-card';
     document.getElementById('check-btn').textContent = 'Verifică';
     document.getElementById('progress').style.width = `${(currentIndex / currentExercises.length) * 100}%`;
+    document.getElementById('progress-text').textContent = `${currentIndex + 1} din ${currentExercises.length}`;
     document.getElementById('task-hint').textContent = '';
     document.getElementById('hint-box').className = 'hint-box';
     document.getElementById('hint-text').textContent = '';
@@ -799,7 +802,12 @@ function loadExercise() {
     });
 
     if (inputs.length > 0) {
-        inputs[0].focus();
+        const firstInput = inputs[0];
+        firstInput.focus();
+        // On mobile, scroll input into view so keyboard doesn't cover it
+        setTimeout(() => {
+            firstInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
     }
 }
 
@@ -970,7 +978,7 @@ function checkAnswer() {
         const correctAnswer = getCorrectAnswer(exercise);
 
         if (userAnswer === '') {
-            feedback.textContent = exercise.type === "word" ? 'Introdu un cuvânt!' : 'Introdu silabele!';
+            feedback.textContent = exercise.type === "word" ? 'Scrie cuvântul corect aici!' : 'Scrie silabele aici!';
             feedback.className = 'feedback wrong';
             return;
         }
@@ -999,7 +1007,7 @@ function checkAnswer() {
             const inputWrongClass = exercise.type === "word" ? 'answer-input word-input wrong' : 'answer-input syllable-input wrong';
             input.className = inputWrongClass;
             card.className = 'exercise-card wrong';
-            feedback.textContent = '✗ Mai încearcă!';
+            feedback.textContent = 'Nu e bine, dar poți încerca din nou!';
             feedback.className = 'feedback wrong';
 
             hintText.textContent = generateHint(exercise, userAnswer);
@@ -1019,13 +1027,13 @@ function checkAnswer() {
         const correctAnswer = getCorrectAnswer(exercise);
 
         if (isNaN(userAnswer)) {
-            feedback.textContent = 'Introdu un număr!';
+            feedback.textContent = 'Scrie un număr aici!';
             feedback.className = 'feedback wrong';
             return;
         }
 
         if (userAnswer < 0) {
-            feedback.textContent = 'Numărul trebuie să fie cel puțin 0!';
+            feedback.textContent = 'Folosește un număr mai mare sau egal cu 0!';
             feedback.className = 'feedback wrong';
             return;
         }
@@ -1072,7 +1080,7 @@ function checkAnswer() {
                 input.className = 'answer-input wrong';
             }
             card.className = 'exercise-card wrong';
-            feedback.textContent = '✗ Mai încearcă!';
+            feedback.textContent = 'Nu e bine, dar poți încerca din nou!';
             feedback.className = 'feedback wrong';
 
             hintText.textContent = generateHint(exercise, userAnswer);
@@ -1103,13 +1111,13 @@ function checkAnswer() {
         const rightAnswer = parseInt(rightInput.value);
 
         if (isNaN(leftAnswer) || isNaN(rightAnswer)) {
-            feedback.textContent = 'Completează ambele câmpuri!';
+            feedback.textContent = 'Scrie numere în ambele casete!';
             feedback.className = 'feedback wrong';
             return;
         }
 
         if (leftAnswer < 0 || rightAnswer < 0) {
-            feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
+            feedback.textContent = 'Folosește numere mai mari sau egale cu 0!';
             feedback.className = 'feedback wrong';
             return;
         }
@@ -1145,7 +1153,7 @@ function checkAnswer() {
             leftInput.className = 'inline-input wrong';
             rightInput.className = 'inline-input wrong';
             card.className = 'exercise-card wrong';
-            feedback.textContent = '✗ Mai încearcă!';
+            feedback.textContent = 'Nu e bine, dar poți încerca din nou!';
             feedback.className = 'feedback wrong';
 
             hintText.textContent = generateHint(exercise, null, leftAnswer, rightAnswer);
@@ -1173,13 +1181,13 @@ function checkAnswer() {
             allInputs = [predInput, succInput];
 
             if (isNaN(predAnswer) || isNaN(succAnswer)) {
-                feedback.textContent = 'Completează ambele câmpuri!';
+                feedback.textContent = 'Scrie numere în ambele casete!';
                 feedback.className = 'feedback wrong';
                 return;
             }
 
             if (predAnswer < 0 || succAnswer < 0) {
-                feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
+                feedback.textContent = 'Folosește numere mai mari sau egale cu 0!';
                 feedback.className = 'feedback wrong';
                 return;
             }
@@ -1194,13 +1202,13 @@ function checkAnswer() {
             allInputs = [midInput, succInput];
 
             if (isNaN(midAnswer) || isNaN(succAnswer)) {
-                feedback.textContent = 'Completează ambele câmpuri!';
+                feedback.textContent = 'Scrie numere în ambele casete!';
                 feedback.className = 'feedback wrong';
                 return;
             }
 
             if (midAnswer < 0 || succAnswer < 0) {
-                feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
+                feedback.textContent = 'Folosește numere mai mari sau egale cu 0!';
                 feedback.className = 'feedback wrong';
                 return;
             }
@@ -1215,13 +1223,13 @@ function checkAnswer() {
             allInputs = [predInput, midInput];
 
             if (isNaN(predAnswer) || isNaN(midAnswer)) {
-                feedback.textContent = 'Completează ambele câmpuri!';
+                feedback.textContent = 'Scrie numere în ambele casete!';
                 feedback.className = 'feedback wrong';
                 return;
             }
 
             if (predAnswer < 0 || midAnswer < 0) {
-                feedback.textContent = 'Numerele trebuie să fie cel puțin 0!';
+                feedback.textContent = 'Folosește numere mai mari sau egale cu 0!';
                 feedback.className = 'feedback wrong';
                 return;
             }
@@ -1251,7 +1259,7 @@ function checkAnswer() {
 
             allInputs.forEach(input => input.className = 'sequence-input wrong');
             card.className = 'exercise-card wrong';
-            feedback.textContent = '✗ Mai încearcă!';
+            feedback.textContent = 'Nu e bine, dar poți încerca din nou!';
             feedback.className = 'feedback wrong';
 
             hintText.textContent = 'Gândește-te: ce număr vine înainte și ce număr vine după?';
@@ -1286,6 +1294,7 @@ function showCompletion() {
     document.getElementById('completion-screen').className = 'completion-screen active';
     document.getElementById('final-score').textContent = `${correctCount} / ${currentExercises.length}`;
     document.getElementById('progress').style.width = '100%';
+    document.getElementById('progress-text').textContent = `${currentExercises.length} din ${currentExercises.length}`;
 
     const percentage = (correctCount / currentExercises.length) * 100;
     let stars = '';
@@ -1333,6 +1342,7 @@ function restartGame() {
     document.getElementById('menu-screen').style.display = 'block';
     document.getElementById('game-container').classList.add('hidden');
     document.getElementById('completion-screen').classList.remove('active');
+    document.getElementById('progress-wrapper').style.display = 'none';
     document.getElementById('correct-count').textContent = '0';
     document.getElementById('wrong-count').textContent = '0';
 }

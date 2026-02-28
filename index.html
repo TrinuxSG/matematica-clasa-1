@@ -33,17 +33,20 @@
 
         <div class="score-board">
             <div class="score-item score-correct">
-                <div class="score-label">Corecte</div>
+                <div class="score-label">✓ Bravo</div>
                 <div class="score-value" id="correct-count">0</div>
             </div>
             <div class="score-item score-wrong">
-                <div class="score-label">Greșite</div>
+                <div class="score-label">🔄 Mai încercări</div>
                 <div class="score-value" id="wrong-count">0</div>
             </div>
         </div>
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progress"></div>
+        <div class="progress-wrapper" id="progress-wrapper" style="display: none;">
+            <div class="progress-text" id="progress-text"></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
         </div>
 
         <!-- Menu Screen -->
@@ -63,7 +66,8 @@
                     </button>
                     <button class="menu-btn sequence-btn" onclick="startGame('sequence')">
                         <div class="menu-icon">🔢</div>
-                        <div class="menu-label">Predecesor-Succesor</div>
+                        <div class="menu-label">Numere în ordine</div>
+                        <div class="menu-sublabel">Predecesor și succesor</div>
                         <div class="menu-count">30 exerciții</div>
                     </button>
                     <button class="menu-btn addition-btn" onclick="startGame('addition')">
@@ -78,7 +82,8 @@
                     </button>
                     <button class="menu-btn column-btn" onclick="startGame('column')">
                         <div class="menu-icon">📊</div>
-                        <div class="menu-label">Adunare/Scădere în Coloniță</div>
+                        <div class="menu-label">Calcule în coloană</div>
+                        <div class="menu-sublabel">Adunare și scădere</div>
                         <div class="menu-count">50 exerciții</div>
                     </button>
                     <button class="menu-btn story-btn" onclick="startGame('story')">
@@ -118,7 +123,7 @@
                 </div>
                 <div class="task-hint" id="task-hint"></div>
             </div>
-            <button class="btn btn-back" onclick="backToMenu()">← Înapoi la meniu</button>
+            <button class="btn btn-back" onclick="backToMenu()">← Înapoi</button>
         </div>
 
         <div class="completion-screen" id="completion-screen">
@@ -126,7 +131,8 @@
             <div class="final-score" id="final-score">0 / 125</div>
             <div class="stars" id="stars"></div>
             <div class="final-message" id="final-message">Felicitari!</div>
-            <button class="btn btn-restart" onclick="restartGame()">Joaca din nou</button>
+            <p class="completion-cta">Vrei să mai exersezi?</p>
+            <button class="btn btn-restart" onclick="restartGame()">Joacă din nou</button>
         </div>
     </div>
 
