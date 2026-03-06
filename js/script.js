@@ -290,7 +290,7 @@ const exercises = [
     { type: "word", scrambled: "mama", answer: "mama", hint: "Este persoana care te-a născut" },
     { type: "word", scrambled: "aatt", answer: "tata", hint: "Este părintele bărbat" },
     { type: "word", scrambled: "roelaf", answer: "floare", hint: "Este o plantă frumoasă și colorată" },
-    { type: "word", scrambled: "eroabr", answer: "arbore", hint: "Este o plantă mare și înaltă" },
+    { type: "word", scrambled: "eroabr", answer: "arbore", hint: "Este un copac mare și înalt" },
     { type: "word", scrambled: "rosaе", answer: "soare", hint: "Strălucește pe cer ziua" },
     { type: "word", scrambled: "nulă", answer: "lună", hint: "Apare pe cer noaptea" },
     { type: "word", scrambled: "păa", answer: "apă", hint: "Este un lichid pe care îl bem" },
@@ -313,7 +313,7 @@ const exercises = [
     { type: "word", scrambled: "teica", answer: "caiet", hint: "Este un obiect în care scriem" },
     { type: "word", scrambled: "tarce", answer: "carte", hint: "Este un obiect cu multe pagini pe care le citești" },
     { type: "word", scrambled: "neprtie", answer: "prieten", hint: "Este o persoană pe care o iubești" },
-    { type: "word", scrambled: "roocul", answer: "culoare", hint: "Poate fi roșu, albastru, galben, verde..." },
+    { type: "word", scrambled: "rcaloue", answer: "culoare", hint: "Poate fi roșu, albastru, galben, verde..." },
 
     // Tipul 9: Desparte pe silabe (30 exerciții)
     { type: "syllable", word: "carte", answer: "car-te", syllables: 2 },
@@ -439,6 +439,11 @@ const exercises = [
     { type: "column-sub", tens1: 2, units1: 6, tens2: 0, units2: 9, answer: 17, hasBorrow: true },
     { type: "column-sub", tens1: 1, units1: 9, tens2: 0, units2: 9, answer: 10, hasBorrow: true }
 ];
+
+// Permite folosirea exercițiilor în scripturi de test Node.js
+if (typeof module !== 'undefined') {
+    module.exports = { exercises };
+}
 
 let currentIndex = 0;
 let correctCount = 0;
