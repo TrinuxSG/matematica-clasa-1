@@ -398,7 +398,7 @@ const exercises = [
     { type: "column-add", tens1: 0, units1: 6, tens2: 0, units2: 7, answer: 13, hasCarry: true },
     { type: "column-add", tens1: 0, units1: 9, tens2: 0, units2: 9, answer: 18, hasCarry: true },
     // Cu zeci și trecere
-    { type: "column-add", tens1: 1, units1: 7, tens2: 0, units2: 5, answer: 22, hasCarry: true },
+    { type: "column-add", tens1: 1, units1: 6, tens2: 1, units2: 6, answer: 32, hasCarry: true }, // 16 + 16 = 32
     { type: "column-add", tens1: 1, units1: 8, tens2: 0, units2: 4, answer: 22, hasCarry: true },
     { type: "column-add", tens1: 1, units1: 6, tens2: 0, units2: 9, answer: 25, hasCarry: true },
     { type: "column-add", tens1: 1, units1: 9, tens2: 0, units2: 7, answer: 26, hasCarry: true },
@@ -472,25 +472,23 @@ function startGame(category) {
         currentExercises = allExercises.filter(ex =>
             ['word', 'syllable'].includes(ex.type)
         );
-    } else if (category === 'addition') {
+    } else if (category === 'add-sub') {
         currentExercises = allExercises.filter(ex =>
-            ex.type === 'result' && ex.text.includes('+') ||
-            ex.type === 'missing' && ex.parts[1].includes('+') ||
+            (ex.type === 'result' && (ex.text.includes('+') || ex.text.includes('-'))) ||
+            (ex.type === 'missing' && (ex.parts[1].includes('+') || ex.parts[1].includes('-'))) ||
             ex.type === 'table-add' ||
-            ex.type === 'column-add' ||
-            ex.type === 'comparison' && (ex.leftParts[1].includes('+') || ex.rightParts[1].includes('+'))
-        );
-    } else if (category === 'subtraction') {
-        currentExercises = allExercises.filter(ex =>
-            ex.type === 'result' && ex.text.includes('-') ||
-            ex.type === 'missing' && ex.parts[1].includes('-') ||
             ex.type === 'table-sub' ||
+            ex.type === 'column-add' ||
             ex.type === 'column-sub' ||
-            ex.type === 'comparison' && (ex.leftParts[1].includes('-') || ex.rightParts[1].includes('-'))
+            (ex.type === 'comparison' && (ex.leftParts[1].includes('+') || ex.leftParts[1].includes('-') || ex.rightParts[1].includes('+') || ex.rightParts[1].includes('-')))
         );
     } else if (category === 'column') {
         currentExercises = allExercises.filter(ex =>
-            ex.type === 'column-add' || ex.type === 'column-sub'
+            (ex.type === 'column-add' && !ex.hasCarry) || ex.type === 'column-sub'
+        );
+    } else if (category === 'column-carry') {
+        currentExercises = allExercises.filter(ex =>
+            ex.type === 'column-add' && ex.hasCarry
         );
     } else {
         currentExercises = allExercises.filter(ex => ex.type === category);
@@ -745,13 +743,23 @@ function loadExercise() {
         html += '</div>';
 
         html += '<div class="column-line"></div>';
-        html += '<input type="number" min="0" class="column-answer" id="answer-input" autofocus>';
+
+        if (exercise.hasCarry) {
+            html += '<div class="column-guided">';
+            html += `<div class="guided-step">Pasul 1: unitățile: <span>${exercise.units1}</span> + <span>${exercise.units2}</span> = <input type="number" min="0" class="answer-input" id="units-sum"></div>`;
+            html += `<div class="guided-step">Pasul 2: ține minte zeci: <input type="number" min="0" class="answer-input" id="carry-input"></div>`;
+            html += `<div class="guided-step final-step">Pasul 3: scrie rezultatul: <input type="number" min="0" class="column-answer" id="answer-input"></div>`;
+            html += '</div>';
+        } else {
+            html += '<input type="number" min="0" class="column-answer" id="answer-input" autofocus>';
+        }
+
         html += '</div>';
 
         exerciseContentEl.innerHTML = html;
 
         if (exercise.hasCarry) {
-            document.getElementById('task-hint').textContent = "Atenție: Unitățile adunate depășesc 10! Ține minte să treci la zeci.";
+            document.getElementById('task-hint').textContent = "Atenție: întâi adună unitățile, ține minte zecile, apoi scrie rezultatul final.";
         } else {
             document.getElementById('task-hint').textContent = "Adună pe coloane: unitățile cu unitățile, zecile cu zecile";
         }
@@ -1044,6 +1052,18 @@ function checkAnswer() {
         }
 
         if (userAnswer === correctAnswer) {
+            // Pentru adunările în coloană cu trecere peste 10, obligăm elevul
+            // să completeze și pașii ghidați (unități și "ține minte").
+            if (exercise.type === "column-add" && exercise.hasCarry) {
+                const unitsHelper = document.getElementById('units-sum');
+                const carryHelper = document.getElementById('carry-input');
+                if (unitsHelper && carryHelper && (unitsHelper.value === '' || carryHelper.value === '')) {
+                    feedback.textContent = 'Completează și pașii: cât fac unitățile și câte zeci ții minte.';
+                    feedback.className = 'feedback wrong';
+                    return;
+                }
+            }
+
             answered = true;
             correctCount++;
             document.getElementById('correct-count').textContent = correctCount;
