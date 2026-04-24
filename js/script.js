@@ -452,6 +452,129 @@ let answered = false;
 let currentExercises = [];
 let allExercises = [...exercises];
 
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function generateTwoDigitOperation(operator) {
+    if (operator === '+') {
+        const result = randomInt(20, 98);
+        const first = randomInt(10, result - 10);
+        return { first, second: result - first, result, operator: '+' };
+    }
+
+    const first = randomInt(20, 99);
+    const second = randomInt(10, first - 10);
+    return { first, second, result: first - second, operator: '-' };
+}
+
+function splitTwoDigitSum(total) {
+    const constant = randomInt(10, total - 10);
+    return { constant, missing: total - constant };
+}
+
+function buildTwoDigitComparison(symbol) {
+    const createExpression = (targetTotal) => {
+        const { constant, missing } = splitTwoDigitSum(targetTotal);
+        return { constant, missing, total: targetTotal };
+    };
+
+    if (symbol === '=') {
+        const total = randomInt(30, 99);
+        const left = createExpression(total);
+        const right = createExpression(total);
+        return {
+            type: 'comparison',
+            leftParts: [`${left.constant} + `, ""],
+            rightParts: ["", ` + ${right.constant}`],
+            answers: [left.missing, right.missing],
+            leftAnswer: left.missing,
+            rightAnswer: right.missing,
+            symbol: '='
+        };
+    }
+
+    const leftTotal = randomInt(40, 99);
+    const rightTotal = symbol === '>' ? randomInt(20, leftTotal - 1) : randomInt(leftTotal + 1, 99);
+    const left = createExpression(leftTotal);
+    const right = createExpression(rightTotal);
+
+    return {
+        type: 'comparison',
+        leftParts: [`${left.constant} + `, ""],
+        rightParts: ["", ` + ${right.constant}`],
+        answers: [left.missing, right.missing],
+        leftAnswer: left.missing,
+        rightAnswer: right.missing,
+        symbol
+    };
+}
+
+function normalizeSimpleMathExercise(exercise) {
+    if (exercise.type === 'result') {
+        const operator = exercise.text.includes('-') ? '-' : '+';
+        const op = generateTwoDigitOperation(operator);
+        return { ...exercise, text: `${op.first} ${op.operator} ${op.second} =`, answer: op.result };
+    }
+
+    if (exercise.type === 'missing') {
+        const operator = exercise.parts[1].includes('-') ? '-' : '+';
+        const op = generateTwoDigitOperation(operator);
+
+        if (exercise.position === 0) {
+            return {
+                ...exercise,
+                parts: ["", ` ${op.operator} ${op.second} = ${op.result}`],
+                answer: op.first
+            };
+        }
+
+        return {
+            ...exercise,
+            parts: [`${op.first} ${op.operator} `, ` = ${op.result}`],
+            answer: op.second
+        };
+    }
+
+    if (exercise.type === 'table-add') {
+        const op = generateTwoDigitOperation('+');
+        return { ...exercise, termen1: op.first, termen2: op.second, suma: op.result };
+    }
+
+    if (exercise.type === 'table-sub') {
+        const op = generateTwoDigitOperation('-');
+        return { ...exercise, descazut: op.first, scazator: op.second, diferenta: op.result };
+    }
+
+    if (exercise.type === 'comparison') {
+        return buildTwoDigitComparison(exercise.symbol);
+    }
+
+    if (exercise.type === 'chain') {
+        const [firstOperator, secondOperator] = exercise.operators;
+
+        if (firstOperator === '+' && secondOperator === '-') {
+            const first = randomInt(20, 70);
+            const second = randomInt(10, 29);
+            const intermediate = first + second;
+            const third = randomInt(10, intermediate - 10);
+            return { ...exercise, numbers: [first, second, third], answer: intermediate - third };
+        }
+
+        if (firstOperator === '-' && secondOperator === '+') {
+            const first = randomInt(30, 89);
+            const second = randomInt(10, first - 10);
+            const intermediate = first - second;
+            const third = randomInt(10, 99 - intermediate);
+            return { ...exercise, numbers: [first, second, third], answer: intermediate + third };
+        }
+    }
+
+    return exercise;
+}
+
+allExercises = allExercises.map(normalizeSimpleMathExercise);
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
